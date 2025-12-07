@@ -11,8 +11,8 @@
     <meta property="og:url" content="https://southaura.co/">
     <meta property="og:title" content="Southaura | New Drop">
     <meta property="og:description" content="Streetwear premium con raíces andaluzas. Envío gratis +56€.">
-    <!-- Usamos la foto frontal negra como portada -->
-    <meta property="og:image" content="BlackTeeFront.png">
+    <!-- Usamos la foto frontal negra como portada (CORREGIDO: f minúscula) -->
+    <meta property="og:image" content="BlackTeefront.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -109,8 +109,8 @@
                     <div class="aspect-[3/4] bg-neutral-800 rounded-xl overflow-hidden relative border border-white/10">
                         <!-- Main Image Display -->
                         <div id="main-image" class="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
-                            <!-- CORREGIDO: Usa tus nombres reales -->
-                            <img id="current-image" src="BlackTeeFront.png" alt="Southaura Original Tee" class="w-full h-full object-cover object-center scale-125 transition-all duration-300">
+                            <!-- CORREGIDO: f minúscula para coincidir con GitHub -->
+                            <img id="current-image" src="BlackTeefront.png" alt="Southaura Original Tee" class="w-full h-full object-cover object-center scale-125 transition-all duration-300">
                         </div>
                         
                         <!-- Badge -->
@@ -127,15 +127,15 @@
                     
                     <!-- Thumbnail Gallery -->
                     <div class="flex gap-2 mt-4 overflow-x-auto pb-2">
-                        <!-- CORREGIDO: Nombres de tu captura -->
+                        <!-- CORREGIDO: f minúscula en los nombres -->
                         <div class="thumb active w-16 h-20 rounded-lg border-2 border-white cursor-pointer overflow-hidden flex-shrink-0" data-index="0">
-                            <img src="BlackTeeFront.png" alt="Negra Frontal" class="w-full h-full object-cover">
+                            <img src="BlackTeefront.png" alt="Negra Frontal" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors flex-shrink-0" data-index="1">
                             <img src="BlackTeeBack.png" alt="Negra Espalda" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors flex-shrink-0" data-index="2">
-                            <img src="WhiteTeeFront.png" alt="Blanca Frontal" class="w-full h-full object-cover">
+                            <img src="WhiteTeefront.png" alt="Blanca Frontal" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors flex-shrink-0" data-index="3">
                             <img src="WhiteTeeBack.png" alt="Blanca Espalda" class="w-full h-full object-cover">
@@ -212,12 +212,12 @@
         lucide.createIcons();
 
         // --- GALERÍA DE IMÁGENES ---
-        // CORREGIDO: Tus nombres reales
+        // CORREGIDO: f minúscula en las frontales, B mayúscula en las Back
         let currentIndex = 0;
         const images = [
-            'BlackTeeFront.png',
+            'BlackTeefront.png',
             'BlackTeeBack.png',
-            'WhiteTeeFront.png',
+            'WhiteTeefront.png',
             'WhiteTeeBack.png'
         ];
 
