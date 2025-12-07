@@ -116,12 +116,10 @@
     <!-- 1. BARRA DE TEXTO (TICKER) -->
     <div class="ticker-container">
         <div class="ticker-track">
-            <span class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
+            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
+            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
+            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
+            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
         </div>
     </div>
 
@@ -131,7 +129,6 @@
 
     <!-- Navegación -->
     <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/5">
-        <!-- Añadido 'relative' para permitir el posicionamiento absoluto del menú central -->
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
             
             <!-- Logo -->
@@ -140,11 +137,12 @@
             </div>
             
             <!-- Menú Escritorio (CENTRADO ABSOLUTO) -->
-            <!-- Usamos left-1/2 y translate para asegurar el centro matemático -->
-            <div class="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 space-x-12 text-sm uppercase tracking-widest text-gray-400 font-bebas text-xl">
+            <div class="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center space-x-12 text-sm uppercase tracking-widest text-gray-400 font-bebas text-xl">
                 <a href="#collection" class="hover:text-south-green transition-colors">Colección</a>
                 <a href="#about" class="hover:text-south-green transition-colors">ADN</a>
                 <a href="#size-guide" class="hover:text-south-green transition-colors">Tallas</a>
+                <!-- ENLACE AL SORTEO -->
+                <a href="sorteo.html" class="text-south-green hover:text-white transition-colors font-bold animate-pulse border border-south-green px-3 py-1 rounded">SORTEO</a>
             </div>
             
             <!-- Iconos Derecha -->
@@ -168,9 +166,12 @@
         </button>
         
         <div class="flex flex-col space-y-10 text-center">
-            <a href="#collection" class="text-6xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Colección</a>
-            <a href="#about" class="text-6xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">ADN</a>
-            <a href="#size-guide" class="text-6xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Tallas</a>
+            <!-- ENLACE AL SORTEO MÓVIL -->
+            <a href="sorteo.html" class="text-6xl font-bebas text-south-green hover:text-white transition-colors animate-pulse" onclick="toggleMenu()">¡SORTEO!</a>
+            
+            <a href="#collection" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Colección</a>
+            <a href="#about" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">ADN</a>
+            <a href="#size-guide" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Tallas</a>
             <a href="https://instagram.com/southaura.co" target="_blank" class="text-2xl font-bebas text-gray-500 mt-12 hover:text-white" onclick="toggleMenu()">Instagram</a>
         </div>
     </div>
@@ -288,9 +289,9 @@
                             Camiseta unisex confeccionada en algodón suave con ajuste regular. Diseño exclusivo con el emblema Southaura y mensaje <span class="text-white italic">"Made in the Sur with Gracia"</span> en la espalda.
                         </p>
                         <ul class="space-y-4 text-sm text-gray-400">
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-south-green"></i> 100% Algodón Premium</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-south-green"></i> Corte Regular Fit Unisex</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5 text-south-green"></i> Detalles minimalistas</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-south-green"></i> 100% Algodón Premium</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-south-green"></i> Corte Regular Fit Unisex</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-south-green"></i> Detalles minimalistas</li>
                         </ul>
                     </div>
 
