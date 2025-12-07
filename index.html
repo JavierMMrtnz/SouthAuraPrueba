@@ -134,10 +134,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative h-[85vh] flex flex-col justify-center items-center text-center px-4">
+    <!-- AJUSTE: Altura mínima y espaciado para evitar solapamientos -->
+    <section class="relative min-h-[85vh] flex flex-col justify-center items-center text-center px-4 py-20">
         <span class="text-sm md:text-base uppercase tracking-[0.4em] text-south-green mb-4 font-bold animate-pulse">New Season Available</span>
         
-        <h1 class="text-7xl md:text-[10rem] uppercase hero-text-shadow mb-4 leading-none font-bebas">
+        <!-- AJUSTE: Tamaño de fuente reducido ligeramente para que quepa mejor (de 10rem a 8rem en PC) -->
+        <h1 class="text-7xl md:text-[8rem] uppercase hero-text-shadow mb-4 leading-none font-bebas">
             Arena &<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600">Compás</span>
         </h1>
@@ -147,13 +149,15 @@
             <span class="text-south-green italic">"Viste tus raíces, marca tu estilo"</span>
         </p>
         
-        <div class="mt-12 flex gap-4">
+        <!-- AJUSTE: Margen inferior extra para separar del botón flecha -->
+        <div class="mt-10 mb-16 flex gap-4">
             <a href="#collection" class="px-10 py-4 bg-white text-black font-bebas text-xl uppercase hover:bg-south-green hover:text-white transition-all transform hover:-translate-y-1">
                 Ver Drop
             </a>
         </div>
         
-        <div class="absolute bottom-10 animate-bounce text-south-green">
+        <!-- AJUSTE: Posición relativa en móvil para evitar solapamiento -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-south-green hidden md:block">
             <i data-lucide="arrow-down" class="w-8 h-8"></i>
         </div>
     </section>
@@ -191,14 +195,16 @@
 
     <!-- Product Showcase -->
     <section id="collection" class="py-24 px-4 md:px-8 relative">
-        <div class="max-w-[90rem] mx-auto">
+        <!-- AJUSTE: Volvemos a un ancho contenido (max-w-7xl) para mejor visualización -->
+        <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row gap-12 items-start">
                 
-                <!-- Galería de Imágenes (AMPLIADA) -->
-                <div class="w-full md:w-3/5 relative group">
-                    <div class="aspect-[3/4] bg-neutral-800 rounded-2xl overflow-hidden relative border border-white/10 shadow-2xl shadow-south-green/10">
+                <!-- Galería de Imágenes (Tamaño equilibrado 50%) -->
+                <div class="w-full md:w-1/2 relative group">
+                    <!-- AJUSTE: max-h para que no sea infinita en pantallas grandes -->
+                    <div class="aspect-[3/4] max-h-[700px] bg-neutral-800 rounded-2xl overflow-hidden relative border border-white/10 shadow-2xl shadow-south-green/10 mx-auto">
                         <!-- Imagen Principal -->
-                        <!-- TRUCO APLICADO: items-start + h-[108%] + object-top para recortar abajo -->
+                        <!-- TRUCO APLICADO: object-top + h-[108%] para recortar marca de agua abajo -->
                         <div id="main-image" class="w-full h-full bg-neutral-900 flex items-start justify-center overflow-hidden">
                             <img id="current-image" src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Southaura Original Tee" class="w-full h-[108%] object-cover object-top transform hover:scale-105 transition-transform duration-700">
                         </div>
@@ -210,36 +216,32 @@
                         
                         <!-- Flechas -->
                         <button id="prev-btn" class="absolute left-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-south-green text-white p-3 rounded-full transition-colors backdrop-blur-sm">
-                            <i data-lucide="chevron-left" class="w-8 h-8"></i>
+                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
                         </button>
                         <button id="next-btn" class="absolute right-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-south-green text-white p-3 rounded-full transition-colors backdrop-blur-sm">
-                            <i data-lucide="chevron-right" class="w-8 h-8"></i>
+                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
                         </button>
                     </div>
                     
-                    <!-- Miniaturas (AMPLIADAS y RECORTADAS) -->
+                    <!-- Miniaturas -->
                     <div class="flex gap-4 mt-6 overflow-x-auto pb-2 justify-center">
-                        <!-- Miniatura 1 -->
-                        <div class="thumb active w-24 h-32 rounded-lg border-2 border-south-green cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:opacity-80" data-index="0">
+                        <div class="thumb active w-20 h-24 rounded-lg border-2 border-south-green cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:opacity-80" data-index="0">
                             <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-[110%] object-cover object-top">
                         </div>
-                        <!-- Miniatura 2 -->
-                        <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="1">
+                        <div class="thumb w-20 h-24 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="1">
                             <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-[110%] object-cover object-top">
                         </div>
-                        <!-- Miniatura 3 -->
-                        <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="2">
+                        <div class="thumb w-20 h-24 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="2">
                             <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-[110%] object-cover object-top">
                         </div>
-                        <!-- Miniatura 4 -->
-                        <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="3">
+                        <div class="thumb w-20 h-24 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="3">
                             <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-[110%] object-cover object-top">
                         </div>
                     </div>
                 </div>
 
-                <!-- Detalles del Producto -->
-                <div class="w-full md:w-2/5 space-y-10 sticky top-24">
+                <!-- Detalles del Producto (50% ancho) -->
+                <div class="w-full md:w-1/2 space-y-10 sticky top-24">
                     <div>
                         <h2 class="text-6xl md:text-8xl mb-2 font-bebas leading-none">Original Tee</h2>
                         <p class="text-xl text-gray-400 font-light tracking-wide">Black & White Edition</p>
@@ -278,7 +280,7 @@
         </div>
     </section>
 
-    <!-- Size Guide -->
+    <!-- Size Guide (Tabla Detallada) -->
     <section id="size-guide" class="py-24 px-6 border-t border-white/5">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-4xl mb-12 text-center uppercase font-bebas">Guía de Tallas</h2>
