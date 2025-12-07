@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Southaura | Sorteo</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://southaura.co/sorteo">
+    <meta property="og:title" content="Sorteo Southaura | Win Original Tee">
+    <meta property="og:image" content="Gemini_Generated_Image_eh2apoeh2apoeh2a.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'south-green': '#00954C',
+                        'south-dark': '#050505',
+                        'off-white': '#f5f5f5',
+                    },
+                    fontFamily: {
+                        'bebas': ['"Bebas Neue"', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow: hidden; /* Sin scroll para efecto pantalla completa */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Ticker Lento y Sutil */
+        .ticker-container {
+            width: 100%;
+            overflow: hidden;
+            background-color: #00954C;
+            position: relative;
+            z-index: 20;
+            padding: 5px 0;
+        }
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        .ticker-item {
+            padding: 0 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            color: white;
+            letter-spacing: 0.1em;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Blobs de fondo */
+        .blob {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0,149,76,0.1) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Estilo del Contador */
+        .countdown-number {
+            font-size: clamp(4rem, 15vw, 12rem); /* Gigante y responsivo */
+            line-height: 0.9;
+            text-shadow: 0 0 30px rgba(0, 149, 76, 0.4);
+        }
+        .countdown-label {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(0.8rem, 2vw, 1.5rem);
+            letter-spacing: 0.2em;
+            color: #888;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-south-green selection:text-white font-inter">
+
+    <!-- Ticker Superior -->
+    <div class="ticker-container">
+        <div class="ticker-track">
+            <span class="ticker-item">GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA • GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA •</span>
+            <span class="ticker-item">GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA • GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA •</span>
+            <span class="ticker-item">GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA • GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA •</span>
+            <span class="ticker-item">GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA • GIVEAWAY • PARTICIPA Y GANA • SOUTH AURA •</span>
+        </div>
+    </div>
+
+    <!-- Fondo -->
+    <div class="blob top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Contenido Central -->
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 relative z-10">
+        
+        <div class="mb-8 md:mb-12">
+            <a href="index.html" class="text-3xl md:text-4xl font-bebas tracking-widest hover:text-south-green transition-colors">
+                SOUTHAURA
+            </a>
+            <p class="text-south-green font-bold tracking-[0.4em] uppercase text-xs md:text-sm mt-2 animate-pulse">
+                Sorteo Original Tee
+            </p>
+        </div>
+
+        <!-- CONTADOR GIGANTE -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-16 font-bebas" id="countdown">
+            
+            <div class="flex flex-col items-center">
+                <span class="countdown-number text-white" id="days">00</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            
+            <div class="hidden md:block text-6xl text-south-green/50">:</div>
+            
+            <div class="flex flex-col items-center">
+                <span class="countdown-number text-white" id="hours">00</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            
+            <div class="hidden md:block text-6xl text-south-green/50">:</div>
+            
+            <div class="flex flex-col items-center">
+                <span class="countdown-number text-white" id="minutes">00</span>
+                <span class="countdown-label">Min</span>
+            </div>
+            
+            <div class="hidden md:block text-6xl text-south-green/50">:</div>
+
+            <div class="flex flex-col items-center">
+                <span class="countdown-number text-south-green" id="seconds">00</span>
+                <span class="countdown-label text-south-green">Seg</span>
+            </div>
+        </div>
+
+        <!-- Botón de Acción -->
+        <div class="mt-16 md:mt-20">
+            <a href="https://instagram.com/southaura.co" target="_blank" 
+               class="px-10 py-4 bg-white text-black font-bebas text-xl md:text-2xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,149,76,0.6)] rounded-sm transform hover:-translate-y-1 inline-flex items-center gap-3">
+                <i data-lucide="instagram" class="w-6 h-6"></i>
+                Participar en Instagram
+            </a>
+            <p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">
+                Finaliza el 22 de Diciembre a las 12:00
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Footer Simple -->
+    <footer class="py-6 text-center border-t border-white/5 text-gray-600 text-xs uppercase tracking-widest font-light">
+        <a href="index.html" class="hover:text-white transition-colors">Volver a la Web</a>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // --- CONFIGURACIÓN DE FECHA ---
+        // Año actual (2025 o el que sea), Mes (11 = Diciembre, porque empieza en 0), Día 22, Hora 12:00:00
+        const targetDate = new Date(2025, 11, 22, 12, 0, 0).getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // Cálculos de tiempo
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Mostrar resultados con ceros a la izquierda
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // Cuando termine
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = `
+                    <div class='flex flex-col items-center animate-bounce'>
+                        <h2 class='text-6xl md:text-8xl font-bebas text-south-green mb-4'>¡SORTEO CERRADO!</h2>
+                        <p class='text-xl text-white font-light'>Estad atentos a Instagram para el ganador.</p>
+                    </div>
+                `;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
