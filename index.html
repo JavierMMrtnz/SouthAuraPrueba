@@ -100,21 +100,6 @@
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #00954C; }
-        
-        /* Ajuste de imagen para ocultar marca de agua */
-        .img-crop-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        .img-crop-target {
-            width: 100%;
-            height: 105%; /* Un poco más alto para empujar la marca de agua fuera */
-            object-fit: cover;
-            object-position: top center; /* Alineado arriba */
-            display: block;
-        }
     </style>
 </head>
 <body class="antialiased selection:bg-south-green selection:text-white font-inter">
@@ -153,11 +138,9 @@
     </nav>
 
     <!-- Hero Section -->
-    <!-- AJUSTE: Más espacio vertical (py-32) para que no se vea apretado -->
     <section class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 py-32">
         <span class="text-xs md:text-sm uppercase tracking-[0.5em] text-south-green mb-6 font-bold animate-pulse">New Season Available</span>
         
-        <!-- AJUSTE: Tamaño de fuente 7xl en PC (más elegante) en vez de gigante -->
         <h1 class="text-6xl md:text-9xl uppercase hero-text-shadow mb-6 leading-none font-bebas tracking-wide">
             Arena &<br>
             <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">Compás</span>
@@ -168,14 +151,12 @@
             <span class="text-south-green italic">"Viste tus raíces, marca tu estilo"</span>
         </p>
         
-        <!-- AJUSTE: Botón más minimalista -->
         <div class="mt-12 mb-20 flex gap-4">
             <a href="#collection" class="px-12 py-4 bg-white text-black font-bebas text-xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all duration-300 shadow-lg hover:shadow-south-green/20 transform hover:-translate-y-1 rounded-sm">
                 Ver Drop
             </a>
         </div>
         
-        <!-- Flecha -->
         <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce text-south-green/80 hidden md:block cursor-pointer" onclick="document.getElementById('about').scrollIntoView()">
             <i data-lucide="arrow-down" class="w-6 h-6"></i>
         </div>
@@ -219,14 +200,12 @@
                 
                 <!-- Galería de Imágenes -->
                 <div class="w-full md:w-1/2 relative">
-                    <!-- Contenedor Principal con Recorte -->
+                    <!-- Contenedor Principal (SIN RECORTE - Imagen Normal) -->
                     <div class="aspect-[3/4] bg-neutral-900 rounded-lg overflow-hidden relative border border-white/5 group">
-                        <div class="img-crop-container">
-                            <img id="current-image" 
-                                 src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" 
-                                 alt="Southaura Original Tee" 
-                                 class="img-crop-target transition-transform duration-700 ease-out group-hover:scale-105">
-                        </div>
+                        <img id="current-image" 
+                             src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" 
+                             alt="Southaura Original Tee" 
+                             class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105">
                         
                         <!-- Badge -->
                         <div class="absolute top-4 left-4 bg-white text-black text-xs font-bold px-3 py-1 font-bebas tracking-widest uppercase z-10">
@@ -245,24 +224,16 @@
                     <!-- Miniaturas -->
                     <div class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center">
                         <div class="thumb active w-20 h-24 rounded border border-south-green cursor-pointer overflow-hidden flex-shrink-0 opacity-100 transition-all" data-index="0">
-                            <div class="img-crop-container">
-                                <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="img-crop-target">
-                            </div>
+                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="1">
-                            <div class="img-crop-container">
-                                <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="img-crop-target">
-                            </div>
+                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="2">
-                            <div class="img-crop-container">
-                                <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="img-crop-target">
-                            </div>
+                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="3">
-                            <div class="img-crop-container">
-                                <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="img-crop-target">
-                            </div>
+                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
