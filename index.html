@@ -11,8 +11,8 @@
     <meta property="og:url" content="https://southaura.co/">
     <meta property="og:title" content="Southaura | New Drop">
     <meta property="og:description" content="Streetwear premium con raíces andaluzas. Envío gratis +56€.">
-    <!-- Usamos la foto frontal negra como portada (CORREGIDO: f minúscula) -->
-    <meta property="og:image" content="BlackTeefront.png">
+    <!-- Usamos la ruta absoluta para asegurar -->
+    <meta property="og:image" content="https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/BlackTeefront.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -109,8 +109,8 @@
                     <div class="aspect-[3/4] bg-neutral-800 rounded-xl overflow-hidden relative border border-white/10">
                         <!-- Main Image Display -->
                         <div id="main-image" class="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
-                            <!-- CORREGIDO: f minúscula para coincidir con GitHub -->
-                            <img id="current-image" src="BlackTeefront.png" alt="Southaura Original Tee" class="w-full h-full object-cover object-center scale-125 transition-all duration-300">
+                            <!-- CORREGIDO: Ruta absoluta (Nuclear Option) -->
+                            <img id="current-image" src="https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/BlackTeefront.png" alt="Southaura Original Tee" class="w-full h-full object-cover object-center scale-125 transition-all duration-300">
                         </div>
                         
                         <!-- Badge -->
@@ -127,18 +127,18 @@
                     
                     <!-- Thumbnail Gallery -->
                     <div class="flex gap-2 mt-4 overflow-x-auto pb-2">
-                        <!-- CORREGIDO: f minúscula en los nombres -->
+                        <!-- CORREGIDO: Rutas absolutas -->
                         <div class="thumb active w-16 h-20 rounded-lg border-2 border-white cursor-pointer overflow-hidden flex-shrink-0" data-index="0">
-                            <img src="BlackTeefront.png" alt="Negra Frontal" class="w-full h-full object-cover">
+                            <img src="https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/BlackTeefront.png" alt="Negra Frontal" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors flex-shrink-0" data-index="1">
-                            <img src="BlackTeeBack.png" alt="Negra Espalda" class="w-full h-full object-cover">
+                            <img src="https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/BlackTeeBack.png" alt="Negra Espalda" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors flex-shrink-0" data-index="2">
-                            <img src="WhiteTeefront.png" alt="Blanca Frontal" class="w-full h-full object-cover">
+                            <img src="https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/WhiteTeefront.png" alt="Blanca Frontal" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors flex-shrink-0" data-index="3">
-                            <img src="WhiteTeeBack.png" alt="Blanca Espalda" class="w-full h-full object-cover">
+                            <img src="https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/WhiteTeeBack.png" alt="Blanca Espalda" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -212,13 +212,13 @@
         lucide.createIcons();
 
         // --- GALERÍA DE IMÁGENES ---
-        // CORREGIDO: f minúscula en las frontales, B mayúscula en las Back
+        // CORREGIDO: Rutas absolutas (No fallan nunca)
         let currentIndex = 0;
         const images = [
-            'BlackTeefront.png',
-            'BlackTeeBack.png',
-            'WhiteTeefront.png',
-            'WhiteTeeBack.png'
+            'https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/BlackTeefront.png',
+            'https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/BlackTeeBack.png',
+            'https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/WhiteTeefront.png',
+            'https://raw.githubusercontent.com/javiermmrtnz/SouthAuraPrueba/main/WhiteTeeBack.png'
         ];
 
         const currentImageEl = document.getElementById('current-image');
