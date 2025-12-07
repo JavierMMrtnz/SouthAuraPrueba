@@ -120,10 +120,10 @@
                 SOUTHAURA
             </div>
             
-            <!-- Menú central actualizado -->
+            <!-- Menú central -->
             <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-gray-400 font-bebas text-lg">
                 <a href="#collection" class="hover:text-south-green transition-colors">Colección</a>
-                <a href="#about" class="hover:text-south-green transition-colors">ADN</a> <!-- CAMBIADO: ADN en vez de Manifiesto -->
+                <a href="#about" class="hover:text-south-green transition-colors">ADN</a>
                 <a href="#size-guide" class="hover:text-south-green transition-colors">Tallas</a>
             </div>
             
@@ -190,12 +190,13 @@
     </section>
 
     <!-- Product Showcase -->
-    <section id="collection" class="py-24 px-6 relative">
+    <section id="collection" class="py-24 px-4 md:px-8 relative">
+        <!-- CONTENEDOR MÁS ANCHO PARA IMÁGENES GRANDES -->
         <div class="max-w-[90rem] mx-auto">
-            <div class="flex flex-col md:flex-row gap-16 items-start">
+            <div class="flex flex-col md:flex-row gap-12 items-start">
                 
-                <!-- Galería de Imágenes -->
-                <div class="w-full md:w-1/2 relative group">
+                <!-- Galería de Imágenes (AMPLIADA al 60% en PC) -->
+                <div class="w-full md:w-3/5 relative group">
                     <div class="aspect-[3/4] bg-neutral-800 rounded-2xl overflow-hidden relative border border-white/10 shadow-2xl shadow-south-green/10">
                         <!-- Imagen Principal -->
                         <div id="main-image" class="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
@@ -203,38 +204,42 @@
                         </div>
                         
                         <!-- Badge -->
-                        <div class="absolute top-4 left-4 bg-south-green text-white text-sm font-bold px-4 py-2 font-bebas tracking-widest uppercase">
+                        <div class="absolute top-6 left-6 bg-south-green text-white text-base font-bold px-5 py-2 font-bebas tracking-widest uppercase">
                             New Drop
                         </div>
                         
                         <!-- Flechas -->
-                        <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-south-green text-white p-3 rounded-full transition-colors backdrop-blur-sm">
-                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                        <button id="prev-btn" class="absolute left-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-south-green text-white p-3 rounded-full transition-colors backdrop-blur-sm">
+                            <i data-lucide="chevron-left" class="w-8 h-8"></i>
                         </button>
-                        <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-south-green text-white p-3 rounded-full transition-colors backdrop-blur-sm">
-                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        <button id="next-btn" class="absolute right-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-south-green text-white p-3 rounded-full transition-colors backdrop-blur-sm">
+                            <i data-lucide="chevron-right" class="w-8 h-8"></i>
                         </button>
                     </div>
                     
-                    <!-- Miniaturas -->
-                    <div class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center">
-                        <div class="thumb active w-20 h-24 rounded-lg border-2 border-south-green cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:opacity-80" data-index="0">
+                    <!-- Miniaturas (AMPLIADAS) -->
+                    <div class="flex gap-4 mt-6 overflow-x-auto pb-2 justify-center">
+                        <!-- Miniatura 1 -->
+                        <div class="thumb active w-24 h-32 rounded-lg border-2 border-south-green cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:opacity-80" data-index="0">
                             <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="thumb w-20 h-24 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="1">
+                        <!-- Miniatura 2 -->
+                        <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="1">
                             <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="thumb w-20 h-24 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="2">
+                        <!-- Miniatura 3 -->
+                        <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="2">
                             <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="thumb w-20 h-24 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="3">
+                        <!-- Miniatura 4 -->
+                        <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="3">
                             <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
 
-                <!-- Detalles del Producto -->
-                <div class="w-full md:w-1/2 space-y-10">
+                <!-- Detalles del Producto (40% de ancho) -->
+                <div class="w-full md:w-2/5 space-y-10 sticky top-24">
                     <div>
                         <h2 class="text-6xl md:text-8xl mb-2 font-bebas leading-none">Original Tee</h2>
                         <p class="text-xl text-gray-400 font-light tracking-wide">Black & White Edition</p>
