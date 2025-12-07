@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southaura | Arena & Compás</title>
+    <meta name="description" content="Streetwear premium con raíces andaluzas. Original Tee ya disponible.">
+    
+    <!-- Open Graph / Facebook / WhatsApp Display -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://southaura.co/">
+    <meta property="og:title" content="Southaura | New Drop">
+    <meta property="og:description" content="Streetwear premium con raíces andaluzas. Envío gratis +56€.">
+    <meta property="og:image" content="assets/preview.jpg"> <!-- TODO: Change this to your image path -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, .brand-font {
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .hero-text-shadow {
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.1);
+        }
+
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+    <!-- Decorative Blobs -->
+    <div class="blob top-0 left-0"></div>
+    <div class="blob bottom-0 right-0" style="background: linear-gradient(0deg, rgba(50,50,50,0.2) 0%, rgba(0,0,0,0) 100%);"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl brand-font tracking-tighter cursor-pointer" onclick="window.scrollTo(0,0)">SOUTHAURA</div>
+            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-gray-400">
+                <a href="#collection" class="hover:text-white transition-colors">Colección</a>
+                <a href="#about" class="hover:text-white transition-colors">Manifiesto</a>
+                <a href="#size-guide" class="hover:text-white transition-colors">Tallas</a>
+            </div>
+            <a href="https://instagram.com/southaura.co" target="_blank" class="p-2 bg-white text-black rounded-full hover:bg-gray-200 transition-colors">
+                <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col justify-center items-center text-center px-4">
+        <span class="text-xs md:text-sm uppercase tracking-[0.3em] text-gray-400 mb-4 animate-pulse">New Season Drop</span>
+        <h1 class="text-6xl md:text-9xl uppercase hero-text-shadow mb-2 leading-none">Arena &<br><span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600">Compás</span></h1>
+        <p class="mt-6 text-gray-400 max-w-md text-sm md:text-base">Streetwear premium con raíces andaluzas.</p>
+        
+        <div class="mt-10 flex gap-4">
+            <a href="#collection" class="px-8 py-3 bg-white text-black font-bold uppercase tracking-wider text-sm hover:bg-gray-200 transition-colors">Ver Drop</a>
+        </div>
+        <div class="absolute bottom-10 animate-bounce"><i data-lucide="arrow-down" class="w-6 h-6 text-gray-500"></i></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 border-t border-white/5 bg-neutral-900/30">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl mb-8 uppercase">Made in the Sur <br><span class="italic font-serif normal-case text-gray-400">with Gracia</span></h2>
+            <p class="text-gray-300 leading-relaxed mb-6">
+                No seguimos tendencias, las creamos. Southaura es streetwear premium diseñado para quienes buscan destacar sin perder autenticidad.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="p-6 border border-white/10 rounded-lg bg-black/50"><i data-lucide="award" class="w-8 h-8 mx-auto mb-4 text-white"></i><h3 class="text-lg mb-2">Premium Quality</h3></div>
+                <div class="p-6 border border-white/10 rounded-lg bg-black/50"><i data-lucide="feather" class="w-8 h-8 mx-auto mb-4 text-white"></i><h3 class="text-lg mb-2">Diseño Exclusivo</h3></div>
+                <div class="p-6 border border-white/10 rounded-lg bg-black/50"><i data-lucide="users" class="w-8 h-8 mx-auto mb-4 text-white"></i><h3 class="text-lg mb-2">Comunidad</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="collection" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <!-- Product Image Area with Gallery -->
+                <div class="w-full md:w-1/2 relative group">
+                    <div class="aspect-[3/4] bg-neutral-800 rounded-xl overflow-hidden relative border border-white/10">
+                        <!-- Main Image Display -->
+                        <div id="main-image" class="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
+                            <img id="current-image" src="C:/Users/javie/Downloads/Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Southaura Original Tee" class="w-full h-full object-cover object-center scale-125 transition-all duration-300">
+                        </div>
+                        
+                        <!-- Badge -->
+                        <div class="absolute top-4 left-4 bg-white text-black text-xs font-bold px-3 py-1 uppercase tracking-wider">New Drop</div>
+                        
+                        <!-- Navigation Arrows -->
+                        <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full transition-colors z-10">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full transition-colors z-10">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Thumbnail Gallery -->
+                    <div class="flex gap-2 mt-4">
+                        <div class="thumb active w-16 h-20 rounded-lg border-2 border-white cursor-pointer overflow-hidden" data-index="0">
+                            <img src="C:/Users/javie/Downloads/Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Vista 1" class="w-full h-full object-cover">
+                        </div>
+                        <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors" data-index="1">
+                            <img src="C:/Users/javie/Downloads/Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" alt="Vista 2" class="w-full h-full object-cover">
+                        </div>
+                        <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors" data-index="2">
+                            <img src="C:/Users/javie/Downloads/Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" alt="Vista 3" class="w-full h-full object-cover">
+                        </div>
+                        <div class="thumb w-16 h-20 rounded-lg border-2 border-gray-600 cursor-pointer overflow-hidden hover:border-white transition-colors" data-index="3">
+                            <img src="C:/Users/javie/Downloads/Gemini_Generated_Image_crhmb3crhmb3crhm.png" alt="Vista 4" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="w-full md:w-1/2 space-y-8">
+                    <div>
+                        <h2 class="text-4xl md:text-6xl mb-2">Original Tee</h2>
+                        <p class="text-xl text-gray-400">Black & White Edition</p>
+                        <p class="text-2xl mt-4 font-bold">28.00€</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <p class="text-gray-300 font-light leading-relaxed">
+                            Camiseta 100% algodón de alto gramaje. Diseño exclusivo con el emblema Southaura y mensaje "Made in the Sur with Gracia" en la espalda.
+                        </p>
+                        <ul class="text-sm text-gray-400 space-y-2">
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-white"></i> 100% Algodón Premium</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-white"></i> Regular Fit</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-white/5 border border-white/10 rounded-lg flex items-center gap-4">
+                        <i data-lucide="truck" class="w-6 h-6 text-white"></i>
+                        <div>
+                            <p class="text-sm font-bold text-white">ENVÍO GRATIS</p>
+                            <p class="text-xs text-gray-400">En pedidos +56€ (2 uds)</p>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-col gap-3">
+                        <a href="https://instagram.com/southaura.co" target="_blank" class="w-full py-4 border border-white/20 text-white font-bold text-center uppercase tracking-wider hover:bg-white/10 transition-colors rounded">
+                            Ver en Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Guide -->
+    <section id="size-guide" class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl mb-8 text-center uppercase">Guía de Tallas</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-center border-collapse text-sm">
+                    <thead>
+                        <tr class="border-b border-white/20 text-gray-400 uppercase tracking-wider">
+                            <th class="py-4">Talla</th><th class="py-4">Pecho</th><th class="py-4">Largo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-300">
+                        <tr class="border-b border-white/5"><td class="py-4 font-bold text-white">S</td><td>50 cm</td><td>66 cm</td></tr>
+                        <tr class="border-b border-white/5"><td class="py-4 font-bold text-white">M</td><td>52 cm</td><td>68 cm</td></tr>
+                        <tr class="border-b border-white/5"><td class="py-4 font-bold text-white">L</td><td>54 cm</td><td>70 cm</td></tr>
+                        <tr><td class="py-4 font-bold text-white">XL</td><td>56 cm</td><td>72 cm</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center border-t border-white/10 text-gray-500 text-sm">
+        <p class="brand-font text-2xl text-white mb-4">SOUTHAURA </p>
+        <p>© 2025 Southaura  Designed in Andalucía.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // --- GALERÍA DE IMÁGENES ---
+        let currentIndex = 0;
+        const images = [
+            'C:/Users/javie/Downloads/Gemini_Generated_Image_eh2apoeh2apoeh2a.png',
+            'C:/Users/javie/Downloads/Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png',
+            'C:/Users/javie/Downloads/Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png',
+            'C:/Users/javie/Downloads/Gemini_Generated_Image_crhmb3crhmb3crhm.png'
+        ];
+
+        const currentImageEl = document.getElementById('current-image');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const thumbs = document.querySelectorAll('.thumb');
+
+        function updateGallery(index) {
+            currentIndex = (index + images.length) % images.length;
+            currentImageEl.src = images[currentIndex];
+            
+            thumbs.forEach((thumb, i) => {
+                if (i === currentIndex) {
+                    thumb.classList.add('border-white');
+                    thumb.classList.remove('border-gray-600');
+                } else {
+                    thumb.classList.remove('border-white');
+                    thumb.classList.add('border-gray-600');
+                }
+            });
+        }
+
+        prevBtn.addEventListener('click', () => updateGallery(currentIndex - 1));
+        nextBtn.addEventListener('click', () => updateGallery(currentIndex + 1));
+
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', (e) => {
+                const index = parseInt(e.currentTarget.dataset.index);
+                updateGallery(index);
+            });
+        });
+
+        // --- CONFIGURACIÓN PARA EL INFORMÁTICO ---
+        // Pon tu número aquí con el código de país (ej: 34 para España)
+        const PHONE_NUMBER = "34683310947";
+    </script>
+</body>
+</html>
