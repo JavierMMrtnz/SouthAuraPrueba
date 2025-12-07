@@ -191,16 +191,16 @@
 
     <!-- Product Showcase -->
     <section id="collection" class="py-24 px-4 md:px-8 relative">
-        <!-- CONTENEDOR MÁS ANCHO PARA IMÁGENES GRANDES -->
         <div class="max-w-[90rem] mx-auto">
             <div class="flex flex-col md:flex-row gap-12 items-start">
                 
-                <!-- Galería de Imágenes (AMPLIADA al 60% en PC) -->
+                <!-- Galería de Imágenes (AMPLIADA) -->
                 <div class="w-full md:w-3/5 relative group">
                     <div class="aspect-[3/4] bg-neutral-800 rounded-2xl overflow-hidden relative border border-white/10 shadow-2xl shadow-south-green/10">
                         <!-- Imagen Principal -->
-                        <div id="main-image" class="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
-                            <img id="current-image" src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Southaura Original Tee" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700">
+                        <!-- TRUCO APLICADO: items-start + h-[108%] + object-top para recortar abajo -->
+                        <div id="main-image" class="w-full h-full bg-neutral-900 flex items-start justify-center overflow-hidden">
+                            <img id="current-image" src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Southaura Original Tee" class="w-full h-[108%] object-cover object-top transform hover:scale-105 transition-transform duration-700">
                         </div>
                         
                         <!-- Badge -->
@@ -217,28 +217,28 @@
                         </button>
                     </div>
                     
-                    <!-- Miniaturas (AMPLIADAS) -->
+                    <!-- Miniaturas (AMPLIADAS y RECORTADAS) -->
                     <div class="flex gap-4 mt-6 overflow-x-auto pb-2 justify-center">
                         <!-- Miniatura 1 -->
                         <div class="thumb active w-24 h-32 rounded-lg border-2 border-south-green cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:opacity-80" data-index="0">
-                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-full object-cover">
+                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-[110%] object-cover object-top">
                         </div>
                         <!-- Miniatura 2 -->
                         <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="1">
-                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-full object-cover">
+                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-[110%] object-cover object-top">
                         </div>
                         <!-- Miniatura 3 -->
                         <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="2">
-                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-full object-cover">
+                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-[110%] object-cover object-top">
                         </div>
                         <!-- Miniatura 4 -->
                         <div class="thumb w-24 h-32 rounded-lg border-2 border-transparent bg-neutral-800 cursor-pointer overflow-hidden flex-shrink-0 transition-all hover:border-white/50" data-index="3">
-                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-full object-cover">
+                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-[110%] object-cover object-top">
                         </div>
                     </div>
                 </div>
 
-                <!-- Detalles del Producto (40% de ancho) -->
+                <!-- Detalles del Producto -->
                 <div class="w-full md:w-2/5 space-y-10 sticky top-24">
                     <div>
                         <h2 class="text-6xl md:text-8xl mb-2 font-bebas leading-none">Original Tee</h2>
@@ -278,7 +278,7 @@
         </div>
     </section>
 
-    <!-- Size Guide (Tabla Detallada) -->
+    <!-- Size Guide -->
     <section id="size-guide" class="py-24 px-6 border-t border-white/5">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-4xl mb-12 text-center uppercase font-bebas">Guía de Tallas</h2>
