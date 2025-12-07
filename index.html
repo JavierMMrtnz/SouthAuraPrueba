@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Southaura | Arena & Compás</title>
     <meta name="description" content="Streetwear premium con raíces andaluzas. Original Tee ya disponible.">
     
@@ -18,16 +18,16 @@
     <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts: Bebas Neue (Tu fuente) & Inter (Lectura) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Configuración Tailwind para tus colores -->
+    <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'south-green': '#00954C', // Tu verde exacto
+                        'south-green': '#00954C',
                         'south-dark': '#050505',
                         'off-white': '#f5f5f5',
                     },
@@ -41,48 +41,50 @@
     </script>
 
     <style>
-        body {
+        /* FIX: Evitar scroll horizontal fantasma */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
             background-color: #050505;
             color: #ffffff;
-            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* Animación del Ticker */
-        .ticker-wrap {
+        /* Ticker Container */
+        .ticker-container {
             width: 100%;
             overflow: hidden;
             background-color: #00954C;
-            padding-left: 100%;
-            box-sizing: content-box;
-            height: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 20;
+        }
+        
+        .ticker-track {
             display: flex;
-            align-items: center;
+            width: max-content;
+            animation: scroll 20s linear infinite;
         }
-        .ticker {
-            display: inline-block;
-            white-space: nowrap;
-            padding-right: 100%;
-            box-sizing: content-box;
-            animation: ticker 40s linear infinite;
-        }
-        .ticker__item {
-            display: inline-block;
-            padding: 0 2rem;
+        
+        .ticker-item {
+            padding: 0.5rem 2rem;
             font-family: 'Bebas Neue', sans-serif;
             font-size: 1.1rem;
             color: white;
             letter-spacing: 0.08em;
+            white-space: nowrap;
         }
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .hero-text-shadow {
             text-shadow: 0px 0px 40px rgba(0, 149, 76, 0.2); 
         }
         
+        /* Blobs decorativos */
         .blob {
             position: absolute;
             width: 500px;
@@ -103,24 +105,23 @@
         #mobile-menu {
             transition: transform 0.3s ease-in-out;
         }
-        .menu-hidden {
-            transform: translateX(100%);
-        }
-        .menu-visible {
-            transform: translateX(0);
-        }
+        .menu-hidden { transform: translateX(100%); }
+        .menu-visible { transform: translateX(0); }
     </style>
 </head>
 <body class="antialiased selection:bg-south-green selection:text-white font-inter">
 
-    <!-- Ticker -->
-    <div class="ticker-wrap border-b border-white/5">
-        <div class="ticker">
-            <div class="ticker__item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</div>
-            <div class="ticker__item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</div>
+    <!-- 1. BARRA DE TEXTO (TICKER) -->
+    <div class="ticker-container">
+        <div class="ticker-track">
+            <div class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</div>
+            <div class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</div>
+            <div class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</div>
+            <div class="ticker-item">WITH "GRACIA" • IBERIAN AESTHETICS • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</div>
         </div>
     </div>
 
+    <!-- Fondo ambiental -->
     <div class="blob top-[-100px] left-[-100px]"></div>
     <div class="blob bottom-0 right-0 opacity-50"></div>
 
@@ -133,7 +134,7 @@
                 SOUTHAURA
             </div>
             
-            <!-- Menú Escritorio (Oculto en móvil) -->
+            <!-- Menú Escritorio -->
             <div class="hidden md:flex space-x-10 text-sm uppercase tracking-widest text-gray-400 font-bebas text-lg">
                 <a href="#collection" class="hover:text-south-green transition-colors">Colección</a>
                 <a href="#about" class="hover:text-south-green transition-colors">ADN</a>
@@ -146,9 +147,9 @@
                     <i data-lucide="instagram" class="w-5 h-5 text-white"></i>
                 </a>
                 
-                <!-- Botón Menú Móvil (Solo visible en móvil) -->
-                <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-                    <i data-lucide="menu" class="w-8 h-8"></i>
+                <!-- Botón Menú Móvil -->
+                <button id="menu-btn" class="md:hidden text-white focus:outline-none p-1">
+                    <i data-lucide="menu" class="w-7 h-7"></i>
                 </button>
             </div>
         </div>
@@ -156,7 +157,7 @@
 
     <!-- MENÚ MÓVIL FULL SCREEN -->
     <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] flex flex-col items-center justify-center menu-hidden md:hidden">
-        <button id="close-menu-btn" class="absolute top-6 right-6 text-white p-2">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white p-2 hover:text-south-green transition-colors">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
         
@@ -164,32 +165,38 @@
             <a href="#collection" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Colección</a>
             <a href="#about" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">ADN</a>
             <a href="#size-guide" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Tallas</a>
-            <a href="https://instagram.com/southaura.co" target="_blank" class="text-2xl font-bebas text-gray-400 mt-8" onclick="toggleMenu()">Instagram</a>
+            <a href="https://instagram.com/southaura.co" target="_blank" class="text-2xl font-bebas text-gray-400 mt-8 hover:text-white" onclick="toggleMenu()">Instagram</a>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-4 py-32">
-        <span class="text-xs md:text-sm uppercase tracking-[0.5em] text-south-green mb-6 font-bold animate-pulse">New Season Available</span>
+    <!-- AJUSTE: Usamos Flexbox vertical para centrar el contenido y poner la flecha al final sin usar 'absolute' -->
+    <section class="relative min-h-[90vh] flex flex-col items-center px-4 pt-24 pb-8"> 
         
-        <h1 class="text-6xl md:text-9xl uppercase hero-text-shadow mb-6 leading-none font-bebas tracking-wide">
-            Arena &<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">Compás</span>
-        </h1>
-        
-        <p class="mt-2 text-gray-400 max-w-lg text-lg font-light leading-relaxed">
-            Streetwear premium con raíces andaluzas.<br>
-            <span class="text-south-green italic">"Viste tus raíces, marca tu estilo"</span>
-        </p>
-        
-        <div class="mt-12 mb-20 flex gap-4">
-            <a href="#collection" class="px-12 py-4 bg-white text-black font-bebas text-xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all duration-300 shadow-lg hover:shadow-south-green/20 transform hover:-translate-y-1 rounded-sm">
-                Ver Drop
-            </a>
+        <!-- Contenedor del Texto (Se expande para ocupar el espacio y centrar) -->
+        <div class="flex-grow flex flex-col justify-center items-center text-center w-full max-w-4xl">
+            <span class="text-xs md:text-sm uppercase tracking-[0.5em] text-south-green mb-6 font-bold animate-pulse">New Season Available</span>
+            
+            <h1 class="text-6xl md:text-9xl uppercase hero-text-shadow mb-6 leading-none font-bebas tracking-wide">
+                Arena &<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">Compás</span>
+            </h1>
+            
+            <p class="mt-2 text-gray-400 max-w-lg text-lg font-light leading-relaxed px-4">
+                Streetwear premium con raíces andaluzas.<br>
+                <span class="text-south-green italic">"Viste tus raíces, marca tu estilo"</span>
+            </p>
+            
+            <div class="mt-12 mb-8">
+                <a href="#collection" class="px-12 py-4 bg-white text-black font-bebas text-xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all duration-300 shadow-lg hover:shadow-south-green/20 transform hover:-translate-y-1 rounded-sm">
+                    Ver Drop
+                </a>
+            </div>
         </div>
         
-        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce text-south-green/80 hidden md:block cursor-pointer" onclick="document.getElementById('about').scrollIntoView()">
-            <i data-lucide="arrow-down" class="w-6 h-6"></i>
+        <!-- Flecha (En flujo natural = Centrado perfecto garantizado) -->
+        <div class="mt-auto animate-bounce text-south-green/80 cursor-pointer p-4" onclick="document.getElementById('about').scrollIntoView()">
+            <i data-lucide="arrow-down" class="w-8 h-8"></i>
         </div>
     </section>
 
@@ -232,6 +239,7 @@
                 <!-- Galería de Imágenes -->
                 <div class="w-full md:w-1/2 relative">
                     <div class="aspect-[3/4] bg-neutral-900 rounded-lg overflow-hidden relative border border-white/5 group">
+                        <!-- IMAGEN SIN RECORTE CSS (Tu recorte manual manda) -->
                         <img id="current-image" 
                              src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" 
                              alt="Southaura Original Tee" 
@@ -249,7 +257,7 @@
                         </button>
                     </div>
                     
-                    <div class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center">
+                    <div class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center no-scrollbar">
                         <div class="thumb active w-20 h-24 rounded border border-south-green cursor-pointer overflow-hidden flex-shrink-0 opacity-100 transition-all" data-index="0">
                             <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-full object-cover">
                         </div>
@@ -266,7 +274,7 @@
                 </div>
 
                 <!-- Detalles del Producto -->
-                <div class="w-full md:w-1/2 space-y-8 sticky top-32">
+                <div class="w-full md:w-1/2 space-y-8 md:sticky md:top-32">
                     <div class="border-b border-white/10 pb-8">
                         <h2 class="text-6xl md:text-7xl mb-2 font-bebas leading-none text-white">Original Tee</h2>
                         <p class="text-lg text-gray-400 font-light tracking-widest uppercase">Black & White Edition</p>
