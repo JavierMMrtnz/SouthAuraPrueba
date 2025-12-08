@@ -6,12 +6,6 @@
     <title>Southaura | Arena & Compás</title>
     <meta name="description" content="Streetwear premium con raíces andaluzas. Original Tee ya disponible.">
     
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://southaura.co/">
-    <meta property="og:title" content="Southaura | New Drop">
-    <meta property="og:image" content="Gemini_Generated_Image_eh2apoeh2apoeh2a.png">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -41,17 +35,20 @@
     </script>
 
     <style>
-        /* FIX: Evitar scroll horizontal y asegurar fondo */
+        /* --- FIX: CORE CORRECTIONS FOR HORIZONTAL SCROLL --- */
         html, body {
             width: 100%;
             max-width: 100vw;
-            overflow-x: hidden;
+            overflow-x: hidden; /* CRUCIAL: Corta todo lo que se salga */
             background-color: #050505;
             color: #ffffff;
             scroll-behavior: smooth;
+            position: relative;
+            margin: 0;
+            padding: 0;
         }
 
-        /* TICKER INFINITO MEJORADO */
+        /* TICKER INFINITO */
         .ticker-container {
             width: 100%;
             overflow: hidden;
@@ -65,14 +62,15 @@
         .ticker-track {
             display: inline-block;
             white-space: nowrap;
-            animation: scroll 60s linear infinite;
+            animation: scroll 40s linear infinite;
+            will-change: transform;
         }
         
         .ticker-item {
             display: inline-block;
-            padding: 0.5rem 3rem;
+            padding: 0.5rem 2rem;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: white;
             letter-spacing: 0.1em;
         }
@@ -86,14 +84,15 @@
             text-shadow: 0px 0px 40px rgba(0, 149, 76, 0.3); 
         }
         
-        /* Blobs decorativos */
+        /* --- FIX: BLOBS CORREGIDOS --- */
         .blob {
             position: absolute;
             width: 600px;
             height: 600px;
+            max-width: 100%; /* IMPORTANTE: Nunca más ancho que la pantalla */
             background: radial-gradient(circle, rgba(0,149,76,0.08) 0%, rgba(0,0,0,0) 70%);
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(80px);
             z-index: -1;
             pointer-events: none;
         }
@@ -103,12 +102,28 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #00954C; }
         
-        /* Menú Móvil Animación */
+        /* --- FIX: MENÚ MÓVIL OPTIMIZADO --- */
         #mobile-menu {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
         }
-        .menu-hidden { transform: translateX(100%); }
-        .menu-visible { transform: translateX(0); }
+        /* Usamos visibility hidden para que el navegador ignore el ancho cuando está cerrado */
+        .menu-hidden { 
+            transform: translateX(100%); 
+            visibility: hidden;
+        }
+        .menu-visible { 
+            transform: translateX(0); 
+            visibility: visible;
+        }
+
+        /* Utilidad para ocultar scrollbar en galería */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-south-green selection:text-white font-inter flex flex-col min-h-screen">
@@ -124,8 +139,11 @@
     </div>
 
     <!-- Fondo ambiental -->
-    <div class="blob top-0 left-0 opacity-40"></div>
-    <div class="blob bottom-0 right-0 opacity-30"></div>
+    <!-- FIX: overflow-hidden añadido al wrapper principal para seguridad extra -->
+    <div class="w-full overflow-hidden absolute inset-0 pointer-events-none">
+        <div class="blob top-0 left-0 opacity-40"></div>
+        <div class="blob bottom-0 right-0 opacity-30"></div>
+    </div>
 
     <!-- Navegación -->
     <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/5">
@@ -142,12 +160,12 @@
                 <a href="#about" class="hover:text-south-green transition-colors">ADN</a>
                 <a href="#size-guide" class="hover:text-south-green transition-colors">Tallas</a>
                 <!-- ENLACE AL SORTEO -->
-                <a href="sorteo.html" class="text-south-green hover:text-white transition-colors font-bold animate-pulse border border-south-green px-3 py-1 rounded">SORTEO</a>
+                <a href="#sorteo" class="text-south-green hover:text-white transition-colors font-bold animate-pulse border border-south-green px-3 py-1 rounded">SORTEO</a>
             </div>
             
             <!-- Iconos Derecha -->
             <div class="flex items-center gap-4 z-50">
-                <a href="https://instagram.com/southaura.co" target="_blank" class="group p-2 border border-white/10 rounded-full hover:bg-south-green hover:border-south-green transition-all">
+                <a href="#" class="group p-2 border border-white/10 rounded-full hover:bg-south-green hover:border-south-green transition-all">
                     <i data-lucide="instagram" class="w-5 h-5 text-white"></i>
                 </a>
                 
@@ -167,17 +185,17 @@
         
         <div class="flex flex-col space-y-10 text-center">
             <!-- ENLACE AL SORTEO MÓVIL -->
-            <a href="sorteo.html" class="text-6xl font-bebas text-south-green hover:text-white transition-colors animate-pulse" onclick="toggleMenu()">¡SORTEO!</a>
+            <a href="#sorteo" class="text-6xl font-bebas text-south-green hover:text-white transition-colors animate-pulse" onclick="toggleMenu()">¡SORTEO!</a>
             
             <a href="#collection" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Colección</a>
             <a href="#about" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">ADN</a>
             <a href="#size-guide" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Tallas</a>
-            <a href="https://instagram.com/southaura.co" target="_blank" class="text-2xl font-bebas text-gray-500 mt-12 hover:text-white" onclick="toggleMenu()">Instagram</a>
+            <a href="#" class="text-2xl font-bebas text-gray-500 mt-12 hover:text-white" onclick="toggleMenu()">Instagram</a>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20"> 
+    <section class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden"> 
         
         <span class="text-xs md:text-sm uppercase tracking-[0.6em] text-south-green mb-8 font-bold animate-pulse">New Season Available</span>
         
@@ -198,7 +216,7 @@
         </div>
         
         <!-- Flecha -->
-        <div class="animate-bounce text-south-green/80 cursor-pointer p-4 hover:text-south-green transition-colors" onclick="document.getElementById('about').scrollIntoView()">
+        <div class="animate-bounce text-south-green/80 cursor-pointer p-4 hover:text-south-green transition-colors" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
             <i data-lucide="arrow-down" class="w-10 h-10"></i>
         </div>
     </section>
@@ -244,7 +262,7 @@
                     <!-- Contenedor Principal con altura máxima controlada en PC -->
                     <div class="aspect-[3/4] md:max-h-[75vh] bg-neutral-900 rounded-lg overflow-hidden relative border border-white/5 group">
                         <img id="current-image" 
-                             src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" 
+                             src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1780&auto=format&fit=crop" 
                              alt="Southaura Original Tee" 
                              class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105">
                         
@@ -262,16 +280,16 @@
                     
                     <div class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center no-scrollbar">
                         <div class="thumb active w-20 h-24 rounded border border-south-green cursor-pointer overflow-hidden flex-shrink-0 opacity-100 transition-all" data-index="0">
-                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1780&auto=format&fit=crop" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="1">
-                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=1887&auto=format&fit=crop" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="2">
-                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop" class="w-full h-full object-cover">
                         </div>
                         <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="3">
-                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1887&auto=format&fit=crop" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -306,8 +324,8 @@
                     </div>
 
                     <div class="pt-4">
-                        <a href="https://instagram.com/southaura.co" target="_blank" class="block w-full py-5 bg-white text-black font-bebas text-2xl text-center uppercase tracking-widest hover:bg-south-green hover:text-white transition-all rounded-sm shadow-lg transform hover:-translate-y-1">
-                            Ver en Instagram
+                        <a href="#" class="block w-full py-5 bg-white text-black font-bebas text-2xl text-center uppercase tracking-widest hover:bg-south-green hover:text-white transition-all rounded-sm shadow-lg transform hover:-translate-y-1">
+                            Añadir al Carrito
                         </a>
                         <p class="text-center text-xs text-gray-600 uppercase tracking-[0.2em] mt-4">Stock Limitado • Designed in Andalucía</p>
                     </div>
@@ -369,7 +387,7 @@
     <!-- Footer -->
     <footer class="py-16 text-center border-t border-white/5 text-gray-500 text-sm bg-black">
         <p class="font-bebas text-5xl text-white mb-10 tracking-wide">SOUTHAURA</p>
-        <div class="flex justify-center gap-12 mb-10 text-sm uppercase tracking-[0.2em] font-light">
+        <div class="flex justify-center gap-12 mb-10 text-sm uppercase tracking-[0.2em] font-light flex-wrap px-4">
             <a href="#" class="hover:text-south-green transition-colors">Instagram</a>
             <a href="#" class="hover:text-south-green transition-colors">TikTok</a>
             <a href="#" class="hover:text-south-green transition-colors">Contacto</a>
@@ -386,8 +404,18 @@
         const mobileMenu = document.getElementById('mobile-menu');
 
         function toggleMenu() {
-            mobileMenu.classList.toggle('menu-hidden');
-            mobileMenu.classList.toggle('menu-visible');
+            // Verificar estado actual
+            const isHidden = mobileMenu.classList.contains('menu-hidden');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('menu-hidden');
+                mobileMenu.classList.add('menu-visible');
+                document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+            } else {
+                mobileMenu.classList.add('menu-hidden');
+                mobileMenu.classList.remove('menu-visible');
+                document.body.style.overflow = ''; // Restaurar scroll
+            }
         }
 
         menuBtn.addEventListener('click', toggleMenu);
@@ -396,10 +424,10 @@
         // GALERÍA
         let currentIndex = 0;
         const images = [
-            'Gemini_Generated_Image_eh2apoeh2apoeh2a.png',
-            'Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png',
-            'Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png',
-            'Gemini_Generated_Image_crhmb3crhmb3crhm.png'
+            'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1780&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=1887&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1964&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1887&auto=format&fit=crop'
         ];
 
         const currentImageEl = document.getElementById('current-image');
