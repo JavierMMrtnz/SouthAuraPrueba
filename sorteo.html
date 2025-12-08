@@ -33,6 +33,9 @@
                     fontFamily: {
                         'bebas': ['"Bebas Neue"', 'sans-serif'],
                         'inter': ['Inter', 'sans-serif'],
+                    },
+                    screens: {
+                        'landscape': {'raw': '(orientation: landscape)'}
                     }
                 }
             }
@@ -40,10 +43,18 @@
     </script>
 
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: #050505;
             color: #ffffff;
-            overflow: hidden; /* Sin scroll para efecto pantalla completa */
+            /* FIX: Permitir scroll vertical si no cabe, ocultar horizontal */
+            overflow-x: hidden;
+            overflow-y: auto; 
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -57,6 +68,7 @@
             position: relative;
             z-index: 20;
             padding: 5px 0;
+            flex-shrink: 0; /* Evita que se aplaste */
         }
         .ticker-track {
             display: flex;
@@ -89,13 +101,22 @@
 
         /* Estilo del Contador */
         .countdown-number {
-            font-size: clamp(4rem, 15vw, 12rem); /* Gigante y responsivo */
+            /* FIX: Clamp ajustado para que no sea gigante en pantallas bajitas */
+            font-size: clamp(3rem, 12vw, 10rem); 
             line-height: 0.9;
             text-shadow: 0 0 30px rgba(0, 149, 76, 0.4);
         }
+        
+        /* Ajuste específico para landscape móvil */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .countdown-number {
+                font-size: clamp(2.5rem, 8vw, 5rem);
+            }
+        }
+
         .countdown-label {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(0.8rem, 2vw, 1.5rem);
+            font-size: clamp(0.6rem, 2vw, 1.2rem);
             letter-spacing: 0.2em;
             color: #888;
             text-transform: uppercase;
@@ -115,12 +136,14 @@
     </div>
 
     <!-- Fondo -->
-    <div class="blob top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+    <div class="blob top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 fixed"></div>
 
     <!-- Contenido Central -->
-    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 relative z-10">
+    <!-- FIX: landscape:py-4 reduce el padding vertical en móvil horizontal -->
+    <main class="flex-grow flex flex-col items-center justify-center text-center px-4 relative z-10 py-10 landscape:py-4">
         
-        <div class="mb-8 md:mb-12">
+        <!-- FIX: Márgenes reducidos en landscape -->
+        <div class="mb-8 md:mb-12 landscape:mb-4">
             <a href="index.html" class="text-3xl md:text-4xl font-bebas tracking-widest hover:text-south-green transition-colors">
                 SOUTHAURA
             </a>
@@ -130,28 +153,28 @@
         </div>
 
         <!-- CONTADOR GIGANTE -->
-        <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-16 font-bebas" id="countdown">
+        <div class="flex flex-row items-center justify-center gap-4 md:gap-16 font-bebas landscape:gap-8" id="countdown">
             
             <div class="flex flex-col items-center">
                 <span class="countdown-number text-white" id="days">00</span>
                 <span class="countdown-label">Días</span>
             </div>
             
-            <div class="hidden md:block text-6xl text-south-green/50">:</div>
+            <div class="hidden md:block text-6xl text-south-green/50 landscape:hidden">:</div>
             
             <div class="flex flex-col items-center">
                 <span class="countdown-number text-white" id="hours">00</span>
                 <span class="countdown-label">Horas</span>
             </div>
             
-            <div class="hidden md:block text-6xl text-south-green/50">:</div>
+            <div class="hidden md:block text-6xl text-south-green/50 landscape:hidden">:</div>
             
             <div class="flex flex-col items-center">
                 <span class="countdown-number text-white" id="minutes">00</span>
                 <span class="countdown-label">Min</span>
             </div>
             
-            <div class="hidden md:block text-6xl text-south-green/50">:</div>
+            <div class="hidden md:block text-6xl text-south-green/50 landscape:hidden">:</div>
 
             <div class="flex flex-col items-center">
                 <span class="countdown-number text-south-green" id="seconds">00</span>
@@ -160,30 +183,31 @@
         </div>
 
         <!-- Botón de Acción -->
-        <div class="mt-16 md:mt-20">
+        <!-- FIX: Margen superior reducido drásticamente en landscape -->
+        <div class="mt-16 md:mt-20 landscape:mt-6">
             <a href="https://instagram.com/southaura.co" target="_blank" 
-               class="px-10 py-4 bg-white text-black font-bebas text-xl md:text-2xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,149,76,0.6)] rounded-sm transform hover:-translate-y-1 inline-flex items-center gap-3">
-                <i data-lucide="instagram" class="w-6 h-6"></i>
-                Participar en Instagram
+               class="px-8 py-3 md:px-10 md:py-4 bg-white text-black font-bebas text-lg md:text-2xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,149,76,0.6)] rounded-sm transform hover:-translate-y-1 inline-flex items-center gap-3">
+                <i data-lucide="instagram" class="w-5 h-5 md:w-6 md:h-6"></i>
+                Participar
             </a>
             <p class="text-gray-500 text-xs mt-4 uppercase tracking-widest">
-                Finaliza el 22 de Diciembre a las 12:00
+                Finaliza el 22 de Diciembre a las 17:00
             </p>
         </div>
 
     </main>
 
     <!-- Footer Simple -->
-    <footer class="py-6 text-center border-t border-white/5 text-gray-600 text-xs uppercase tracking-widest font-light">
+    <footer class="py-6 text-center border-t border-white/5 text-gray-600 text-xs uppercase tracking-widest font-light flex-shrink-0">
         <a href="index.html" class="hover:text-white transition-colors">Volver a la Web</a>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // --- CONFIGURACIÓN DE FECHA ---
-        // Año actual (2025 o el que sea), Mes (11 = Diciembre, porque empieza en 0), Día 22, Hora 12:00:00
-        const targetDate = new Date(2025, 11, 22, 12, 0, 0).getTime();
+        // --- CONFIGURACIÓN DE FECHA ACTUALIZADA ---
+        // 17:00 Horas (5 PM)
+        const targetDate = new Date(2025, 11, 22, 17, 0, 0).getTime();
 
         const x = setInterval(function() {
             const now = new Date().getTime();
