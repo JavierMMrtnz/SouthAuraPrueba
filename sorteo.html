@@ -258,7 +258,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, doc, onSnapshot, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
         // --- 1. SETUP FIREBASE ---
         const firebaseConfig = JSON.parse(__firebase_config);
@@ -274,18 +274,27 @@
         let currentUser = null;
         let globalWinner = null;
 
-        // Login anónimo para leer DB
-        signInAnonymously(auth).then((userCredential) => {
-            currentUser = userCredential.user;
-            listenToWinner();
-        }).catch((error) => {
-            console.error("Error auth:", error);
-        });
+        // INIT AUTH FUNCTION - FIX FOR PERMISSIONS
+        async function initAuth() {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                currentUser = auth.currentUser;
+                listenToWinner();
+            } catch (error) {
+                console.error("Auth error:", error);
+            }
+        }
+        
+        // Start Auth
+        initAuth();
 
         // Escuchar cambios en la base de datos (REALTIME)
         function listenToWinner() {
-            // FIX: Usar ruta con 6 segmentos (Collection > Doc > Collection > Doc > Collection > Doc)
-            // Estructura: artifacts/{appId}/public/data/sorteo/winner
+            // Ruta corregida: artifacts/{appId}/public/data/sorteo/winner (6 segmentos)
             const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo', 'winner');
             
             onSnapshot(winnerDocRef, (docSnapshot) => {
@@ -396,14 +405,17 @@
 
             // GUARDAR EN FIREBASE (Esto activa la UI de todos)
             try {
-                if (!currentUser) await signInAnonymously(auth);
+                // Ensure auth before writing
+                if (!auth.currentUser) {
+                     alert("Error de autenticación. Recargando...");
+                     await initAuth();
+                }
                 
-                // FIX: Usar la misma ruta corregida de 6 segmentos
                 const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo', 'winner');
                 await setDoc(winnerDocRef, {
                     name: winnerName,
                     timestamp: new Date().toISOString(),
-                    pickedBy: currentUser.uid
+                    pickedBy: auth.currentUser.uid
                 });
                 
                 alert("¡Ganador publicado con éxito!");
