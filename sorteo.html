@@ -284,7 +284,9 @@
 
         // Escuchar cambios en la base de datos (REALTIME)
         function listenToWinner() {
-            const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo_winner');
+            // FIX: Usar ruta con 6 segmentos (Collection > Doc > Collection > Doc > Collection > Doc)
+            // Estructura: artifacts/{appId}/public/data/sorteo/winner
+            const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo', 'winner');
             
             onSnapshot(winnerDocRef, (docSnapshot) => {
                 if (docSnapshot.exists()) {
@@ -297,6 +299,8 @@
                     // Si no hay ganador, verificamos el tiempo
                     checkTimeState();
                 }
+            }, (error) => {
+                console.error("Error escuchando ganador:", error);
             });
         }
 
@@ -394,7 +398,8 @@
             try {
                 if (!currentUser) await signInAnonymously(auth);
                 
-                const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo_winner');
+                // FIX: Usar la misma ruta corregida de 6 segmentos
+                const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo', 'winner');
                 await setDoc(winnerDocRef, {
                     name: winnerName,
                     timestamp: new Date().toISOString(),
