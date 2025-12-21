@@ -214,6 +214,7 @@
                 <p class="text-left text-red-500 font-bebas text-xl mb-4 tracking-wide flex items-center gap-2 border-b border-red-500/20 pb-2">
                     <i data-lucide="shield-alert" class="w-5 h-5"></i> Panel de Control (Admin)
                 </p>
+                <p id="mode-indicator" class="text-left text-xs text-yellow-500 mb-4">MODO: LOCAL (No sincronizado)</p>
                 
                 <div class="text-left text-xs text-gray-400 mb-2">1. Pega la lista de participantes:</div>
                 <textarea id="participants-list" rows="5" 
@@ -225,7 +226,6 @@
                     class="w-full py-4 bg-red-600 text-white font-bebas text-2xl uppercase tracking-widest hover:bg-red-700 transition-all rounded shadow-lg">
                     SORTEAR Y PUBLICAR GANADOR
                 </button>
-                <p class="text-xs text-red-400 mt-2">* Esto actualizará la web para todos los usuarios.</p>
             </div>
 
         </div>
@@ -254,49 +254,89 @@
         </button>
     </footer>
 
-    <!-- FIREBASE MODULES -->
+    <!-- FIREBASE & LOGIC -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, doc, onSnapshot, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // --- 1. SETUP FIREBASE ---
-        const firebaseConfig = JSON.parse(__firebase_config);
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app';
+        // ==========================================
+        // CONFIGURACIÓN DE FIREBASE
+        // ==========================================
         
-        // --- 2. LOGIC ---
-        // Fecha Límite: 22 Dic 2025, 17:00
-        const targetDate = new Date(2025, 11, 22, 17, 0, 0).getTime();
+        const myFirebaseConfig = {
+            apiKey: "PON_AQUI_TU_API_KEY",
+            authDomain: "PON_AQUI_TU_PROJECT.firebaseapp.com",
+            projectId: "PON_AQUI_TU_PROJECT_ID",
+            storageBucket: "PON_AQUI_TU_BUCKET.appspot.com",
+            messagingSenderId: "00000000000",
+            appId: "1:0000000000:web:000000000000"
+        };
         
-        let currentUser = null;
-        let globalWinner = null;
+        // ==========================================
 
-        // INIT AUTH FUNCTION - FIX FOR PERMISSIONS
-        async function initAuth() {
-            try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
+        // Variables Globales
+        let app, auth, db;
+        let isFirebaseActive = false;
+        
+        // Configuración interna
+        let configToUse = null;
+
+        try {
+            if (typeof __firebase_config !== 'undefined') {
+                configToUse = JSON.parse(__firebase_config);
+                isFirebaseActive = true;
+            } else if (myFirebaseConfig.apiKey !== "PON_AQUI_TU_API_KEY") {
+                configToUse = myFirebaseConfig;
+                isFirebaseActive = true;
+            }
+        } catch (e) {
+            console.log("Modo Offline activado por defecto");
+        }
+
+        // --- INICIALIZACIÓN Y AUTH ---
+        async function initApp() {
+            if (isFirebaseActive && configToUse) {
+                try {
+                    app = initializeApp(configToUse);
+                    auth = getAuth(app);
+                    db = getFirestore(app);
+
+                    // AUTENTICACIÓN: Esperar a tener usuario antes de leer DB
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                         await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                         await signInAnonymously(auth);
+                    }
+                    
+                    document.getElementById('mode-indicator').innerText = "MODO: ONLINE (Sincronizado)";
+                    document.getElementById('mode-indicator').classList.replace('text-yellow-500', 'text-green-500');
+                    
+                    // Solo ahora escuchamos cambios en la DB
+                    listenToWinner();
+                    
+                } catch (e) {
+                    console.error("Error iniciando Firebase/Auth:", e);
+                    isFirebaseActive = false;
+                    document.getElementById('mode-indicator').innerText = "MODO: ERROR (Offline)";
                 }
-                currentUser = auth.currentUser;
-                listenToWinner();
-            } catch (error) {
-                console.error("Auth error:", error);
             }
         }
         
-        // Start Auth
-        initAuth();
+        // Ejecutar inicialización
+        initApp();
 
-        // Escuchar cambios en la base de datos (REALTIME)
+        // --- LÓGICA DEL TIEMPO ---
+        const targetDate = new Date(2025, 11, 22, 17, 0, 0).getTime();
+        let globalWinner = null;
+
         function listenToWinner() {
-            // Ruta corregida: artifacts/{appId}/public/data/sorteo/winner (6 segmentos)
-            const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo', 'winner');
+            if (!isFirebaseActive) return;
             
+            const currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'southaura-public';
+            const winnerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'sorteo', 'winner');
+            
+            // onSnapshot incluye un callback de error para evitar crashes si se pierden permisos
             onSnapshot(winnerDocRef, (docSnapshot) => {
                 if (docSnapshot.exists()) {
                     const data = docSnapshot.data();
@@ -304,34 +344,30 @@
                         globalWinner = data.name;
                         showWinnerUI(globalWinner);
                     }
-                } else {
-                    // Si no hay ganador, verificamos el tiempo
-                    checkTimeState();
                 }
             }, (error) => {
-                console.error("Error escuchando ganador:", error);
+                console.warn("Permisos insuficientes o error de red:", error.message);
+                // Si falla la escucha, podríamos reintentar auth, pero por ahora solo logueamos
             });
         }
 
-        // --- 3. UI STATE MANAGEMENT ---
-        // Timer local
+        // Timer Loop
         setInterval(checkTimeState, 1000);
 
         function checkTimeState() {
-            // Si ya hay ganador, no hacemos nada con el timer
             if (globalWinner) return;
 
             const now = new Date().getTime();
             const distance = targetDate - now;
 
             if (distance < 0) {
-                // TIEMPO AGOTADO -> MODO ESPERA
+                // TIEMPO AGOTADO -> ESPERA
                 document.getElementById('countdown-view').classList.add('hidden');
                 document.getElementById('cta-container').classList.add('hidden');
                 document.getElementById('waiting-view').classList.remove('hidden');
                 document.getElementById('waiting-view').classList.add('flex');
             } else {
-                // CUENTA ATRÁS ACTIVA
+                // CUENTA ATRÁS
                 updateTimerUI(distance);
                 document.getElementById('countdown-view').classList.remove('hidden');
                 document.getElementById('waiting-view').classList.add('hidden');
@@ -350,32 +386,15 @@
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }
 
-        function showWinnerUI(name) {
-            // Ocultar todo lo demás
-            document.getElementById('countdown-view').classList.add('hidden');
-            document.getElementById('waiting-view').classList.add('hidden');
-            document.getElementById('waiting-view').classList.remove('flex');
-            document.getElementById('cta-container').classList.add('hidden');
-            
-            // Mostrar ganador
-            const winnerView = document.getElementById('winner-view');
-            winnerView.classList.remove('hidden');
-            winnerView.classList.add('flex');
-            document.getElementById('winner-name-display').innerText = name;
-
-            // Lanzar confeti una vez
-            launchConfetti();
-        }
-
-        // --- 4. ADMIN FUNCTIONS (Global Scope) ---
+        // --- FUNCIONES GLOBALES (ADMIN) ---
+        
         window.unlockAdmin = function() {
-            const pass = prompt("Acceso Admin (Staff Only):");
+            const pass = prompt("Acceso Admin:");
             if (pass === "southaura2025") {
                 document.getElementById('admin-panel').classList.remove('hidden');
-                // Scroll al panel
                 document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
             } else if (pass !== null) {
-                alert("Acceso denegado.");
+                alert("Incorrecto.");
             }
         }
 
@@ -388,64 +407,72 @@
             const participants = rawText.split('\n').filter(line => line.trim() !== '');
 
             if (participants.length < 1) {
-                alert("Pega la lista de participantes primero.");
+                alert("Por favor, introduce participantes.");
                 return;
             }
 
-            if (!confirm("¿Seguro? Se publicará el ganador para todos los usuarios.")) return;
-
-            // Efecto UI botón
             const btn = document.getElementById('pick-btn');
             btn.disabled = true;
             btn.innerText = "PROCESANDO...";
 
-            // Lógica Sorteo Local
             const randomIndex = Math.floor(Math.random() * participants.length);
             const winnerName = participants[randomIndex];
 
-            // GUARDAR EN FIREBASE (Esto activa la UI de todos)
-            try {
-                // Ensure auth before writing
-                if (!auth.currentUser) {
-                     alert("Error de autenticación. Recargando...");
-                     await initAuth();
-                }
-                
-                const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo', 'winner');
-                await setDoc(winnerDocRef, {
-                    name: winnerName,
-                    timestamp: new Date().toISOString(),
-                    pickedBy: auth.currentUser.uid
-                });
-                
-                alert("¡Ganador publicado con éxito!");
-                closeAdmin();
+            if (isFirebaseActive) {
+                try {
+                    // Doble check de auth antes de escribir
+                    if (!auth.currentUser) await signInAnonymously(auth);
 
-            } catch (err) {
-                console.error(err);
-                alert("Error al guardar: " + err.message);
-                btn.disabled = false;
-                btn.innerText = "SORTEAR Y PUBLICAR GANADOR";
+                    const currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'southaura-public';
+                    const winnerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'sorteo', 'winner');
+                    
+                    await setDoc(winnerDocRef, {
+                        name: winnerName,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    alert("Ganador sincronizado con la nube.");
+                    closeAdmin();
+                } catch (e) {
+                    alert("Error de conexión: " + e.message + "\nSe mostrará localmente.");
+                    showWinnerUI(winnerName);
+                }
+            } else {
+                setTimeout(() => {
+                    globalWinner = winnerName;
+                    showWinnerUI(winnerName);
+                    closeAdmin();
+                    alert("Ganador elegido (Modo Local).");
+                }, 1000);
             }
+            
+            btn.disabled = false;
+            btn.innerText = "SORTEAR Y PUBLICAR GANADOR";
         }
 
-        // Confeti Utils
+        function showWinnerUI(name) {
+            document.getElementById('countdown-view').classList.add('hidden');
+            document.getElementById('waiting-view').classList.add('hidden');
+            document.getElementById('waiting-view').classList.remove('flex');
+            document.getElementById('cta-container').classList.add('hidden');
+            
+            const winnerView = document.getElementById('winner-view');
+            winnerView.classList.remove('hidden');
+            winnerView.classList.add('flex');
+            document.getElementById('winner-name-display').innerText = name;
+
+            launchConfetti();
+        }
+
         function launchConfetti() {
             var duration = 5 * 1000;
-            var animationEnd = Date.now() + duration;
-            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-            var random = function(min, max) { return Math.random() * (max - min) + min; };
-
+            var end = Date.now() + duration;
             var interval = setInterval(function() {
-                var timeLeft = animationEnd - Date.now();
-                if (timeLeft <= 0) return clearInterval(interval);
-                var particleCount = 50 * (timeLeft / duration);
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#00954C', '#ffffff'] }));
-                confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#00954C', '#ffffff'] }));
+                if (Date.now() > end) return clearInterval(interval);
+                confetti({ startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, particleCount: 50, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#00954C', '#ffffff'] });
             }, 250);
         }
 
-        // Inicializar Iconos
         lucide.createIcons();
     </script>
 </body>
