@@ -216,10 +216,10 @@
                 </p>
                 <p id="mode-indicator" class="text-left text-xs text-yellow-500 mb-4">MODO: LOCAL (No sincronizado)</p>
                 
-                <div class="text-left text-xs text-gray-400 mb-2">1. Pega la lista de participantes:</div>
+                <div class="text-left text-xs text-gray-400 mb-2">1. Lista de participantes cargada (131 usuarios):</div>
                 <textarea id="participants-list" rows="5" 
                     class="w-full bg-black/50 border border-white/20 rounded-md p-4 text-gray-300 font-mono text-sm focus:border-red-500 focus:outline-none mb-6 resize-none"
-                    placeholder="@usuario1&#10;@usuario2&#10;@usuario3"></textarea>
+                    placeholder="La lista se cargará aquí..."></textarea>
                 
                 <div class="text-left text-xs text-gray-400 mb-2">2. Acción Irreversible:</div>
                 <button onclick="pickWinner()" id="pick-btn"
@@ -386,6 +386,37 @@
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }
 
+        // --- LISTA DE PARTICIPANTES PRECARGADA ---
+        const realParticipants = [
+            "@cupradeskafeinado", "@guiller_666", "@laura.ml905", "@pilarherrera", "@ppeem2024", 
+            "@pau.ser89", "@nayy.cl_8", "@gaby__sd", "@albatnz", "@pau.laeme", 
+            "@carlossrdgrz_", "@_alvaroo__09", "@franchis_08", "@aiitornajeraa", "@jeesuus_mooreeno", 
+            "@rubengonzalzz", "@ange.la08ofc", "@alvaaroo.__0", "@navarropj", "@sergioocrstbaal", 
+            "@rrmanzaa", "@_miguelillo._", "@iamaaronleiva", "@fermuciamarin", "@leireeemedina", 
+            "@aleexmdd", "@lidimeryy", "@caarmen.reeal", "@jaimepevillar", "@myritafm", 
+            "@marilosnchzz", "@joorgee.b_", "@clauudiaa_bj", "@joose_tm", "@_aresherrador", 
+            "@_ramoon_5", "@mvriordgzr", "@angeliiito_11", "@caty.roa.9", "@dinosaur.604746", 
+            "@carlos.javier_.08", "@pedroarance_", "@luciiaajurado", "@theblackagency_", "@serranorodriguezmcarmen", 
+            "@teresaa.lr", "@jesus_____mg", "@nachoomartiiinezz", "@jose_ogalla10", "@lolaa_mavs", 
+            "@marta.diazm", "@aalvaro_sl", "@wence_gl", "@miguel_st25", "@pulpillo_10", 
+            "@victorrgallego_", "@_maartukki_", "@pepe_bieedma", "@danimcns", "@mtohid69", 
+            "@claudiamadalm", "@rafamonjr", "@josemanueel.__", "@abraham.robledo.15", "@coachpops2.0", 
+            "@granacer_grx", "@alexdlom_7", "@joseesb.17", "@_.adriangarciaa", "@elenamtnezm", 
+            "@sssergiooon", "@celialopezz6", "@joseangelmr_011", "@jorgiillo22", "@cristinillaaarb", 
+            "@angell.donooso", "@samualvarrz", "@nuriiuus", "@alxx_rr08", "@_luijeeee_011_", 
+            "@naxocama", "@javi.cc209", "@andrewrepe", "@sleeiva", "@mlmtri20", 
+            "@esther_navarro_m", "@nataliiamdn", "@pj.vdl", "@lou.przjmna", "@mariisapla", 
+            "@laucastrillejo", "@marialuisarepe", "@enriquegmmz", "@carolinarepe", "@jaaviidr", 
+            "@luuciaa._pg", "@ireeneromero._", "@piilaar.loopezz", "@jm.m.v", "@dariolpez", 
+            "@javi.rdgzz", "@josee.gomzz", "@javi_pv45", "@joaquiinlr", "@andrescarlos91", 
+            "@jaimeeglvz_", "@balboa.0.2", "@_francisjuto_", "@raquelmaor_06", "@danihl_06", 
+            "@caroolanm", "@lidiaamrtineez", "@caarlosbeerlanga", "@luiis_povedaa", "@miguelpv_05", 
+            "@enrique.mateo_", "@alvaaro_02_", "@toniocobru", "@ernesto_alejandro96", "@javiieer_perez", 
+            "@lulesrepe", "@anarociio_perez", "@luucimery", "@taiwoweb9863", "@robeerto.coboo", 
+            "@manu_correro", "@claaugg_", "@luciaammf", "@iness.mrch", "@josemaria_bm_", 
+            "@javier__mrtnz"
+        ];
+
         // --- FUNCIONES GLOBALES (ADMIN) ---
         
         window.unlockAdmin = function() {
@@ -393,6 +424,10 @@
             if (pass === "southaura2025") {
                 document.getElementById('admin-panel').classList.remove('hidden');
                 document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+                // Cargar lista automáticamente
+                if (!document.getElementById('participants-list').value) {
+                    document.getElementById('participants-list').value = realParticipants.join('\n');
+                }
             } else if (pass !== null) {
                 alert("Incorrecto.");
             }
