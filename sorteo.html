@@ -62,7 +62,7 @@
             min-height: 100vh;
         }
 
-        /* Ticker Lento y Sutil */
+        /* Ticker Lento */
         .ticker-container {
             width: 100%;
             overflow: hidden;
@@ -125,7 +125,7 @@
 
         /* Animación ganadora */
         .winner-anim {
-            animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         @keyframes zoomIn {
             from { transform: scale(0.5); opacity: 0; }
@@ -160,11 +160,10 @@
             </p>
         </div>
 
-        <!-- CONTENEDOR DINÁMICO: Cambia entre Contador y Ganador -->
+        <!-- CONTENEDOR DINÁMICO -->
         <div id="dynamic-content" class="w-full">
             
-            <!-- VISTA 1: CONTADOR -->
-            <!-- Nota: Oculto por defecto en JS si la fecha ya pasó -->
+            <!-- VISTA 1: CONTADOR (Visible hasta el 22/12 17:00) -->
             <div id="countdown-view" class="flex flex-row items-center justify-center gap-4 md:gap-16 font-bebas landscape:gap-8 transition-opacity duration-500">
                 <div class="flex flex-col items-center">
                     <span class="countdown-number text-white" id="days">00</span>
@@ -187,42 +186,51 @@
                 </div>
             </div>
 
-            <!-- VISTA 2: SORTEO / GANADOR (Oculta por defecto) -->
-            <div id="raffle-view" class="hidden flex-col items-center w-full max-w-3xl mx-auto">
-                
-                <!-- Título Estado -->
-                <h2 id="raffle-status" class="text-5xl md:text-8xl font-bebas text-white mb-8 transition-all">
-                    SORTEO CERRADO
+            <!-- VISTA 2: ESPERA (Sorteo cerrado pero sin ganador aún) -->
+            <div id="waiting-view" class="hidden flex-col items-center animate-pulse">
+                <h2 class="text-4xl md:text-6xl font-bebas text-gray-400 mb-4">SORTEO CERRADO</h2>
+                <p class="text-xl text-white font-light">Calculando resultados...</p>
+                <div class="mt-8">
+                    <div class="w-12 h-12 border-4 border-south-green border-t-transparent rounded-full animate-spin mx-auto"></div>
+                </div>
+            </div>
+
+            <!-- VISTA 3: GANADOR (Visible para todos cuando el admin elija) -->
+            <div id="winner-view" class="hidden flex-col items-center w-full max-w-3xl mx-auto winner-anim">
+                <h2 class="text-5xl md:text-8xl font-bebas text-white mb-8">
+                    ¡TENEMOS GANADOR!
                 </h2>
-
-                <!-- Área de Visualización del Ganador -->
-                <div id="winner-display" class="hidden mb-10 p-10 border border-south-green bg-south-green/10 rounded-lg winner-anim backdrop-blur-sm shadow-[0_0_50px_rgba(0,149,76,0.3)]">
+                <div class="mb-10 p-10 border border-south-green bg-south-green/10 rounded-lg backdrop-blur-sm shadow-[0_0_50px_rgba(0,149,76,0.3)]">
                     <p class="text-sm font-inter tracking-widest text-gray-400 mb-2 uppercase">The Winner is</p>
-                    <p id="winner-name" class="text-6xl md:text-8xl font-bebas text-white break-words leading-none">@usuario</p>
+                    <p id="winner-name-display" class="text-6xl md:text-9xl font-bebas text-white break-words leading-none text-south-green drop-shadow-lg">@usuario</p>
                 </div>
+                <p class="text-gray-400 font-light">Contactaremos contigo por DM en breve.</p>
+            </div>
 
-                <!-- Panel de Administración -->
-                <div id="admin-panel" class="w-full bg-neutral-900/80 p-6 rounded-lg border border-white/10 backdrop-blur-md max-w-2xl mx-auto">
-                    <p class="text-left text-south-green font-bebas text-xl mb-4 tracking-wide flex items-center gap-2 border-b border-white/10 pb-2">
-                        <i data-lucide="settings" class="w-5 h-5"></i> Admin: Participantes
-                    </p>
-                    
-                    <div class="text-left text-xs text-gray-400 mb-2">Pega la lista de usuarios (uno por línea):</div>
-                    
-                    <textarea id="participants-list" rows="6" 
-                        class="w-full bg-black/50 border border-white/20 rounded-md p-4 text-gray-300 font-mono text-sm focus:border-south-green focus:outline-none focus:ring-1 focus:ring-south-green mb-6 resize-none"
-                        placeholder="@juan.perez&#10;@maria_sur&#10;@carlos.style"></textarea>
-                    
-                    <button onclick="startRaffle()" id="start-btn"
-                        class="w-full py-4 bg-south-green text-white font-bebas text-3xl uppercase tracking-widest hover:bg-white hover:text-south-green transition-all rounded shadow-lg transform active:scale-95 duration-200">
-                        Elegir Ganador
-                    </button>
-                </div>
+            <!-- VISTA 4: ADMIN PANEL (Protegido) -->
+            <div id="admin-panel" class="hidden mt-12 w-full bg-neutral-900/90 p-6 rounded-lg border border-red-500/30 backdrop-blur-md max-w-2xl mx-auto relative">
+                <button onclick="closeAdmin()" class="absolute top-2 right-2 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+                
+                <p class="text-left text-red-500 font-bebas text-xl mb-4 tracking-wide flex items-center gap-2 border-b border-red-500/20 pb-2">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i> Panel de Control (Admin)
+                </p>
+                
+                <div class="text-left text-xs text-gray-400 mb-2">1. Pega la lista de participantes:</div>
+                <textarea id="participants-list" rows="5" 
+                    class="w-full bg-black/50 border border-white/20 rounded-md p-4 text-gray-300 font-mono text-sm focus:border-red-500 focus:outline-none mb-6 resize-none"
+                    placeholder="@usuario1&#10;@usuario2&#10;@usuario3"></textarea>
+                
+                <div class="text-left text-xs text-gray-400 mb-2">2. Acción Irreversible:</div>
+                <button onclick="pickWinner()" id="pick-btn"
+                    class="w-full py-4 bg-red-600 text-white font-bebas text-2xl uppercase tracking-widest hover:bg-red-700 transition-all rounded shadow-lg">
+                    SORTEAR Y PUBLICAR GANADOR
+                </button>
+                <p class="text-xs text-red-400 mt-2">* Esto actualizará la web para todos los usuarios.</p>
             </div>
 
         </div>
 
-        <!-- Botón de Acción (Visible solo durante cuenta atrás) -->
+        <!-- Botón de Participar (Solo visible si cuenta atrás activa) -->
         <div id="cta-container" class="mt-16 md:mt-20 landscape:mt-6 transition-opacity duration-500">
             <a href="https://instagram.com/southaura.co" target="_blank" 
                class="px-8 py-3 md:px-10 md:py-4 bg-white text-black font-bebas text-lg md:text-2xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,149,76,0.6)] rounded-sm transform hover:-translate-y-1 inline-flex items-center gap-3">
@@ -236,75 +244,92 @@
 
     </main>
 
-    <!-- Footer Simple -->
+    <!-- Footer -->
     <footer class="py-6 text-center border-t border-white/5 text-gray-600 text-xs uppercase tracking-widest font-light flex-shrink-0 relative">
         <a href="index.html" class="hover:text-white transition-colors">Volver a la Web</a>
         
-        <!-- Botón Reiniciar Demo -->
-        <button onclick="resetDemo()" class="absolute right-4 bottom-4 text-xs bg-white/5 hover:bg-white/10 px-2 py-1 rounded border border-white/10 transition-colors" title="Volver a Cuenta Atrás">
-            Reiniciar Demo
+        <!-- Botón Candado Admin -->
+        <button onclick="unlockAdmin()" class="absolute right-4 bottom-4 text-gray-800 hover:text-south-green transition-colors cursor-pointer p-2" title="Admin Access">
+            <i data-lucide="lock" class="w-3 h-3"></i>
         </button>
     </footer>
 
-    <script>
-        lucide.createIcons();
+    <!-- FIREBASE MODULES -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, doc, onSnapshot, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-        // --- CONFIGURACIÓN PARA DEMO ---
-        let targetDate = new Date().getTime() - 10000; 
+        // --- 1. SETUP FIREBASE ---
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app';
         
-        // Elementos DOM
-        const countdownView = document.getElementById('countdown-view');
-        const raffleView = document.getElementById('raffle-view');
-        const ctaContainer = document.getElementById('cta-container');
-        const participantsInput = document.getElementById('participants-list');
-        const winnerDisplay = document.getElementById('winner-display');
-        const winnerNameEl = document.getElementById('winner-name');
-        const statusTitle = document.getElementById('raffle-status');
+        // --- 2. LOGIC ---
+        // Fecha Límite: 22 Dic 2025, 17:00
+        const targetDate = new Date(2025, 11, 22, 17, 0, 0).getTime();
+        
+        let currentUser = null;
+        let globalWinner = null;
 
-        // Datos de ejemplo
-        const demoParticipants = [
-            "@sofia.style", "@juan_skater", "@maria.vibe", "@carlos_sur", 
-            "@ana_design", "@luis_sevilla", "@clara_art", "@pedro_vlc",
-            "@lucia_mod", "@david_wave", "@elena_sun", "@pablo_kick"
-        ];
-        participantsInput.value = demoParticipants.join('\n');
+        // Login anónimo para leer DB
+        signInAnonymously(auth).then((userCredential) => {
+            currentUser = userCredential.user;
+            listenToWinner();
+        }).catch((error) => {
+            console.error("Error auth:", error);
+        });
 
-        // Timer Interval - RENOMBRADO DE 'x' A 'countdownTimer'
-        let countdownTimer;
-
-        function startTimer() {
-            // Limpiar intervalo previo si existe
-            if(countdownTimer) clearInterval(countdownTimer);
-
-            countdownTimer = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
-
-                updateTimerUI(distance);
-
-                // Si la fecha ha pasado (o es negativa), mostrar sorteo
-                if (distance < 0) {
-                    clearInterval(countdownTimer);
-                    showRaffleInterface();
-                } else {
-                    showCountdownInterface();
-                }
-            }, 1000);
+        // Escuchar cambios en la base de datos (REALTIME)
+        function listenToWinner() {
+            const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo_winner');
             
-            // Ejecutar inmediatamente para no esperar 1 segundo al cargar
-            if (targetDate - new Date().getTime() < 0) {
-                showRaffleInterface();
+            onSnapshot(winnerDocRef, (docSnapshot) => {
+                if (docSnapshot.exists()) {
+                    const data = docSnapshot.data();
+                    if (data.name) {
+                        globalWinner = data.name;
+                        showWinnerUI(globalWinner);
+                    }
+                } else {
+                    // Si no hay ganador, verificamos el tiempo
+                    checkTimeState();
+                }
+            });
+        }
+
+        // --- 3. UI STATE MANAGEMENT ---
+        // Timer local
+        setInterval(checkTimeState, 1000);
+
+        function checkTimeState() {
+            // Si ya hay ganador, no hacemos nada con el timer
+            if (globalWinner) return;
+
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                // TIEMPO AGOTADO -> MODO ESPERA
+                document.getElementById('countdown-view').classList.add('hidden');
+                document.getElementById('cta-container').classList.add('hidden');
+                document.getElementById('waiting-view').classList.remove('hidden');
+                document.getElementById('waiting-view').classList.add('flex');
+            } else {
+                // CUENTA ATRÁS ACTIVA
+                updateTimerUI(distance);
+                document.getElementById('countdown-view').classList.remove('hidden');
+                document.getElementById('waiting-view').classList.add('hidden');
             }
         }
 
         function updateTimerUI(distance) {
-            // Evitar números negativos
-            const d = distance < 0 ? 0 : distance;
-            
-            const days = Math.floor(d / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((d % (1000 * 60)) / 1000);
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             document.getElementById("days").innerText = days < 10 ? "0" + days : days;
             document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
@@ -312,89 +337,84 @@
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
         }
 
-        function showCountdownInterface() {
-            countdownView.classList.remove('hidden');
-            ctaContainer.classList.remove('hidden');
-            raffleView.classList.add('hidden');
-            raffleView.classList.remove('flex');
-        }
-
-        function showRaffleInterface() {
-            countdownView.classList.add('hidden');
-            ctaContainer.classList.add('hidden');
+        function showWinnerUI(name) {
+            // Ocultar todo lo demás
+            document.getElementById('countdown-view').classList.add('hidden');
+            document.getElementById('waiting-view').classList.add('hidden');
+            document.getElementById('waiting-view').classList.remove('flex');
+            document.getElementById('cta-container').classList.add('hidden');
             
-            raffleView.classList.remove('hidden');
-            raffleView.classList.add('flex');
-            
-            raffleView.animate([
-                { opacity: 0, transform: 'translateY(20px)' },
-                { opacity: 1, transform: 'translateY(0)' }
-            ], { duration: 500, fill: 'forwards' });
-        }
+            // Mostrar ganador
+            const winnerView = document.getElementById('winner-view');
+            winnerView.classList.remove('hidden');
+            winnerView.classList.add('flex');
+            document.getElementById('winner-name-display').innerText = name;
 
-        function startRaffle() {
-            const rawText = participantsInput.value;
-            const participants = rawText.split('\n').filter(line => line.trim() !== '');
-
-            if (participants.length < 2) {
-                alert("Por favor, añade al menos 2 participantes.");
-                return;
-            }
-
-            const btn = document.getElementById('start-btn');
-            btn.disabled = true;
-            btn.innerText = "Sorteando...";
-            btn.classList.add('opacity-50', 'cursor-not-allowed');
-            
-            // Resetear visualización
-            winnerDisplay.classList.remove('hidden');
-            statusTitle.innerText = "BUSCANDO GANADOR...";
-            statusTitle.classList.add('animate-pulse', 'text-south-green');
-            statusTitle.classList.remove('text-white');
-
-            let counter = 0;
-            const totalSpins = 30; 
-            const speed = 80;
-
-            const spin = (currentSpeed) => {
-                const randomIndex = Math.floor(Math.random() * participants.length);
-                winnerNameEl.innerText = participants[randomIndex];
-                
-                // Efecto golpe
-                winnerNameEl.style.transform = "scale(1.05)";
-                setTimeout(() => winnerNameEl.style.transform = "scale(1)", 50);
-
-                if (counter < totalSpins) {
-                    counter++;
-                    let nextSpeed = currentSpeed;
-                    if (counter > totalSpins - 10) nextSpeed += 20; 
-                    if (counter > totalSpins - 5) nextSpeed += 50;
-                    
-                    setTimeout(() => spin(nextSpeed), nextSpeed);
-                } else {
-                    finishRaffle(participants[randomIndex]);
-                }
-            };
-
-            spin(speed);
-        }
-
-        function finishRaffle(winner) {
-            winnerNameEl.innerText = winner;
-            statusTitle.innerText = "¡GANADOR CONFIRMADO!";
-            statusTitle.classList.remove('animate-pulse', 'text-south-green');
-            statusTitle.classList.add('text-white');
-            
-            const btn = document.getElementById('start-btn');
-            btn.innerText = "Sortear Otra Vez";
-            btn.disabled = false;
-            btn.classList.remove('opacity-50', 'cursor-not-allowed');
-
+            // Lanzar confeti una vez
             launchConfetti();
         }
 
+        // --- 4. ADMIN FUNCTIONS (Global Scope) ---
+        window.unlockAdmin = function() {
+            const pass = prompt("Acceso Admin (Staff Only):");
+            if (pass === "southaura2025") {
+                document.getElementById('admin-panel').classList.remove('hidden');
+                // Scroll al panel
+                document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+            } else if (pass !== null) {
+                alert("Acceso denegado.");
+            }
+        }
+
+        window.closeAdmin = function() {
+            document.getElementById('admin-panel').classList.add('hidden');
+        }
+
+        window.pickWinner = async function() {
+            const rawText = document.getElementById('participants-list').value;
+            const participants = rawText.split('\n').filter(line => line.trim() !== '');
+
+            if (participants.length < 1) {
+                alert("Pega la lista de participantes primero.");
+                return;
+            }
+
+            if (!confirm("¿Seguro? Se publicará el ganador para todos los usuarios.")) return;
+
+            // Efecto UI botón
+            const btn = document.getElementById('pick-btn');
+            btn.disabled = true;
+            btn.innerText = "PROCESANDO...";
+
+            // Lógica Sorteo Local
+            const randomIndex = Math.floor(Math.random() * participants.length);
+            const winnerName = participants[randomIndex];
+
+            // GUARDAR EN FIREBASE (Esto activa la UI de todos)
+            try {
+                if (!currentUser) await signInAnonymously(auth);
+                
+                const winnerDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'sorteo_winner');
+                await setDoc(winnerDocRef, {
+                    name: winnerName,
+                    timestamp: new Date().toISOString(),
+                    pickedBy: currentUser.uid
+                });
+                
+                alert("¡Ganador publicado con éxito!");
+                closeAdmin();
+
+            } catch (err) {
+                console.error(err);
+                alert("Error al guardar: " + err.message);
+                btn.disabled = false;
+                btn.innerText = "SORTEAR Y PUBLICAR GANADOR";
+            }
+        }
+
+        // Confeti Utils
         function launchConfetti() {
-            var duration = 3 * 1000;
+            var duration = 5 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
             var random = function(min, max) { return Math.random() * (max - min) + min; };
@@ -408,16 +428,8 @@
             }, 250);
         }
 
-        function resetDemo() {
-            // Pone la fecha en el futuro (10 seg) para ver la cuenta atrás de nuevo
-            targetDate = new Date().getTime() + 10000;
-            winnerDisplay.classList.add('hidden');
-            startTimer();
-        }
-
-        // INICIAR AL CARGAR
-        startTimer();
-
+        // Inicializar Iconos
+        lucide.createIcons();
     </script>
 </body>
 </html>
