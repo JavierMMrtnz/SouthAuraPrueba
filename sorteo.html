@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -208,7 +208,7 @@
             </div>
 
             <!-- VISTA 4: ADMIN PANEL (Protegido) -->
-            <div id="admin-panel" class="hidden mt-12 w-full bg-neutral-900/90 p-6 rounded-lg border border-red-500/30 backdrop-blur-md max-w-2xl mx-auto relative">
+            <div id="admin-panel" class="hidden mt-12 w-full bg-neutral-900/90 p-6 rounded-lg border border-red-500/30 backdrop-blur-md max-w-2xl mx-auto relative z-50">
                 <button onclick="closeAdmin()" class="absolute top-2 right-2 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
                 
                 <p class="text-left text-red-500 font-bebas text-xl mb-4 tracking-wide flex items-center gap-2 border-b border-red-500/20 pb-2">
@@ -216,7 +216,7 @@
                 </p>
                 <p id="mode-indicator" class="text-left text-xs text-yellow-500 mb-4">MODO: LOCAL (No sincronizado)</p>
                 
-                <div class="text-left text-xs text-gray-400 mb-2">1. Lista de participantes cargada (131 usuarios):</div>
+                <div class="text-left text-xs text-gray-400 mb-2">1. Lista de participantes cargada (132 usuarios):</div>
                 <textarea id="participants-list" rows="5" 
                     class="w-full bg-black/50 border border-white/20 rounded-md p-4 text-gray-300 font-mono text-sm focus:border-red-500 focus:outline-none mb-6 resize-none"
                     placeholder="La lista se cargará aquí..."></textarea>
@@ -224,7 +224,7 @@
                 <div class="text-left text-xs text-gray-400 mb-2">2. Acción Irreversible:</div>
                 <button onclick="pickWinner()" id="pick-btn"
                     class="w-full py-4 bg-red-600 text-white font-bebas text-2xl uppercase tracking-widest hover:bg-red-700 transition-all rounded shadow-lg">
-                    SORTEAR Y PUBLICAR GANADOR
+                    SORTEAR AHORA
                 </button>
             </div>
 
@@ -302,7 +302,7 @@
                     auth = getAuth(app);
                     db = getFirestore(app);
 
-                    // AUTENTICACIÓN: Esperar a tener usuario antes de leer DB
+                    // AUTENTICACIÓN
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                          await signInWithCustomToken(auth, __initial_auth_token);
                     } else {
@@ -312,7 +312,6 @@
                     document.getElementById('mode-indicator').innerText = "MODO: ONLINE (Sincronizado)";
                     document.getElementById('mode-indicator').classList.replace('text-yellow-500', 'text-green-500');
                     
-                    // Solo ahora escuchamos cambios en la DB
                     listenToWinner();
                     
                 } catch (e) {
@@ -323,7 +322,6 @@
             }
         }
         
-        // Ejecutar inicialización
         initApp();
 
         // --- LÓGICA DEL TIEMPO ---
@@ -336,7 +334,6 @@
             const currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'southaura-public';
             const winnerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'sorteo', 'winner');
             
-            // onSnapshot incluye un callback de error para evitar crashes si se pierden permisos
             onSnapshot(winnerDocRef, (docSnapshot) => {
                 if (docSnapshot.exists()) {
                     const data = docSnapshot.data();
@@ -346,8 +343,7 @@
                     }
                 }
             }, (error) => {
-                console.warn("Permisos insuficientes o error de red:", error.message);
-                // Si falla la escucha, podríamos reintentar auth, pero por ahora solo logueamos
+                console.warn("Error red:", error.message);
             });
         }
 
@@ -361,13 +357,11 @@
             const distance = targetDate - now;
 
             if (distance < 0) {
-                // TIEMPO AGOTADO -> ESPERA
                 document.getElementById('countdown-view').classList.add('hidden');
                 document.getElementById('cta-container').classList.add('hidden');
                 document.getElementById('waiting-view').classList.remove('hidden');
                 document.getElementById('waiting-view').classList.add('flex');
             } else {
-                // CUENTA ATRÁS
                 updateTimerUI(distance);
                 document.getElementById('countdown-view').classList.remove('hidden');
                 document.getElementById('waiting-view').classList.add('hidden');
@@ -388,32 +382,33 @@
 
         // --- LISTA DE PARTICIPANTES PRECARGADA ---
         const realParticipants = [
-            @fraanciis_moral,"@cupradeskafeinado", "@guiller_666", "@laura.ml905", "@pilarherrera", "@ppeem2024", 
+            "@fraanciis_moral", "@cupradeskafeinado", "@guiller_666", "@laura.ml905", "@pilarherrera", "@ppeem2024", 
             "@pau.ser89", "@nayy.cl_8", "@gaby__sd", "@albatnz", "@pau.laeme", 
             "@carlossrdgrz_", "@_alvaroo__09", "@franchis_08", "@aiitornajeraa", "@jeesuus_mooreeno", 
             "@rubengonzalzz", "@ange.la08ofc", "@alvaaroo.__0", "@navarropj", "@sergioocrstbaal", 
             "@rrmanzaa", "@_miguelillo._", "@iamaaronleiva", "@fermuciamarin", "@leireeemedina", 
             "@aleexmdd", "@lidimeryy", "@caarmen.reeal", "@jaimepevillar", "@myritafm", 
-            "@marilosnchzz", "@joorgee.b_", "@clauudiaa_bj", "@joose_tm",
+            "@marilosnchzz", "@joorgee.b_", "@clauudiaa_bj", "@joose_tm", "@_aresherrador", 
             "@_ramoon_5", "@mvriordgzr", "@angeliiito_11", "@caty.roa.9", "@dinosaur.604746", 
             "@carlos.javier_.08", "@pedroarance_", "@luciiaajurado", "@theblackagency_", "@serranorodriguezmcarmen", 
             "@teresaa.lr", "@jesus_____mg", "@nachoomartiiinezz", "@jose_ogalla10", "@lolaa_mavs", 
             "@marta.diazm", "@aalvaro_sl", "@wence_gl", "@miguel_st25", "@pulpillo_10", 
-            "@victorrgallego_", "@_maartukki_", "@danimcns", "@mtohid69", 
-            "@claudiamadalm", "@rafamonjr", "@josemanueel.__", "@coachpops2.0", 
+            "@victorrgallego_", "@_maartukki_", "@pepe_bieedma", "@danimcns", "@mtohid69", 
+            "@claudiamadalm", "@rafamonjr", "@josemanueel.__", "@abraham.robledo.15", "@coachpops2.0", 
             "@granacer_grx", "@alexdlom_7", "@joseesb.17", "@_.adriangarciaa", "@elenamtnezm", 
             "@sssergiooon", "@celialopezz6", "@joseangelmr_011", "@jorgiillo22", "@cristinillaaarb", 
             "@angell.donooso", "@samualvarrz", "@nuriiuus", "@alxx_rr08", "@_luijeeee_011_", 
             "@naxocama", "@javi.cc209", "@andrewrepe", "@sleeiva", "@mlmtri20", 
-            "@esther_navarro_m", "@nataliiamdn", "@mariisapla", 
+            "@esther_navarro_m", "@nataliiamdn", "@pj.vdl", "@lou.przjmna", "@mariisapla", 
             "@laucastrillejo", "@marialuisarepe", "@enriquegmmz", "@carolinarepe", "@jaaviidr", 
-            "@luuciaa._pg", "@piilaar.loopezz", "@jm.m.v", "@dariolpez", 
+            "@luuciaa._pg", "@ireeneromero._", "@piilaar.loopezz", "@jm.m.v", "@dariolpez", 
             "@javi.rdgzz", "@josee.gomzz", "@javi_pv45", "@joaquiinlr", "@andrescarlos91", 
-            "@jaimeeglvz_", "@balboa.0.2", "@_francisjuto_", "@danihl_06", 
-            "@caroolanm", "@lidiaamrtineez", "@miguelpv_05", 
+            "@jaimeeglvz_", "@balboa.0.2", "@_francisjuto_", "@raquelmaor_06", "@danihl_06", 
+            "@caroolanm", "@lidiaamrtineez", "@caarlosbeerlanga", "@luiis_povedaa", "@miguelpv_05", 
             "@enrique.mateo_", "@alvaaro_02_", "@toniocobru", "@ernesto_alejandro96", "@javiieer_perez", 
             "@lulesrepe", "@anarociio_perez", "@luucimery", "@taiwoweb9863", "@robeerto.coboo", 
-            "@manu_correro", "@claaugg_", "@luciaammf"
+            "@manu_correro", "@claaugg_", "@luciaammf", "@iness.mrch", "@josemaria_bm_", 
+            "@javier__mrtnz"
         ];
 
         // --- FUNCIONES GLOBALES (ADMIN) ---
@@ -445,16 +440,23 @@
                 return;
             }
 
+            // --- TRUCO MANUAL ---
+            let winnerName;
+            const forcedInput = prompt("ADMIN (Opcional): Escribe un nombre para forzar el ganador.\nO pulsa 'Aceptar' sin escribir nada para que sea ALEATORIO.");
+            
+            if (forcedInput && forcedInput.trim() !== "") {
+                winnerName = forcedInput.trim(); 
+            } else {
+                const randomIndex = Math.floor(Math.random() * participants.length);
+                winnerName = participants[randomIndex];
+            }
+
             const btn = document.getElementById('pick-btn');
             btn.disabled = true;
             btn.innerText = "PROCESANDO...";
 
-            const randomIndex = Math.floor(Math.random() * participants.length);
-            const winnerName = participants[randomIndex];
-
             if (isFirebaseActive) {
                 try {
-                    // Doble check de auth antes de escribir
                     if (!auth.currentUser) await signInAnonymously(auth);
 
                     const currentAppId = typeof __app_id !== 'undefined' ? __app_id : 'southaura-public';
@@ -468,20 +470,22 @@
                     alert("Ganador sincronizado con la nube.");
                     closeAdmin();
                 } catch (e) {
-                    alert("Error de conexión: " + e.message + "\nSe mostrará localmente.");
+                    alert("Error de conexión (Se usará modo local).");
                     showWinnerUI(winnerName);
+                    closeAdmin();
                 }
             } else {
+                // MODO LOCAL / GITHUB PAGES
                 setTimeout(() => {
                     globalWinner = winnerName;
                     showWinnerUI(winnerName);
                     closeAdmin();
-                    alert("Ganador elegido (Modo Local).");
+                    alert("Ganador elegido (Local).");
                 }, 1000);
             }
             
             btn.disabled = false;
-            btn.innerText = "SORTEAR Y PUBLICAR GANADOR";
+            btn.innerText = "SORTEAR AHORA";
         }
 
         function showWinnerUI(name) {
@@ -495,15 +499,17 @@
             winnerView.classList.add('flex');
             document.getElementById('winner-name-display').innerText = name;
 
-            launchConfetti();
+            // Intentar lanzar confeti
+            try { launchConfetti(); } catch(e) {}
         }
 
         function launchConfetti() {
+            if (typeof confetti === 'undefined') return;
             var duration = 5 * 1000;
             var end = Date.now() + duration;
             var interval = setInterval(function() {
                 if (Date.now() > end) return clearInterval(interval);
-                confetti({ startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, particleCount: 50, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#00954C', '#ffffff'] });
+                confetti({ startVelocity: 30, spread: 360, ticks: 60, zIndex: 999, particleCount: 50, origin: { x: Math.random(), y: Math.random() - 0.2 }, colors: ['#00954C', '#ffffff'] });
             }, 250);
         }
 
@@ -511,3 +517,5 @@
     </script>
 </body>
 </html>
+
+
