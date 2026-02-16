@@ -51,7 +51,7 @@
             transform: translateY(0);
         }
 
-        /* Ticker: Más pequeño y en Verde South */
+        /* Ticker: Estilo Liquid sutil en Verde South */
         .ticker-container {
             background-color: #00954C;
             overflow: hidden;
@@ -117,17 +117,17 @@
         }
     </style>
 </head>
-<body class="antialiased font-inter">
+<body class="antialiased font-inter text-white">
 
-    <!-- 1. TICKER (VERDE SOUTH / SUTIL) -->
+    <!-- 1. TICKER SUPERIOR -->
     <div class="ticker-container sticky top-0 z-[100]">
-        <div class="ticker-track">
+        <div class="ticker-track text-white">
             <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
             <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
         </div>
     </div>
 
-    <!-- 2. NAVBAR (MODERNA) -->
+    <!-- 2. NAVEGACIÓN -->
     <nav class="w-full z-50 border-b border-white/5 nav-blur">
         <div class="max-w-[1440px] mx-auto px-6 py-5 flex justify-between items-center">
             <div class="text-3xl font-black tracking-tighter cursor-pointer flex items-center gap-2" onclick="window.scrollTo(0,0)">
@@ -139,31 +139,31 @@
                 <a href="#adn" class="hover:text-white transition-colors">ADN</a>
                 <a href="https://instagram.com/southaura.co" target="_blank" class="flex items-center gap-2 text-white bg-south-green px-4 py-2 rounded-sm hover:bg-white hover:text-black transition-all">
                     <span>Instagram</span>
-                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                    <i data-lucide="external-link" class="w-3 h-3 text-white"></i>
                 </a>
             </div>
 
             <button class="md:hidden text-white">
-                <i data-lucide="menu" class="w-6 h-6"></i>
+                <i data-lucide="menu" class="w-6 h-6 text-white"></i>
             </button>
         </div>
     </nav>
 
-    <!-- 3. HERO (IBERIAN AESTHETICS) -->
+    <!-- 3. HERO SECTION -->
     <header class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-black">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10"></div>
-            <!-- Imagen Hero: Sugiero usar la foto de la pareja o el modelo en el balcón -->
-            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campaign">
+            <!-- Imagen Hero: Modelo en el balcón (Blue Back) -->
+            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campaign Hero">
         </div>
 
         <div class="relative z-20 text-center px-6">
             <span class="inline-block text-south-green font-bebas tracking-[0.6em] text-sm mb-6 reveal">Est. 2025 • Made in the Sur</span>
-            <h1 class="text-7xl md:text-[13rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10">
+            <h1 class="text-7xl md:text-[13rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10 text-white">
                 IBERIAN<br><span class="text-outline">AESTHETICS</span>
             </h1>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8 reveal" style="transition-delay: 200ms;">
-                <p class="text-[10px] tracking-[0.5em] uppercase text-gray-500 font-bold">Drop II / Edition 001</p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 reveal text-white" style="transition-delay: 200ms;">
+                <p class="text-[10px] tracking-[0.5em] uppercase text-gray-400 font-bold">Drop II / Edition 001</p>
                 <div class="h-[1px] w-16 bg-white/20 hidden md:block"></div>
                 <p class="text-[10px] tracking-[0.5em] uppercase text-white font-bold italic">230 GSM Heavy Fabric</p>
             </div>
@@ -175,12 +175,12 @@
         </div>
     </header>
 
-    <!-- 4. EL DROP (GRID TÉCNICO) -->
-    <section id="collection" class="py-32 px-6 bg-south-dark">
+    <!-- 4. EL DROP (CATÁLOGO) -->
+    <section id="collection" class="py-32 px-6 bg-south-dark text-white">
         <div class="max-w-[1400px] mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
                 <div>
-                    <h2 class="font-bebas text-6xl md:text-9xl leading-none italic uppercase">The <span class="text-south-green">Break Glass</span> Series</h2>
+                    <h2 class="font-bebas text-6xl md:text-9xl leading-none italic uppercase text-white">The <span class="text-south-green">Break Glass</span> Series</h2>
                     <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic">Selección Premium / Confección en España</p>
                 </div>
                 <div class="text-gray-400 text-[10px] uppercase tracking-[0.3em] max-w-xs leading-relaxed md:text-right">
@@ -193,8 +193,8 @@
                 
                 <!-- Camiseta Azul (Broken Heart) -->
                 <div class="product-card reveal group">
-                    <div class="img-container aspect-[4/5] mb-8 shadow-2xl">
-                        <!-- Imagen Back Azul -->
+                    <div class="img-container aspect-[4/5] mb-8 shadow-2xl border border-white/5">
+                        <!-- Imagen Back Azul (Graphic) -->
                         <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" class="w-full h-full object-cover" alt="Broken Heart Blue Back">
                         <div class="absolute top-8 left-8 flex flex-col gap-2">
                             <span class="bg-south-green text-white text-[9px] px-3 py-1 font-bold tracking-widest uppercase italic">New Arrival</span>
@@ -203,8 +203,8 @@
                     </div>
                     <div class="flex flex-col gap-4">
                         <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
-                            <h3 class="font-black text-3xl md:text-5xl uppercase tracking-tighter">Broken Heart Tee</h3>
-                            <span class="text-gray-600 font-bebas text-2xl tracking-widest">II-B</span>
+                            <h3 class="font-black text-3xl md:text-5xl uppercase tracking-tighter text-white">Broken Heart Tee</h3>
+                            <span class="text-gray-600 font-bebas text-2xl tracking-widest text-white">II-B</span>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-[9px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Royal Blue</p>
@@ -217,18 +217,18 @@
 
                 <!-- Camiseta Blanca (Case of Yes) -->
                 <div class="product-card reveal group" style="transition-delay: 150ms;">
-                    <div class="img-container aspect-[4/5] mb-8 shadow-2xl">
-                        <!-- Imagen Back Blanca -->
+                    <div class="img-container aspect-[4/5] mb-8 shadow-2xl border border-white/5">
+                        <!-- Imagen Back Blanca (Model) -->
                         <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" class="w-full h-full object-cover" alt="Case of Yes White Back">
                         <div class="absolute top-8 left-8 flex flex-col gap-2">
-                            <span class="bg-white text-black text-[9px] px-3 py-1 font-bold tracking-widest uppercase italic italic">With love :(</span>
+                            <span class="bg-white text-black text-[9px] px-3 py-1 font-bold tracking-widest uppercase italic">With love :(</span>
                             <span class="bg-black text-white text-[9px] px-3 py-1 font-bold tracking-widest uppercase border border-white/10">230 GSM</span>
                         </div>
                     </div>
                     <div class="flex flex-col gap-4">
                         <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
-                            <h3 class="font-black text-3xl md:text-5xl uppercase tracking-tighter">Case of Yes Tee</h3>
-                            <span class="text-gray-600 font-bebas text-2xl tracking-widest">II-W</span>
+                            <h3 class="font-black text-3xl md:text-5xl uppercase tracking-tighter text-white">Case of Yes Tee</h3>
+                            <span class="text-gray-600 font-bebas text-2xl tracking-widest text-white">II-W</span>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-[9px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Bone White</p>
@@ -243,16 +243,16 @@
         </div>
     </section>
 
-    <!-- 5. ADN / MANIFIESTO (IBERIAN AESTHETICS) -->
+    <!-- 5. ADN / MANIFIESTO -->
     <section id="adn" class="py-40 bg-white text-black overflow-hidden relative">
-        <div class="absolute top-0 right-0 text-[20rem] font-black text-neutral-100 leading-none select-none -mr-20 -mt-20 opacity-50 tracking-tighter">SA25</div>
+        <div class="absolute top-0 right-0 text-[20rem] font-black text-neutral-100 leading-none select-none -mr-20 -mt-20 opacity-50 tracking-tighter text-black/10">SA25</div>
         
         <div class="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             <div class="reveal">
-                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter">
+                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter text-black">
                     MADE <br> IN THE <br> <span class="text-south-green italic underline decoration-black underline-offset-8 decoration-4">SUR</span>
                 </h2>
-                <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter leading-tight max-w-lg mb-8 italic">
+                <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter leading-tight max-w-lg mb-8 italic text-black">
                     "Redefiniendo el Streetwear desde el sur de la Península. Sin reglas, solo estética."
                 </p>
                 <p class="text-xs text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md">
@@ -261,26 +261,26 @@
             </div>
             <div class="reveal group relative">
                 <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
-                <!-- Foto Estilo Lifestyle -->
+                <!-- Foto Estilo Lifestyle (Couple) -->
                 <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Iberian DNA">
-                <div class="absolute -bottom-8 -left-8 bg-black text-white p-8 font-bebas text-5xl italic leading-none">IBERIAN AESTHETICS</div>
+                <div class="absolute -bottom-8 -left-8 bg-black text-white p-8 font-bebas text-5xl italic leading-none text-white">IBERIAN AESTHETICS</div>
             </div>
         </div>
     </section>
 
-    <!-- 6. FOOTER (MINIMALISTA) -->
-    <footer class="bg-black pt-32 pb-12 border-t border-white/5">
+    <!-- 6. FOOTER -->
+    <footer class="bg-black pt-32 pb-12 border-t border-white/5 text-white">
         <div class="max-w-[1400px] mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end gap-20 mb-20">
-                <div class="text-[10rem] md:text-[18rem] font-black tracking-tighter leading-[0.7] select-none opacity-5">
+                <div class="text-[10rem] md:text-[18rem] font-black tracking-tighter leading-[0.7] select-none opacity-5 text-white">
                     SA<span class="text-south-green italic">25</span>
                 </div>
-                <div class="flex flex-col gap-8 text-right">
-                    <h4 class="font-bebas text-5xl uppercase text-south-green italic">Southaura Co.</h4>
+                <div class="flex flex-col gap-8 text-right text-white">
+                    <h4 class="font-bebas text-5xl uppercase text-south-green italic text-white">Southaura Co.</h4>
                     <nav class="flex flex-col gap-4 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500">
-                        <a href="https://instagram.com/southaura.co" class="hover:text-white transition-colors italic">Instagram</a>
-                        <a href="#" class="hover:text-white transition-colors italic italic">TikTok</a>
-                        <a href="#" class="hover:text-white transition-colors italic italic">Privacy Policy</a>
+                        <a href="https://instagram.com/southaura.co" class="hover:text-white transition-colors italic text-white/60">Instagram</a>
+                        <a href="#" class="hover:text-white transition-colors italic text-white/60">TikTok</a>
+                        <a href="#" class="hover:text-white transition-colors italic text-white/60">Privacy Policy</a>
                     </nav>
                 </div>
             </div>
