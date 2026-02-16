@@ -8,7 +8,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons -->
+    <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Google Fonts -->
@@ -50,7 +50,7 @@
             transform: translateY(0);
         }
 
-        /* Ticker Liquid sutil */
+        /* Ticker Liquid Estilo */
         .ticker-container {
             background-color: #00954C;
             overflow: hidden;
@@ -73,7 +73,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Slider de productos */
+        /* Contenedor del Carrusel */
         .product-slider {
             position: relative;
             width: 100%;
@@ -104,7 +104,7 @@
             color: transparent;
         }
 
-        /* Indicadores del slider */
+        /* Puntos del Carrusel */
         .dot {
             width: 4px;
             height: 4px;
@@ -125,11 +125,21 @@
         .bw-filter:hover {
             filter: grayscale(0%);
         }
+
+        /* Estilo para los controles del slider */
+        .slider-control {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .slider-control:hover {
+            background: #00954C;
+        }
     </style>
 </head>
 <body class="antialiased font-inter text-white">
 
-    <!-- 1. TICKER -->
+    <!-- 1. BARRA DE TEXTO DESLIZANTE -->
     <div class="ticker-container sticky top-0 z-[100]">
         <div class="ticker-track">
             <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
@@ -139,13 +149,13 @@
 
     <!-- 2. NAVEGACIÓN -->
     <nav class="w-full z-50 border-b border-white/5 nav-blur">
-        <div class="max-w-[1440px] mx-auto px-6 py-5 flex justify-between items-center text-white">
+        <div class="max-w-[1440px] mx-auto px-6 py-5 flex justify-between items-center">
             <div class="text-3xl font-black tracking-tighter cursor-pointer flex items-center gap-2" onclick="window.scrollTo(0,0)">
                 SOUTH<span class="text-south-green italic">AURA</span>
             </div>
             <div class="hidden md:flex items-center space-x-12 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400">
                 <a href="#new-drop" class="hover:text-white transition-colors">Nuevo Drop</a>
-                <a href="#archive" class="hover:text-white transition-colors">Archivo</a>
+                <a href="#originals" class="hover:text-white transition-colors">Originals</a>
                 <a href="#adn" class="hover:text-white transition-colors">ADN</a>
                 <a href="https://instagram.com/southaura.co" target="_blank" class="text-white bg-south-green px-4 py-2 rounded-sm hover:bg-white hover:text-black transition-all">
                     <span>Instagram</span>
@@ -155,27 +165,27 @@
         </div>
     </nav>
 
-    <!-- 3. HERO -->
-    <header class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-black text-white">
-        <div class="absolute inset-0 z-0 text-white">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10 text-white"></div>
-            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campaign Hero">
+    <!-- 3. HERO SECTION -->
+    <header class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-black">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10"></div>
+            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campamento">
         </div>
-        <div class="relative z-20 text-center px-6 text-white">
-            <span class="inline-block text-south-green font-bebas tracking-[0.6em] text-sm mb-6 reveal uppercase text-white">Est. 2025 • Made in the Sur</span>
-            <h1 class="text-7xl md:text-[12rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10 italic text-white">
+        <div class="relative z-20 text-center px-6">
+            <span class="inline-block text-south-green font-bebas tracking-[0.6em] text-sm mb-6 reveal uppercase">Est. 2025 • Made in the Sur</span>
+            <h1 class="text-7xl md:text-[12rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10 italic">
                 IBERIAN<br><span class="text-outline">AESTHETICS</span>
             </h1>
-            <p class="text-[10px] tracking-[0.5em] uppercase font-bold italic reveal text-white">230 GSM Premium Oversize Collection</p>
+            <p class="text-[10px] tracking-[0.5em] uppercase font-bold italic reveal">230 GSM Premium Oversize Collection</p>
         </div>
     </header>
 
-    <!-- 4. NEW DROP -->
-    <section id="new-drop" class="py-32 px-6 bg-south-dark text-white">
+    <!-- 4. NUEVO DROP: BREAK GLASS -->
+    <section id="new-drop" class="py-32 px-6 bg-south-dark">
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-24 reveal">
-                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white">The <span class="text-south-green italic">Break Glass</span> Drop</h2>
-                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold text-white">Season II • 230 GSM • Heavy Cotton</p>
+                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-south-green">Break <span class="text-white italic">Glass</span></h2>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold">Season II • Drop 002 • High Print</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
@@ -184,30 +194,28 @@
                 <div class="product-card reveal" data-id="blue">
                     <div class="product-slider group">
                         <div class="slider-track" id="track-blue">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11.jpeg" alt="Front">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" alt="Back">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Model Back">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11.jpeg" alt="Frontal Azul">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" alt="Trasera Azul">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Modelo Azul Espalda">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="moveSlider('blue', -1)" class="bg-black/50 p-2 rounded-full hover:bg-south-green text-white"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                            <button onclick="moveSlider('blue', 1)" class="bg-black/50 p-2 rounded-full hover:bg-south-green text-white"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                            <button onclick="moveSlider('blue', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                            <button onclick="moveSlider('blue', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-blue">
-                            <div class="dot active"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
                     <div class="mt-8 space-y-4">
                         <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
-                            <h3 class="font-black text-4xl uppercase tracking-tighter text-white italic">Broken Heart Tee</h3>
-                            <span class="text-south-green font-bebas text-2xl italic text-white">II-B</span>
+                            <h3 class="font-black text-4xl uppercase tracking-tighter italic">Broken Heart Tee</h3>
+                            <span class="text-south-green font-bebas text-2xl italic">II-B</span>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Royal Blue</p>
-                            <p><span class="text-white">Fit:</span> Oversize Premium</p>
-                            <p><span class="text-white">Front:</span> F*** Cupid embroidery</p>
-                            <p><span class="text-white">Back:</span> Break Glass High Print</p>
+                            <p><span class="text-white">Fit:</span> Oversize</p>
+                            <p><span class="text-white">GSM:</span> 230</p>
+                            <p><span class="text-white">Front:</span> F*** Cupid Embroidery</p>
                         </div>
                     </div>
                 </div>
@@ -216,30 +224,28 @@
                 <div class="product-card reveal" data-id="white" style="transition-delay: 150ms;">
                     <div class="product-slider group">
                         <div class="slider-track" id="track-white">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (2).jpeg" alt="Front">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (3).jpeg" alt="Back">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" alt="Model Back">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (2).jpeg" alt="Frontal Blanco">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (3).jpeg" alt="Trasera Blanco">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" alt="Modelo Blanco">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="moveSlider('white', -1)" class="bg-black/50 p-2 rounded-full hover:bg-south-green text-white"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                            <button onclick="moveSlider('white', 1)" class="bg-black/50 p-2 rounded-full hover:bg-south-green text-white"><i data-lucide="chevron-right" class="w-5 h-5 text-white"></i></button>
+                            <button onclick="moveSlider('white', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                            <button onclick="moveSlider('white', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-white">
-                            <div class="dot active"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
                     <div class="mt-8 space-y-4">
                         <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
-                            <h3 class="font-black text-4xl uppercase tracking-tighter text-white italic">Case of Yes Tee</h3>
-                            <span class="text-south-green font-bebas text-2xl italic text-white">II-W</span>
+                            <h3 class="font-black text-4xl uppercase tracking-tighter italic">Case of Yes Tee</h3>
+                            <span class="text-south-green font-bebas text-2xl italic">II-W</span>
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Bone White</p>
-                            <p><span class="text-white">Fit:</span> Oversize Premium</p>
-                            <p><span class="text-white">Front:</span> F*** Cupid embroidery</p>
-                            <p><span class="text-white">Back:</span> Teddy Graphic Print</p>
+                            <p><span class="text-white">Fit:</span> Oversize</p>
+                            <p><span class="text-white">GSM:</span> 230</p>
+                            <p><span class="text-white">Front:</span> F*** Cupid Embroidery</p>
                         </div>
                     </div>
                 </div>
@@ -248,57 +254,123 @@
         </div>
     </section>
 
-    <!-- 5. ARCHIVE SECTION -->
-    <section id="archive" class="py-32 px-6 bg-south-dark border-t border-white/5 text-white">
+    <!-- 5. ORIGINALS COLLECTION (CARRUSELES A COLOR) -->
+    <section id="originals" class="py-32 px-6 bg-south-dark border-t border-white/5">
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-24 reveal">
-                <h2 class="font-bebas text-6xl md:text-9xl uppercase text-white italic leading-none">The <span class="text-gray-500 italic text-white">Archive</span></h2>
-                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold text-white">Essential Collection • Oversize Selection</p>
+                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white">Originals <span class="text-gray-500 italic">Collection</span></h2>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic">The Core Series • 230 GSM • Oversize Selection</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-32">
                 
                 <!-- Original Black -->
-                <div class="product-card reveal group">
-                    <div class="aspect-[4/5] overflow-hidden bg-neutral-900 border border-white/5">
-                        <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Original Black">
+                <div class="product-card reveal" data-id="orig-black">
+                    <div class="product-slider group">
+                        <div class="slider-track" id="track-orig-black">
+                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Black Front">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Model Reference">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="moveSlider('orig-black', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button onclick="moveSlider('orig-black', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-orig-black">
+                            <div class="dot active"></div><div class="dot"></div>
+                        </div>
                     </div>
                     <div class="mt-6">
-                        <h4 class="font-bebas text-2xl uppercase tracking-widest text-white italic">Original Tee Black</h4>
-                        <p class="text-[9px] uppercase tracking-[0.3em] text-gray-600 mt-1 font-bold">Oversize Fit / 230 GSM</p>
+                        <h4 class="font-bebas text-3xl uppercase tracking-widest text-white italic">Original Tee Black</h4>
+                        <p class="text-[9px] uppercase tracking-[0.3em] text-south-green mt-1 font-bold">Oversize Fit / 230 GSM</p>
                     </div>
                 </div>
 
                 <!-- Original White -->
-                <div class="product-card reveal group" style="transition-delay: 100ms;">
-                    <div class="aspect-[4/5] overflow-hidden bg-neutral-900 border border-white/5">
-                        <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Original White">
+                <div class="product-card reveal" data-id="orig-white">
+                    <div class="product-slider group">
+                        <div class="slider-track" id="track-orig-white">
+                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" alt="White Front">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" alt="Lifestyle Couple">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="moveSlider('orig-white', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button onclick="moveSlider('orig-white', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-orig-white">
+                            <div class="dot active"></div><div class="dot"></div>
+                        </div>
                     </div>
                     <div class="mt-6">
-                        <h4 class="font-bebas text-2xl uppercase tracking-widest text-white italic">Original Tee White</h4>
-                        <p class="text-[9px] uppercase tracking-[0.3em] text-gray-600 mt-1 font-bold">Oversize Fit / 230 GSM</p>
+                        <h4 class="font-bebas text-3xl uppercase tracking-widest text-white italic">Original Tee White</h4>
+                        <p class="text-[9px] uppercase tracking-[0.3em] text-south-green mt-1 font-bold">Oversize Fit / 230 GSM</p>
                     </div>
                 </div>
 
                 <!-- Iberian Essence -->
-                <div class="product-card reveal group" style="transition-delay: 200ms;">
-                    <div class="aspect-[4/5] overflow-hidden bg-neutral-900 border border-white/5">
-                        <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Iberian Essence">
+                <div class="product-card reveal" data-id="iberian">
+                    <div class="product-slider group">
+                        <div class="slider-track" id="track-iberian">
+                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" alt="Iberian Front">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11.jpeg" alt="Collection Reference">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="moveSlider('iberian', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button onclick="moveSlider('iberian', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-iberian">
+                            <div class="dot active"></div><div class="dot"></div>
+                        </div>
                     </div>
                     <div class="mt-6">
-                        <h4 class="font-bebas text-2xl uppercase tracking-widest text-white italic">Iberian Essence</h4>
-                        <p class="text-[9px] uppercase tracking-[0.3em] text-gray-600 mt-1 font-bold">Oversize Fit / 230 GSM</p>
+                        <h4 class="font-bebas text-3xl uppercase tracking-widest text-white italic">Iberian Essence</h4>
+                        <p class="text-[9px] uppercase tracking-[0.3em] text-south-green mt-1 font-bold">Oversize Fit / 230 GSM</p>
                     </div>
                 </div>
 
-                <!-- Compass -->
-                <div class="product-card reveal group" style="transition-delay: 300ms;">
-                    <div class="aspect-[4/5] overflow-hidden bg-neutral-900 border border-white/5">
-                        <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Compass Tee">
+                <!-- Compás Tee -->
+                <div class="product-card reveal" data-id="compass">
+                    <div class="product-slider group">
+                        <div class="slider-track" id="track-compass">
+                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" alt="Compass Front">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Campaign Context">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="moveSlider('compass', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button onclick="moveSlider('compass', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-compass">
+                            <div class="dot active"></div><div class="dot"></div>
+                        </div>
                     </div>
                     <div class="mt-6">
-                        <h4 class="font-bebas text-2xl uppercase tracking-widest text-white italic">Compás Tee</h4>
-                        <p class="text-[9px] uppercase tracking-[0.3em] text-gray-600 mt-1 font-bold">Oversize Fit / 230 GSM</p>
+                        <h4 class="font-bebas text-3xl uppercase tracking-widest text-white italic">Compás Tee</h4>
+                        <p class="text-[9px] uppercase tracking-[0.3em] text-south-green mt-1 font-bold">Oversize Fit / 230 GSM</p>
+                    </div>
+                </div>
+
+                <!-- NUEVA PIEZA 1 (Placeholder) -->
+                <div class="product-card reveal" data-id="new-01">
+                    <div class="product-slider group">
+                        <div class="slider-track" id="track-new-01">
+                            <div class="min-w-full h-full flex items-center justify-center bg-neutral-900 border border-white/10 italic text-[10px] text-gray-600 uppercase tracking-widest">Añadir Imagen</div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="font-bebas text-3xl uppercase tracking-widest text-white italic">New Release I</h4>
+                        <p class="text-[9px] uppercase tracking-[0.3em] text-south-green mt-1 font-bold">Oversize Fit / 230 GSM</p>
+                    </div>
+                </div>
+
+                <!-- NUEVA PIEZA 2 (Placeholder) -->
+                <div class="product-card reveal" data-id="new-02">
+                    <div class="product-slider group">
+                        <div class="slider-track" id="track-new-02">
+                            <div class="min-w-full h-full flex items-center justify-center bg-neutral-900 border border-white/10 italic text-[10px] text-gray-600 uppercase tracking-widest">Añadir Imagen</div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="font-bebas text-3xl uppercase tracking-widest text-white italic">New Release II</h4>
+                        <p class="text-[9px] uppercase tracking-[0.3em] text-south-green mt-1 font-bold">Oversize Fit / 230 GSM</p>
                     </div>
                 </div>
 
@@ -306,61 +378,76 @@
         </div>
     </section>
 
-    <!-- 6. ADN -->
+    <!-- 6. ADN (FOTOGRAFÍA EN B/N POR ESTÉTICA DE MANIFIESTO) -->
     <section id="adn" class="py-40 bg-white text-black overflow-hidden relative">
         <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             <div class="reveal">
-                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter text-black">MADE IN THE <span class="text-south-green italic italic italic text-black">SUR</span></h2>
+                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter text-black">MADE IN THE <span class="text-south-green italic italic italic">SUR</span></h2>
                 <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter italic mb-8 italic text-black underline decoration-south-green decoration-4 underline-offset-8">"Redefiniendo el streetwear ibérico."</p>
                 <p class="text-xs text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md italic text-black">Southaura es un archivo visual de nuestras raíces. Piezas de 230 GSM diseñadas con calma desde el 2025.</p>
             </div>
             <div class="reveal group relative">
-                <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10"></div>
-                <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full bw-filter shadow-2xl transition-all duration-1000" alt="Iberian Couple">
+                <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
+                <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full bw-filter shadow-2xl transition-all duration-1000" alt="ADN Pareja">
                 <div class="absolute bottom-6 left-6 bg-black text-white px-4 py-2 font-bebas text-2xl italic text-white">EST. 2025</div>
             </div>
         </div>
     </section>
 
     <!-- 7. FOOTER -->
-    <footer class="bg-black pt-32 pb-12 border-t border-white/5 text-center text-white">
-        <div class="text-[12rem] md:text-[20rem] font-black tracking-tighter opacity-5 select-none mb-12 italic text-white">SA25</div>
-        <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center gap-12 text-white">
-            <h4 class="font-bebas text-5xl text-south-green italic italic text-white">Southaura</h4>
-            <div class="flex gap-8 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500 text-white">
-                <a href="https://instagram.com/southaura.co" target="_blank" class="hover:text-white transition-colors italic text-white/50">Instagram</a>
-                <a href="#" class="hover:text-white transition-colors italic text-white/50">TikTok</a>
+    <footer class="bg-black pt-32 pb-12 border-t border-white/5 text-center">
+        <div class="text-[12rem] md:text-[20rem] font-black tracking-tighter opacity-5 select-none mb-12 italic">SA25</div>
+        <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center gap-12">
+            <h4 class="font-bebas text-5xl text-south-green italic italic">Southaura Co.</h4>
+            <div class="flex gap-8 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500">
+                <a href="https://instagram.com/southaura.co" target="_blank" class="hover:text-white transition-colors italic italic">Instagram</a>
+                <a href="#" class="hover:text-white transition-colors italic italic">TikTok</a>
             </div>
-            <p class="text-[9px] text-gray-800 uppercase tracking-[0.6em] mt-12 text-white/20">© 2025-2026 Southaura. Designed and Produced in Spain.</p>
+            <p class="text-[9px] text-gray-800 uppercase tracking-[0.6em] mt-12 text-gray-700">© 2025-2026 Southaura. Designed and Produced in Spain.</p>
         </div>
     </footer>
 
     <script>
+        // Inicializar iconos
         lucide.createIcons();
 
-        // Estado de Sliders
+        // Configuración de Sliders Dinámica
         const sliderStates = {
             blue: { current: 0, total: 3 },
-            white: { current: 0, total: 3 }
+            white: { current: 0, total: 3 },
+            'orig-black': { current: 0, total: 2 },
+            'orig-white': { current: 0, total: 2 },
+            'iberian': { current: 0, total: 2 },
+            'compass': { current: 0, total: 2 },
+            'new-01': { current: 0, total: 1 },
+            'new-02': { current: 0, total: 1 }
         };
 
         function moveSlider(id, direction) {
             const state = sliderStates[id];
+            if (!state || state.total <= 1) return;
+            
             state.current = (state.current + direction + state.total) % state.total;
             
             const track = document.getElementById(`track-${id}`);
             track.style.transform = `translateX(-${state.current * 100}%)`;
             
-            const dots = document.getElementById(`dots-${id}`).children;
-            Array.from(dots).forEach((dot, i) => {
-                dot.classList.toggle('active', i === state.current);
-            });
+            // Actualizar indicadores (dots) si existen
+            const dotsContainer = document.getElementById(`dots-${id}`);
+            if (dotsContainer) {
+                const dots = dotsContainer.children;
+                Array.from(dots).forEach((dot, i) => {
+                    dot.classList.toggle('active', i === state.current);
+                });
+            }
         }
 
-        // Observer
+        // Observer para animaciones de entrada
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
         }, { threshold: 0.1 });
 
