@@ -50,7 +50,7 @@
             transform: translateY(0);
         }
 
-        /* Ticker Liquid sutil */
+        /* Ticker Liquid sutil en Verde South */
         .ticker-container {
             background-color: #00954C;
             overflow: hidden;
@@ -73,7 +73,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Slider de productos */
+        /* Slider de productos optimizado */
         .product-slider {
             position: relative;
             width: 100%;
@@ -85,7 +85,7 @@
         .slider-track {
             display: flex;
             height: 100%;
-            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .slider-track img {
             min-width: 100%;
@@ -117,6 +117,15 @@
             width: 20px;
             border-radius: 4px;
         }
+
+        /* Efecto Blanco y Negro para ADN */
+        .bw-filter {
+            filter: grayscale(100%);
+            transition: filter 0.8s ease;
+        }
+        .bw-filter:hover {
+            filter: grayscale(0%);
+        }
     </style>
 </head>
 <body class="antialiased font-inter text-white">
@@ -133,7 +142,7 @@
     <nav class="w-full z-50 border-b border-white/5 nav-blur">
         <div class="max-w-[1440px] mx-auto px-6 py-5 flex justify-between items-center">
             <div class="text-3xl font-black tracking-tighter cursor-pointer flex items-center gap-2" onclick="window.scrollTo(0,0)">
-                SOUTH<span class="text-south-green">AURA</span>
+                SOUTH<span class="text-south-green italic">AURA</span>
             </div>
             <div class="hidden md:flex items-center space-x-12 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400">
                 <a href="#collection" class="hover:text-white transition-colors">Colección</a>
@@ -146,28 +155,29 @@
         </div>
     </nav>
 
-    <!-- 3. HERO -->
+    <!-- 3. HERO (Imagen atmósfera fuera del carrusel) -->
     <header class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-black">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10"></div>
-            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campaign Hero">
+            <!-- Balcony shot (atmospheric) -->
+            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campaign Atmosphere">
         </div>
         <div class="relative z-20 text-center px-6">
             <span class="inline-block text-south-green font-bebas tracking-[0.6em] text-sm mb-6 reveal uppercase">Est. 2025 • Made in the Sur</span>
-            <h1 class="text-7xl md:text-[12rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10 text-white">
+            <h1 class="text-7xl md:text-[12rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10 text-white italic">
                 IBERIAN<br><span class="text-outline">AESTHETICS</span>
             </h1>
             <p class="text-[10px] tracking-[0.5em] uppercase text-white font-bold italic reveal">Collection II / 230 GSM Premium Fabric</p>
         </div>
     </header>
 
-    <!-- 4. EL DROP (CATÁLOGO CON SLIDERS) -->
+    <!-- 4. EL DROP (CAROUSEL CON ALTA CALIDAD) -->
     <section id="collection" class="py-32 px-6 bg-south-dark">
         <div class="max-w-[1400px] mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
                 <div>
-                    <h2 class="font-bebas text-6xl md:text-9xl uppercase text-white italic leading-none">The <span class="text-south-green">Break Glass</span> Drop</h2>
-                    <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold">230 GSM • Premium Regular Fit • Made in Spain</p>
+                    <h2 class="font-bebas text-6xl md:text-9xl uppercase text-white italic leading-none">The <span class="text-south-green italic">Break Glass</span> Series</h2>
+                    <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic">230 GSM • Premium Regular Fit • Crafted in Spain</p>
                 </div>
             </div>
 
@@ -178,10 +188,9 @@
                 <div class="product-card reveal" data-product="blue">
                     <div class="product-slider group">
                         <div class="slider-track" id="track-blue">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" alt="Blue Back">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11.jpeg" alt="Blue Front">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Blue Lifestyle 1">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31.jpeg" alt="Blue Lifestyle 2">
+                            <!-- Solo imágenes de alta calidad -->
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" alt="Blue Back Graphic">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11.jpeg" alt="Blue Front Flat">
                         </div>
                         
                         <!-- Controles -->
@@ -194,8 +203,6 @@
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-blue">
                             <div class="dot active"></div>
                             <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
                         </div>
                     </div>
                     
@@ -206,9 +213,9 @@
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Royal Blue</p>
-                            <p><span class="text-white">Fit:</span> Regular Premium</p>
-                            <p><span class="text-white">GSM:</span> 230 Heavy Weight</p>
-                            <p><span class="text-white">Print:</span> High Density Screen</p>
+                            <p><span class="text-white">Fit:</span> Regular Fit</p>
+                            <p><span class="text-white">GSM:</span> 230 Premium Cotton</p>
+                            <p><span class="text-white">Print:</span> High Density</p>
                         </div>
                     </div>
                 </div>
@@ -217,10 +224,10 @@
                 <div class="product-card reveal" data-product="white" style="transition-delay: 200ms;">
                     <div class="product-slider group">
                         <div class="slider-track" id="track-white">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (3).jpeg" alt="White Back">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (2).jpeg" alt="White Front">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" alt="White Model">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" alt="Lifestyle Couple">
+                            <!-- Solo imágenes de alta calidad -->
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (3).jpeg" alt="White Back Graphic">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.11 (2).jpeg" alt="White Front Flat">
+                            <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" alt="White Model Detail">
                         </div>
                         
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -230,7 +237,6 @@
 
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-white">
                             <div class="dot active"></div>
-                            <div class="dot"></div>
                             <div class="dot"></div>
                             <div class="dot"></div>
                         </div>
@@ -243,9 +249,9 @@
                         </div>
                         <div class="grid grid-cols-2 gap-4 text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Bone White</p>
-                            <p><span class="text-white">Fit:</span> Regular Premium</p>
-                            <p><span class="text-white">GSM:</span> 230 Heavy Weight</p>
-                            <p><span class="text-white">Embroidery:</span> F*** Cupid Front</p>
+                            <p><span class="text-white">Fit:</span> Regular Fit</p>
+                            <p><span class="text-white">GSM:</span> 230 Premium Cotton</p>
+                            <p><span class="text-white">Front:</span> F*** Cupid Embroidery</p>
                         </div>
                     </div>
                 </div>
@@ -254,29 +260,31 @@
         </div>
     </section>
 
-    <!-- 5. ADN -->
+    <!-- 5. ADN (Imagen en B/N para mejor estética) -->
     <section id="adn" class="py-40 bg-white text-black overflow-hidden relative">
         <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             <div class="reveal">
                 <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter">MADE IN THE <span class="text-south-green italic italic italic">SUR</span></h2>
-                <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter italic mb-8">"Sin reglas, solo estética. Redefiniendo el streetwear ibérico."</p>
-                <p class="text-xs text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md">Southaura es un archivo visual. Piezas de 230 GSM diseñadas con calma desde el 2025.</p>
+                <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter italic mb-8 italic">"Sin reglas, solo estética. Redefiniendo el streetwear ibérico."</p>
+                <p class="text-xs text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md italic">Southaura es un archivo visual. Piezas de 230 GSM diseñadas con calma desde el 2025.</p>
             </div>
             <div class="reveal group relative">
+                <!-- Foto de la pareja en Blanco y Negro (bw-filter) -->
                 <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10"></div>
-                <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700 shadow-2xl" alt="Lifestyle Couple">
+                <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full bw-filter shadow-2xl transition-all duration-1000" alt="Iberian DNA Couple">
+                <div class="absolute bottom-6 right-6 bg-black text-white px-4 py-2 font-bebas text-2xl italic">EST. 2025</div>
             </div>
         </div>
     </section>
 
     <!-- 6. FOOTER -->
     <footer class="bg-black pt-32 pb-12 border-t border-white/5 text-center">
-        <div class="text-6xl md:text-9xl font-black tracking-tighter opacity-5 select-none mb-12">SA25</div>
+        <div class="text-6xl md:text-[20rem] font-black tracking-tighter opacity-5 select-none mb-12 italic">SA25</div>
         <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center gap-12">
-            <h4 class="font-bebas text-5xl text-south-green italic">Southaura</h4>
+            <h4 class="font-bebas text-5xl text-south-green italic italic">Southaura</h4>
             <div class="flex gap-8 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500">
-                <a href="https://instagram.com/southaura.co" target="_blank" class="hover:text-white transition-colors">Instagram</a>
-                <a href="#" class="hover:text-white transition-colors">TikTok</a>
+                <a href="https://instagram.com/southaura.co" target="_blank" class="hover:text-white transition-colors italic">Instagram</a>
+                <a href="#" class="hover:text-white transition-colors italic">TikTok</a>
             </div>
             <p class="text-[9px] text-gray-800 uppercase tracking-[0.6em] mt-12">© 2025-2026 Southaura. Designed and Produced in Spain.</p>
         </div>
@@ -285,10 +293,10 @@
     <script>
         lucide.createIcons();
 
-        // Lógica de Sliders
+        // Lógica de Sliders Dinámica
         const sliderStates = {
-            blue: { current: 0, total: 4 },
-            white: { current: 0, total: 4 }
+            blue: { current: 0, total: 2 },
+            white: { current: 0, total: 3 }
         };
 
         function moveSlider(id, direction) {
@@ -298,14 +306,14 @@
             const track = document.getElementById(`track-${id}`);
             track.style.transform = `translateX(-${state.current * 100}%)`;
             
-            // Actualizar puntos
+            // Actualizar indicadores
             const dots = document.getElementById(`dots-${id}`).children;
             Array.from(dots).forEach((dot, i) => {
                 dot.classList.toggle('active', i === state.current);
             });
         }
 
-        // Scroll Reveal
+        // Scroll Reveal Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
