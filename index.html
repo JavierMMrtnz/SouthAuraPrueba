@@ -118,15 +118,11 @@
             border-radius: 4px;
         }
 
-        .bw-filter {
+        /* Forzado de Blanco y Negro para ADN */
+        .bw-static {
             filter: grayscale(100%);
-            transition: filter 1s ease;
-        }
-        .bw-filter:hover {
-            filter: grayscale(0%);
         }
 
-        /* Estilo para los controles del slider */
         .slider-control {
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(4px);
@@ -139,7 +135,7 @@
 </head>
 <body class="antialiased font-inter text-white">
 
-    <!-- 1. BARRA DE TEXTO DESLIZANTE -->
+    <!-- 1. TICKER -->
     <div class="ticker-container sticky top-0 z-[100]">
         <div class="ticker-track">
             <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
@@ -169,6 +165,7 @@
     <header class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-black text-white">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10 text-white"></div>
+            <!-- Usamos la foto del chico de espaldas en el balcón como atmósfera hero -->
             <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campamento Hero">
         </div>
         <div class="relative z-20 text-center px-6">
@@ -185,7 +182,7 @@
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-24 reveal text-white">
                 <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-south-green">Break <span class="text-white italic">Glass</span></h2>
-                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold text-white">Season II • Drop 002 • High Density Print</p>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold text-white uppercase italic">Season II • Drop 002 • High Density Print</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
@@ -197,14 +194,13 @@
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11.jpeg" alt="Frontal Azul">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" alt="Trasera Azul">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Modelo Azul Espalda">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31.jpeg" alt="Modelo Azul Frontal">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button onclick="moveSlider('blue', -1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                             <button onclick="moveSlider('blue', 1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-blue">
-                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
                     <div class="mt-8 space-y-4">
@@ -228,14 +224,13 @@
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11 (2).jpeg" alt="Frontal Blanco">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11 (3).jpeg" alt="Trasera Blanco">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" alt="Modelo Blanco Espalda">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" alt="Pareja Lifestyle">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button onclick="moveSlider('white', -1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                             <button onclick="moveSlider('white', 1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-white">
-                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
                     <div class="mt-8 space-y-4">
@@ -260,8 +255,8 @@
     <section id="originals" class="py-32 px-6 bg-south-dark border-t border-white/5">
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-24 reveal">
-                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white">Originals <span class="text-gray-500 italic text-white">Collection</span></h2>
-                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic text-white">The Founding Series • No Filters • 230 GSM</p>
+                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white text-white">Originals <span class="text-gray-500 italic text-white">Collection</span></h2>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic text-white uppercase">The Founding Series • Color Edition • 230 GSM</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
@@ -270,22 +265,20 @@
                 <div class="product-card reveal" data-id="orig-black">
                     <div class="product-slider group">
                         <div class="slider-track" id="track-orig-black">
+                            <!-- Corregido: Solo imágenes de la original negra -->
                             <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Black Original Front">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Reference Context">
+                            <!-- Aquí podrías añadir Gemini_Generated_Image_eh2apoeh2apoeh2a_back.png si existiera -->
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button onclick="moveSlider('orig-black', -1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
                             <button onclick="moveSlider('orig-black', 1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
                         </div>
-                        <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-orig-black">
-                            <div class="dot active"></div><div class="dot"></div>
-                        </div>
                     </div>
                     <div class="mt-8 space-y-4">
-                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
+                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4 text-white">
                             <h3 class="font-black text-4xl uppercase tracking-tighter italic text-white">Original Tee Black</h3>
                         </div>
-                        <p class="text-[10px] uppercase tracking-widest text-south-green font-bold">Oversize Fit / 230 GSM / Iberian Essence</p>
+                        <p class="text-[10px] uppercase tracking-widest text-south-green font-bold italic text-south-green">Oversize Fit / 230 GSM / Iberian Essence</p>
                     </div>
                 </div>
 
@@ -293,22 +286,19 @@
                 <div class="product-card reveal" data-id="orig-white" style="transition-delay: 150ms;">
                     <div class="product-slider group">
                         <div class="slider-track" id="track-orig-white">
+                            <!-- Corregido: Solo imágenes de la original blanca -->
                             <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" alt="White Original Front">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" alt="Reference Couple">
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="moveSlider('orig-white', -1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
-                            <button onclick="moveSlider('orig-white', 1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
-                        </div>
-                        <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-orig-white">
-                            <div class="dot active"></div><div class="dot"></div>
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity text-white">
+                            <button onclick="moveSlider('orig-white', -1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-left" class="w-4 h-4 text-white"></i></button>
+                            <button onclick="moveSlider('orig-white', 1)" class="slider-control p-2 rounded-full text-white"><i data-lucide="chevron-right" class="w-4 h-4 text-white"></i></button>
                         </div>
                     </div>
                     <div class="mt-8 space-y-4">
-                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
+                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4 text-white">
                             <h3 class="font-black text-4xl uppercase tracking-tighter italic text-white">Original Tee White</h3>
                         </div>
-                        <p class="text-[10px] uppercase tracking-widest text-south-green font-bold">Oversize Fit / 230 GSM / Iberian Essence</p>
+                        <p class="text-[10px] uppercase tracking-widest text-south-green font-bold italic text-south-green">Oversize Fit / 230 GSM / Iberian Essence</p>
                     </div>
                 </div>
 
@@ -316,56 +306,54 @@
         </div>
     </section>
 
-    <!-- 6. ANDALUCÍA VIBES (PROXIMAMENTE) -->
+    <!-- 6. ANDALUCÍA VIBES -->
     <section id="andalusia" class="py-32 px-6 bg-south-dark border-t border-white/5">
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-24 reveal text-white">
-                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white">Andalucía <span class="text-south-green italic">Vibes</span></h2>
+                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white text-white">Andalucía <span class="text-south-green italic text-south-green">Vibes</span></h2>
                 <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold text-white italic">Upcoming Drop • Southern Culture • 230 GSM</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-                
-                <!-- Placeholder Pieza 1 -->
                 <div class="product-card reveal group opacity-50">
                     <div class="aspect-[4/5] bg-neutral-900 border border-white/10 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-south-green/5 group-hover:bg-south-green/10 transition-all"></div>
-                        <span class="font-bebas text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all">Coming Soon</span>
+                        <span class="font-bebas text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all italic">Coming Soon</span>
                     </div>
                     <div class="mt-8 space-y-2">
                         <h3 class="font-black text-3xl uppercase tracking-tighter italic text-white">Andalucía Piece I</h3>
-                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Stay tuned for the reveal</p>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold italic">Stay tuned for the reveal</p>
                     </div>
                 </div>
 
-                <!-- Placeholder Pieza 2 -->
                 <div class="product-card reveal group opacity-50" style="transition-delay: 150ms;">
                     <div class="aspect-[4/5] bg-neutral-900 border border-white/10 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-south-green/5 group-hover:bg-south-green/10 transition-all"></div>
-                        <span class="font-bebas text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all">Coming Soon</span>
+                        <span class="font-bebas text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all italic text-white">Coming Soon</span>
                     </div>
                     <div class="mt-8 space-y-2">
                         <h3 class="font-black text-3xl uppercase tracking-tighter italic text-white">Andalucía Piece II</h3>
-                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Stay tuned for the reveal</p>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold italic text-white">Stay tuned for the reveal</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- 7. ADN -->
     <section id="adn" class="py-40 bg-white text-black overflow-hidden relative">
-        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+        <div class="absolute top-0 right-0 text-[20rem] font-black text-neutral-100 leading-none select-none -mr-20 -mt-20 opacity-50 tracking-tighter text-black/10">SA25</div>
+        
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             <div class="reveal">
-                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter text-black">MADE IN THE <span class="text-south-green italic text-black">SUR</span></h2>
+                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter text-black text-black">MADE IN THE <span class="text-south-green italic text-black">SUR</span></h2>
                 <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter italic mb-8 italic text-black underline decoration-south-green decoration-4 underline-offset-8">"Redefiniendo el streetwear ibérico."</p>
                 <p class="text-xs text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md italic text-black font-semibold">Southaura es un archivo visual de nuestras raíces. Piezas de 230 GSM diseñadas con calma desde el 2025.</p>
             </div>
             <div class="reveal group relative">
-                <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
-                <!-- Foto Pareja en Blanco y Negro -->
-                <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full bw-filter shadow-2xl transition-all duration-1000" alt="Iberian Couple Manifesto">
+                <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6 text-white"></div>
+                <!-- Foto Pareja forzada en Blanco y Negro -->
+                <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full bw-static shadow-2xl transition-all duration-1000" alt="Iberian Couple Manifesto">
                 <div class="absolute bottom-6 left-6 bg-black text-white px-4 py-2 font-bebas text-2xl italic text-white">EST. 2025</div>
             </div>
         </div>
@@ -387,12 +375,12 @@
     <script>
         lucide.createIcons();
 
-        // Configuración de Sliders Dinámica
+        // Configuración de Sliders
         const sliderStates = {
             blue: { current: 0, total: 4 },
             white: { current: 0, total: 4 },
-            'orig-black': { current: 0, total: 2 },
-            'orig-white': { current: 0, total: 2 }
+            'orig-black': { current: 0, total: 1 },
+            'orig-white': { current: 0, total: 1 }
         };
 
         function moveSlider(id, direction) {
@@ -413,7 +401,6 @@
             }
         }
 
-        // Observer para animaciones de entrada
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
