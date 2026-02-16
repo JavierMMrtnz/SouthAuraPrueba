@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Southaura | Arena & Compás</title>
-    <meta name="description" content="Streetwear premium con raíces andaluzas. Original Tee ya disponible.">
+    <title>SOUTHAURA | IBERIAN AESTHETICS - Est. 2025</title>
     
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://southaura.co/">
-    <meta property="og:title" content="Southaura | New Drop">
-    <meta property="og:image" content="Gemini_Generated_Image_eh2apoeh2apoeh2a.png">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Iconos Lucide -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-    <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -29,7 +21,7 @@
                     colors: {
                         'south-green': '#00954C',
                         'south-dark': '#050505',
-                        'off-white': '#f5f5f5',
+                        'accent-gray': '#1a1a1a',
                     },
                     fontFamily: {
                         'bebas': ['"Bebas Neue"', 'sans-serif'],
@@ -41,439 +33,277 @@
     </script>
 
     <style>
-        /* --- FIX: CORE CORRECTIONS FOR HORIZONTAL SCROLL --- */
         html, body {
             width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden; /* CRUCIAL: Corta todo lo que se salga */
+            overflow-x: hidden;
             background-color: #050505;
             color: #ffffff;
             scroll-behavior: smooth;
-            position: relative;
-            margin: 0;
-            padding: 0;
         }
 
-        /* TICKER INFINITO */
-        .ticker-container {
-            width: 100%;
-            overflow: hidden;
-            background-color: #00954C;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-            z-index: 20;
-            white-space: nowrap;
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ticker: Más pequeño y en Verde South */
+        .ticker-container {
+            background-color: #00954C;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
         .ticker-track {
             display: inline-block;
-            white-space: nowrap;
-            animation: scroll 40s linear infinite;
-            will-change: transform;
+            animation: scroll 35s linear infinite;
         }
-        
-        .ticker-item {
-            display: inline-block;
-            padding: 0.5rem 2rem;
+        .ticker-track span {
+            color: #ffffff;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1rem;
-            color: white;
-            letter-spacing: 0.1em;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            padding: 0 3rem;
         }
-
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        .hero-text-shadow {
-            text-shadow: 0px 0px 40px rgba(0, 149, 76, 0.3); 
+        /* Imágenes con distorsión suave y zoom */
+        .product-card .img-container {
+            position: relative;
+            overflow: hidden;
+            background: #0f0f0f;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        
-        /* --- FIX: BLOBS CORREGIDOS --- */
-        .blob {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            max-width: 100%; /* IMPORTANTE: Nunca más ancho que la pantalla */
-            background: radial-gradient(circle, rgba(0,149,76,0.08) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            pointer-events: none;
+        .product-card img {
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00954C; }
-        
-        /* --- FIX: MENÚ MÓVIL OPTIMIZADO --- */
-        #mobile-menu {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s;
-        }
-        /* Usamos visibility hidden para que el navegador ignore el ancho cuando está cerrado */
-        .menu-hidden { 
-            transform: translateX(100%); 
-            visibility: hidden;
-        }
-        .menu-visible { 
-            transform: translateX(0); 
-            visibility: visible;
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+            color: transparent;
         }
 
-        /* Utilidad para ocultar scrollbar en galería */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
+        .nav-blur {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+
+        /* Botón estilo técnico */
+        .btn-tech {
+            padding: 1rem 2.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-tech:hover {
+            background: #00954C;
+            color: white;
+            transform: translateY(-2px);
         }
     </style>
 </head>
-<body class="antialiased selection:bg-south-green selection:text-white font-inter flex flex-col min-h-screen">
+<body class="antialiased font-inter">
 
-    <!-- 1. BARRA DE TEXTO (TICKER) -->
-    <div class="ticker-container">
+    <!-- 1. TICKER (VERDE SOUTH / SUTIL) -->
+    <div class="ticker-container sticky top-0 z-[100]">
         <div class="ticker-track">
-            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
-            <span class="ticker-item">SORTEO ACTIVO: WIN ORIGINAL TEE • SOUTH AURA • ARENA & COMPÁS • NEW SEASON •</span>
+            <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
+            <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
         </div>
     </div>
 
-    <!-- Fondo ambiental -->
-    <!-- FIX: overflow-hidden añadido al wrapper principal para seguridad extra -->
-    <div class="w-full overflow-hidden absolute inset-0 pointer-events-none">
-        <div class="blob top-0 left-0 opacity-40"></div>
-        <div class="blob bottom-0 right-0 opacity-30"></div>
-    </div>
-
-    <!-- Navegación -->
-    <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
-            
-            <!-- Logo -->
-            <div class="text-3xl font-bebas tracking-wider cursor-pointer hover:text-south-green transition-colors select-none z-50" onclick="window.scrollTo(0,0)">
-                SOUTHAURA
+    <!-- 2. NAVBAR (MODERNA) -->
+    <nav class="w-full z-50 border-b border-white/5 nav-blur">
+        <div class="max-w-[1440px] mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="text-3xl font-black tracking-tighter cursor-pointer flex items-center gap-2" onclick="window.scrollTo(0,0)">
+                SOUTH<span class="text-south-green">AURA</span>
             </div>
             
-            <!-- Menú Escritorio (CENTRADO ABSOLUTO) -->
-            <div class="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center space-x-12 text-sm uppercase tracking-widest text-gray-400 font-bebas text-xl">
-                <a href="#collection" class="hover:text-south-green transition-colors">Colección</a>
-                <a href="#about" class="hover:text-south-green transition-colors">ADN</a>
-                <a href="#size-guide" class="hover:text-south-green transition-colors">Tallas</a>
-                <!-- ENLACE AL SORTEO -->
-                <a href="sorteo.html" class="text-south-green hover:text-white transition-colors font-bold animate-pulse border border-south-green px-3 py-1 rounded">SORTEO</a>
-            </div>
-            
-            <!-- Iconos Derecha -->
-            <div class="flex items-center gap-4 z-50">
-                <a href="https://instagram.com/southaura.co" target="_blank" class="group p-2 border border-white/10 rounded-full hover:bg-south-green hover:border-south-green transition-all">
-                    <i data-lucide="instagram" class="w-5 h-5 text-white"></i>
+            <div class="hidden md:flex items-center space-x-12 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400">
+                <a href="#collection" class="hover:text-white transition-colors">Colección</a>
+                <a href="#adn" class="hover:text-white transition-colors">ADN</a>
+                <a href="https://instagram.com/southaura.co" target="_blank" class="flex items-center gap-2 text-white bg-south-green px-4 py-2 rounded-sm hover:bg-white hover:text-black transition-all">
+                    <span>Instagram</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
                 </a>
-                
-                <!-- Botón Menú Móvil -->
-                <button id="menu-btn" class="md:hidden text-white focus:outline-none p-1">
-                    <i data-lucide="menu" class="w-7 h-7"></i>
-                </button>
             </div>
+
+            <button class="md:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- MENÚ MÓVIL FULL SCREEN -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black z-[60] flex flex-col items-center justify-center menu-hidden md:hidden">
-        <button id="close-menu-btn" class="absolute top-6 right-6 text-white p-2 hover:text-south-green transition-colors">
-            <i data-lucide="x" class="w-10 h-10"></i>
-        </button>
-        
-        <div class="flex flex-col space-y-10 text-center">
-            <!-- ENLACE AL SORTEO MÓVIL -->
-            <a href="sorteo.html" class="text-6xl font-bebas text-south-green hover:text-white transition-colors animate-pulse" onclick="toggleMenu()">¡SORTEO!</a>
-            
-            <a href="#collection" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Colección</a>
-            <a href="#about" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">ADN</a>
-            <a href="#size-guide" class="text-5xl font-bebas text-white hover:text-south-green transition-colors" onclick="toggleMenu()">Tallas</a>
-            <a href="https://instagram.com/southaura.co" target="_blank" class="text-2xl font-bebas text-gray-500 mt-12 hover:text-white" onclick="toggleMenu()">Instagram</a>
+    <!-- 3. HERO (IBERIAN AESTHETICS) -->
+    <header class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-black">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10"></div>
+            <!-- Imagen Hero: Sugiero usar la foto de la pareja o el modelo en el balcón -->
+            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Campaign">
         </div>
-    </div>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-4 py-20 overflow-hidden"> 
-        
-        <span class="text-xs md:text-sm uppercase tracking-[0.6em] text-south-green mb-8 font-bold animate-pulse">New Season Available</span>
-        
-        <h1 class="text-7xl md:text-[9rem] uppercase hero-text-shadow mb-6 leading-none font-bebas tracking-wide text-white">
-            Arena &<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-600">Compás</span>
-        </h1>
-        
-        <p class="mt-4 text-gray-400 max-w-xl text-lg font-light leading-relaxed px-4">
-            Streetwear premium con raíces andaluzas.<br>
-            <span class="text-south-green italic">"Viste tus raíces, marca tu estilo"</span>
-        </p>
-        
-        <div class="mt-12 mb-16">
-            <a href="#collection" class="px-12 py-4 bg-white text-black font-bebas text-xl uppercase tracking-widest hover:bg-south-green hover:text-white transition-all duration-300 shadow-lg hover:shadow-south-green/20 transform hover:-translate-y-1 rounded-sm">
-                Ver Drop
-            </a>
-        </div>
-        
-        <!-- Flecha -->
-        <div class="animate-bounce text-south-green/80 cursor-pointer p-4 hover:text-south-green transition-colors" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
-            <i data-lucide="arrow-down" class="w-10 h-10"></i>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-32 px-6 border-t border-white/5 bg-neutral-900/20">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-5xl md:text-8xl mb-8 uppercase font-bebas">
-                Made in the Sur <br>
-                <span class="text-south-green">with Gracia</span>
-            </h2>
-            <p class="text-gray-400 leading-relaxed mb-20 text-lg md:text-xl font-light max-w-3xl mx-auto">
-                No seguimos tendencias, las creamos. Southaura es streetwear premium diseñado para quienes buscan destacar sin perder autenticidad.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-10 border border-white/5 rounded-xl bg-black/40 hover:border-south-green/30 transition-all duration-300 hover:bg-white/5 group">
-                    <i data-lucide="award" class="w-10 h-10 mx-auto mb-6 text-white group-hover:text-south-green transition-colors"></i>
-                    <h3 class="text-3xl mb-3 font-bebas tracking-wide text-white">Premium Quality</h3>
-                    <p class="text-sm text-gray-500 font-light">100% Algodón de alto gramaje.</p>
-                </div>
-                <div class="p-10 border border-white/5 rounded-xl bg-black/40 hover:border-south-green/30 transition-all duration-300 hover:bg-white/5 group">
-                    <i data-lucide="feather" class="w-10 h-10 mx-auto mb-6 text-white group-hover:text-south-green transition-colors"></i>
-                    <h3 class="text-3xl mb-3 font-bebas tracking-wide text-white">Diseño Exclusivo</h3>
-                    <p class="text-sm text-gray-500 font-light">Detalles minimalistas y únicos.</p>
-                </div>
-                <div class="p-10 border border-white/5 rounded-xl bg-black/40 hover:border-south-green/30 transition-all duration-300 hover:bg-white/5 group">
-                    <i data-lucide="users" class="w-10 h-10 mx-auto mb-6 text-white group-hover:text-south-green transition-colors"></i>
-                    <h3 class="text-3xl mb-3 font-bebas tracking-wide text-white">Comunidad</h3>
-                    <p class="text-sm text-gray-500 font-light">Iberian Aesthetics.</p>
-                </div>
+        <div class="relative z-20 text-center px-6">
+            <span class="inline-block text-south-green font-bebas tracking-[0.6em] text-sm mb-6 reveal">Est. 2025 • Made in the Sur</span>
+            <h1 class="text-7xl md:text-[13rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10">
+                IBERIAN<br><span class="text-outline">AESTHETICS</span>
+            </h1>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 reveal" style="transition-delay: 200ms;">
+                <p class="text-[10px] tracking-[0.5em] uppercase text-gray-500 font-bold">Drop II / Edition 001</p>
+                <div class="h-[1px] w-16 bg-white/20 hidden md:block"></div>
+                <p class="text-[10px] tracking-[0.5em] uppercase text-white font-bold italic">230 GSM Heavy Fabric</p>
+            </div>
+            <div class="mt-16 reveal">
+                <a href="#collection" class="btn-tech bg-white text-black">
+                    Explorar Colección
+                </a>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Product Showcase -->
-    <section id="collection" class="py-24 px-4 md:px-8 relative bg-black">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row gap-16 items-start">
+    <!-- 4. EL DROP (GRID TÉCNICO) -->
+    <section id="collection" class="py-32 px-6 bg-south-dark">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
+                <div>
+                    <h2 class="font-bebas text-6xl md:text-9xl leading-none italic uppercase">The <span class="text-south-green">Break Glass</span> Series</h2>
+                    <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic">Selección Premium / Confección en España</p>
+                </div>
+                <div class="text-gray-400 text-[10px] uppercase tracking-[0.3em] max-w-xs leading-relaxed md:text-right">
+                    Corte Boxy Fit. Algodón de 230 gramos. Detalles en bordado y serigrafía de alta densidad.
+                </div>
+            </div>
+
+            <!-- GRID PRODUCTOS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32">
                 
-                <!-- Galería de Imágenes -->
-                <div class="w-full md:w-1/2 relative">
-                    <!-- Contenedor Principal con altura máxima controlada en PC -->
-                    <div class="aspect-[3/4] md:max-h-[75vh] bg-neutral-900 rounded-lg overflow-hidden relative border border-white/5 group">
-                        <img id="current-image" 
-                             src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" 
-                             alt="Southaura Original Tee" 
-                             class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105">
-                        
-                        <div class="absolute top-4 left-4 bg-white text-black text-xs font-bold px-3 py-1 font-bebas tracking-widest uppercase z-10">
-                            New Drop
+                <!-- Camiseta Azul (Broken Heart) -->
+                <div class="product-card reveal group">
+                    <div class="img-container aspect-[4/5] mb-8 shadow-2xl">
+                        <!-- Imagen Back Azul -->
+                        <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" class="w-full h-full object-cover" alt="Broken Heart Blue Back">
+                        <div class="absolute top-8 left-8 flex flex-col gap-2">
+                            <span class="bg-south-green text-white text-[9px] px-3 py-1 font-bold tracking-widest uppercase italic">New Arrival</span>
+                            <span class="bg-black text-white text-[9px] px-3 py-1 font-bold tracking-widest uppercase border border-white/10">230 GSM</span>
                         </div>
-                        
-                        <button id="prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-south-green text-white p-2 rounded-full transition-all backdrop-blur-md z-20">
-                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                        </button>
-                        <button id="next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-south-green text-white p-2 rounded-full transition-all backdrop-blur-md z-20">
-                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                        </button>
                     </div>
-                    
-                    <div class="flex gap-3 mt-6 overflow-x-auto pb-2 justify-center no-scrollbar">
-                        <div class="thumb active w-20 h-24 rounded border border-south-green cursor-pointer overflow-hidden flex-shrink-0 opacity-100 transition-all" data-index="0">
-                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" class="w-full h-full object-cover">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
+                            <h3 class="font-black text-3xl md:text-5xl uppercase tracking-tighter">Broken Heart Tee</h3>
+                            <span class="text-gray-600 font-bebas text-2xl tracking-widest">II-B</span>
                         </div>
-                        <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="1">
-                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" class="w-full h-full object-cover">
-                        </div>
-                        <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="2">
-                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" class="w-full h-full object-cover">
-                        </div>
-                        <div class="thumb w-20 h-24 rounded border border-transparent bg-neutral-900 cursor-pointer overflow-hidden flex-shrink-0 opacity-60 hover:opacity-100 transition-all" data-index="3">
-                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" class="w-full h-full object-cover">
+                        <div class="grid grid-cols-2 gap-4 text-[9px] uppercase tracking-widest text-gray-500 font-bold">
+                            <p><span class="text-white">Color:</span> Royal Blue</p>
+                            <p><span class="text-white">Fit:</span> Boxy / Oversized</p>
+                            <p><span class="text-white">Front:</span> F*** Cupid Embroidery</p>
+                            <p><span class="text-white">Print:</span> High Density</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Detalles del Producto -->
-                <div class="w-full md:w-1/2 space-y-10 md:sticky md:top-32">
-                    <div class="border-b border-white/10 pb-8">
-                        <h2 class="text-6xl md:text-8xl mb-2 font-bebas leading-none text-white">Original Tee</h2>
-                        <p class="text-xl text-gray-400 font-light tracking-widest uppercase">Black & White Edition</p>
-                        <div class="text-4xl mt-6 font-bold font-bebas text-south-green">28.00€</div>
-                    </div>
-
-                    <div class="space-y-6 text-lg font-light text-gray-300">
-                        <p>
-                            Camiseta unisex confeccionada en algodón suave con ajuste regular. Diseño exclusivo con el emblema Southaura y mensaje <span class="text-white italic">"Made in the Sur with Gracia"</span> en la espalda.
-                        </p>
-                        <ul class="space-y-4 text-sm text-gray-400">
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-south-green"></i> 100% Algodón Premium</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-south-green"></i> Corte Regular Fit Unisex</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 text-south-green"></i> Detalles minimalistas</li>
-                        </ul>
-                    </div>
-
-                    <div class="p-6 bg-white/5 border border-white/5 rounded-lg flex items-center gap-5 hover:bg-white/10 transition-colors">
-                        <div class="p-3 bg-south-green/10 rounded-full text-south-green">
-                            <i data-lucide="truck" class="w-8 h-8"></i>
-                        </div>
-                        <div>
-                            <p class="text-xl font-bold text-white font-bebas tracking-wide">ENVÍO GRATIS</p>
-                            <p class="text-sm text-gray-400">En pedidos superiores a 56€ (¡Pide 2 y ahorra!)</p>
+                <!-- Camiseta Blanca (Case of Yes) -->
+                <div class="product-card reveal group" style="transition-delay: 150ms;">
+                    <div class="img-container aspect-[4/5] mb-8 shadow-2xl">
+                        <!-- Imagen Back Blanca -->
+                        <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" class="w-full h-full object-cover" alt="Case of Yes White Back">
+                        <div class="absolute top-8 left-8 flex flex-col gap-2">
+                            <span class="bg-white text-black text-[9px] px-3 py-1 font-bold tracking-widest uppercase italic italic">With love :(</span>
+                            <span class="bg-black text-white text-[9px] px-3 py-1 font-bold tracking-widest uppercase border border-white/10">230 GSM</span>
                         </div>
                     </div>
-
-                    <div class="pt-4">
-                        <a href="https://instagram.com/southaura.co" target="_blank" class="block w-full py-5 bg-white text-black font-bebas text-2xl text-center uppercase tracking-widest hover:bg-south-green hover:text-white transition-all rounded-sm shadow-lg transform hover:-translate-y-1">
-                            Ver en Instagram
-                        </a>
-                        <p class="text-center text-xs text-gray-600 uppercase tracking-[0.2em] mt-4">Stock Limitado • Designed in Andalucía</p>
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
+                            <h3 class="font-black text-3xl md:text-5xl uppercase tracking-tighter">Case of Yes Tee</h3>
+                            <span class="text-gray-600 font-bebas text-2xl tracking-widest">II-W</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-[9px] uppercase tracking-widest text-gray-500 font-bold">
+                            <p><span class="text-white">Color:</span> Bone White</p>
+                            <p><span class="text-white">Fit:</span> Boxy / Oversized</p>
+                            <p><span class="text-white">Front:</span> F*** Cupid Embroidery</p>
+                            <p><span class="text-white">Back:</span> Teddy Graphic</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Size Guide -->
-    <section id="size-guide" class="py-32 px-6 border-t border-white/5">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl mb-16 text-center uppercase font-bebas tracking-wide">Guía de Tallas</h2>
-            <div class="overflow-x-auto bg-neutral-900 rounded-lg border border-white/5 p-4">
-                <table class="w-full text-center border-collapse">
-                    <thead>
-                        <tr class="border-b border-white/10 text-gray-400 uppercase tracking-wider font-bebas text-2xl">
-                            <th class="py-6 px-6 font-light">Talla</th>
-                            <th class="py-6 px-6 font-light">Pecho</th>
-                            <th class="py-6 px-6 font-light">Largo</th>
-                            <th class="py-6 px-6 font-light">Hombro</th>
-                            <th class="py-6 px-6 font-light">Manga</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-300 font-light text-lg">
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-                            <td class="py-5 px-6 font-bold text-white font-bebas text-xl">S</td>
-                            <td class="py-5 px-6">50 cm</td>
-                            <td class="py-5 px-6">66 cm</td>
-                            <td class="py-5 px-6">48 cm</td>
-                            <td class="py-5 px-6">18 cm</td>
-                        </tr>
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-                            <td class="py-5 px-6 font-bold text-white font-bebas text-xl">M</td>
-                            <td class="py-5 px-6">52 cm</td>
-                            <td class="py-5 px-6">68 cm</td>
-                            <td class="py-5 px-6">50 cm</td>
-                            <td class="py-5 px-6">19 cm</td>
-                        </tr>
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-                            <td class="py-5 px-6 font-bold text-white font-bebas text-xl">L</td>
-                            <td class="py-5 px-6">54 cm</td>
-                            <td class="py-5 px-6">70 cm</td>
-                            <td class="py-5 px-6">52 cm</td>
-                            <td class="py-5 px-6">20 cm</td>
-                        </tr>
-                        <tr class="hover:bg-white/5 transition-colors">
-                            <td class="py-5 px-6 font-bold text-white font-bebas text-xl">XL</td>
-                            <td class="py-5 px-6">56 cm</td>
-                            <td class="py-5 px-6">72 cm</td>
-                            <td class="py-5 px-6">54 cm</td>
-                            <td class="py-5 px-6">21 cm</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- 5. ADN / MANIFIESTO (IBERIAN AESTHETICS) -->
+    <section id="adn" class="py-40 bg-white text-black overflow-hidden relative">
+        <div class="absolute top-0 right-0 text-[20rem] font-black text-neutral-100 leading-none select-none -mr-20 -mt-20 opacity-50 tracking-tighter">SA25</div>
+        
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
+            <div class="reveal">
+                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter">
+                    MADE <br> IN THE <br> <span class="text-south-green italic underline decoration-black underline-offset-8 decoration-4">SUR</span>
+                </h2>
+                <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter leading-tight max-w-lg mb-8 italic">
+                    "Redefiniendo el Streetwear desde el sur de la Península. Sin reglas, solo estética."
+                </p>
+                <p class="text-xs text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md">
+                    Southaura es el archivo visual de nuestras raíces. Piezas de 230 GSM diseñadas con calma y ejecutadas con precisión. Est. 2025.
+                </p>
+            </div>
+            <div class="reveal group relative">
+                <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
+                <!-- Foto Estilo Lifestyle -->
+                <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full grayscale group-hover:grayscale-0 transition-all duration-700" alt="Iberian DNA">
+                <div class="absolute -bottom-8 -left-8 bg-black text-white p-8 font-bebas text-5xl italic leading-none">IBERIAN AESTHETICS</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-16 text-center border-t border-white/5 text-gray-500 text-sm bg-black">
-        <p class="font-bebas text-5xl text-white mb-10 tracking-wide">SOUTHAURA</p>
-        <div class="flex justify-center gap-12 mb-10 text-sm uppercase tracking-[0.2em] font-light flex-wrap px-4">
-            <a href="#" class="hover:text-south-green transition-colors">Instagram</a>
-            <a href="#" class="hover:text-south-green transition-colors">TikTok</a>
-            <a href="#" class="hover:text-south-green transition-colors">Contacto</a>
+    <!-- 6. FOOTER (MINIMALISTA) -->
+    <footer class="bg-black pt-32 pb-12 border-t border-white/5">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-20 mb-20">
+                <div class="text-[10rem] md:text-[18rem] font-black tracking-tighter leading-[0.7] select-none opacity-5">
+                    SA<span class="text-south-green italic">25</span>
+                </div>
+                <div class="flex flex-col gap-8 text-right">
+                    <h4 class="font-bebas text-5xl uppercase text-south-green italic">Southaura Co.</h4>
+                    <nav class="flex flex-col gap-4 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500">
+                        <a href="https://instagram.com/southaura.co" class="hover:text-white transition-colors italic">Instagram</a>
+                        <a href="#" class="hover:text-white transition-colors italic italic">TikTok</a>
+                        <a href="#" class="hover:text-white transition-colors italic italic">Privacy Policy</a>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.6em] text-gray-700">
+                <p>Designed and Produced in Spain</p>
+                <p>© 2025-2026 Southaura All rights reserved</p>
+            </div>
         </div>
-        <p class="opacity-40 text-xs">© 2025 Southaura. Designed in Andalucía.</p>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // MENÚ MÓVIL
-        const menuBtn = document.getElementById('menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        function toggleMenu() {
-            // Verificar estado actual
-            const isHidden = mobileMenu.classList.contains('menu-hidden');
-            
-            if (isHidden) {
-                mobileMenu.classList.remove('menu-hidden');
-                mobileMenu.classList.add('menu-visible');
-                document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
-            } else {
-                mobileMenu.classList.add('menu-hidden');
-                mobileMenu.classList.remove('menu-visible');
-                document.body.style.overflow = ''; // Restaurar scroll
-            }
-        }
-
-        menuBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
-
-        // GALERÍA
-        let currentIndex = 0;
-        const images = [
-            'Gemini_Generated_Image_eh2apoeh2apoeh2a.png',
-            'Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png',
-            'Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png',
-            'Gemini_Generated_Image_crhmb3crhmb3crhm.png'
-        ];
-
-        const currentImageEl = document.getElementById('current-image');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const thumbs = document.querySelectorAll('.thumb');
-
-        function updateGallery(index) {
-            currentIndex = (index + images.length) % images.length;
-            
-            currentImageEl.style.opacity = '0.5';
-            setTimeout(() => {
-                currentImageEl.src = images[currentIndex];
-                currentImageEl.style.opacity = '1';
-            }, 150);
-            
-            thumbs.forEach((thumb, i) => {
-                if (i === currentIndex) {
-                    thumb.classList.add('border-south-green');
-                    thumb.classList.add('opacity-100');
-                    thumb.classList.remove('border-transparent');
-                    thumb.classList.remove('opacity-60');
-                } else {
-                    thumb.classList.remove('border-south-green');
-                    thumb.classList.remove('opacity-100');
-                    thumb.classList.add('border-transparent');
-                    thumb.classList.add('opacity-60');
-                }
+        // Scroll Reveal Observer
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }
+        }, observerOptions);
 
-        prevBtn.addEventListener('click', () => updateGallery(currentIndex - 1));
-        nextBtn.addEventListener('click', () => updateGallery(currentIndex + 1));
-
-        thumbs.forEach(thumb => {
-            thumb.addEventListener('click', (e) => {
-                const index = parseInt(e.currentTarget.dataset.index);
-                updateGallery(index);
-            });
-        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
