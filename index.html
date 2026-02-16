@@ -11,7 +11,7 @@
     <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts: Bebas Neue, Inter y Shrikhand -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&family=Shrikhand&display=swap" rel="stylesheet">
 
     <script>
@@ -179,7 +179,6 @@
     <!-- 2. NAVEGACIÓN -->
     <nav class="w-full z-50 border-b border-white/5 nav-blur">
         <div class="max-w-[1440px] mx-auto px-6 py-4 md:py-5 flex justify-between items-center text-white">
-            <!-- LOGO MODIFICADO A SHRIKHAND -->
             <div class="text-2xl md:text-3xl font-shrikhand tracking-tight cursor-pointer flex items-center gap-1 z-50" onclick="window.scrollTo(0,0)">
                 SOUTH<span class="text-south-green">AURA</span>
             </div>
@@ -311,7 +310,7 @@
         </div>
     </section>
 
-    <!-- 5. ORIGINALS COLLECTION -->
+    <!-- 5. ORIGINALS COLLECTION (2 FOTOS - .png) -->
     <section id="originals" class="py-24 md:py-32 px-4 md:px-6 bg-south-dark border-t border-white/5 text-white">
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-16 md:mb-24 reveal text-white text-center md:text-left">
@@ -325,8 +324,8 @@
                 <div class="product-card reveal" data-id="orig-black">
                     <div class="product-slider group" style="background: #f4f4f4;" data-touch="true">
                         <div class="slider-track" id="track-orig-black">
-                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg (1).jpg" alt="Black Original Front">
-                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm (2).jpg" alt="Black Original Back">
+                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Black Original Front">
+                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" alt="Black Original Back">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-2 md:px-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                             <button onclick="moveSlider('orig-black', -1)" class="slider-control rounded-full pointer-events-auto"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
@@ -348,8 +347,8 @@
                 <div class="product-card reveal" data-id="orig-white" style="transition-delay: 150ms;">
                     <div class="product-slider group" style="background: #f4f4f4;" data-touch="true">
                         <div class="slider-track" id="track-orig-white">
-                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a (1).jpg" alt="White Original Front">
-                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2 (2).jpg" alt="White Original Back">
+                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" alt="White Original Front">
+                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" alt="White Original Back">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-2 md:px-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                             <button onclick="moveSlider('orig-white', -1)" class="slider-control rounded-full pointer-events-auto"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
@@ -468,10 +467,10 @@
 
         // Configuración de Sliders Dinámica
         const sliderStates = {
-            blue: { current: 0, total: 3 }, // Ajustado a 3
-            white: { current: 0, total: 3 }, // Ajustado a 3
-            'orig-black': { current: 0, total: 2 }, // Ajustado a 2
-            'orig-white': { current: 0, total: 2 }  // Ajustado a 2
+            blue: { current: 0, total: 3 }, // 3 fotos
+            white: { current: 0, total: 3 }, // 3 fotos
+            'orig-black': { current: 0, total: 2 }, // 2 fotos (.png)
+            'orig-white': { current: 0, total: 2 }  // 2 fotos (.png)
         };
 
         function moveSlider(id, direction) {
