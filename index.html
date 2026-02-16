@@ -11,8 +11,8 @@
     <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Bebas Neue, Inter y Shrikhand -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;700;900&family=Shrikhand&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -25,6 +25,7 @@
                     fontFamily: {
                         'bebas': ['"Bebas Neue"', 'sans-serif'],
                         'inter': ['Inter', 'sans-serif'],
+                        'shrikhand': ['"Shrikhand"', 'cursive'], // Nueva fuente añadida
                     }
                 }
             }
@@ -133,15 +134,6 @@
             background: #00954C;
             color: #fff;
         }
-        
-        /* Ajuste para slider negro */
-        .slider-control-light {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-        .slider-control-light:hover {
-            background: #00954C;
-        }
     </style>
 </head>
 <body class="antialiased font-inter text-white">
@@ -157,9 +149,11 @@
     <!-- 2. NAVEGACIÓN -->
     <nav class="w-full z-50 border-b border-white/5 nav-blur">
         <div class="max-w-[1440px] mx-auto px-6 py-5 flex justify-between items-center text-white">
-            <div class="text-3xl font-black tracking-tighter cursor-pointer flex items-center gap-2" onclick="window.scrollTo(0,0)">
-                SOUTH<span class="text-south-green italic">AURA</span>
+            <!-- LOGO MODIFICADO A SHRIKHAND -->
+            <div class="text-3xl font-shrikhand tracking-tight cursor-pointer flex items-center gap-1" onclick="window.scrollTo(0,0)">
+                SOUTH<span class="text-south-green">AURA</span>
             </div>
+            
             <div class="hidden md:flex items-center space-x-12 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400">
                 <a href="#new-drop" class="hover:text-white transition-colors">Nuevo Drop</a>
                 <a href="#originals" class="hover:text-white transition-colors">Originals</a>
@@ -188,7 +182,7 @@
         </div>
     </header>
 
-    <!-- 4. NUEVO DROP: BREAK GLASS -->
+    <!-- 4. NUEVO DROP: BREAK GLASS (3 FOTOS) -->
     <section id="new-drop" class="py-32 px-6 bg-south-dark">
         <div class="max-w-[1400px] mx-auto text-white">
             <div class="mb-24 reveal text-white">
@@ -198,21 +192,21 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
                 
-                <!-- PRODUCTO: AZUL (4 IMÁGENES) -->
+                <!-- PRODUCTO: AZUL (3 IMÁGENES) -->
                 <div class="product-card reveal" data-id="blue">
                     <div class="product-slider group" style="background: #e5e5e5;">
                         <div class="slider-track" id="track-blue">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11.jpeg" alt="Frontal Azul">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11 (1).jpeg" alt="Trasera Azul">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Modelo Azul Espalda">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31.jpeg" alt="Modelo Azul Frontal">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button onclick="moveSlider('blue', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                             <button onclick="moveSlider('blue', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
+                        <!-- Puntos reducidos a 3 -->
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-blue">
-                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
                     <div class="mt-8 space-y-4 text-white">
@@ -229,21 +223,21 @@
                     </div>
                 </div>
 
-                <!-- PRODUCTO: BLANCO (4 IMÁGENES) -->
+                <!-- PRODUCTO: BLANCO (3 IMÁGENES) -->
                 <div class="product-card reveal" data-id="white" style="transition-delay: 150ms;">
                     <div class="product-slider group" style="background: #f9f9f9;">
                         <div class="slider-track" id="track-white">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11 (2).jpeg" alt="Frontal Blanco">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.11 (3).jpeg" alt="Trasera Blanco">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" alt="Modelo Blanco">
-                            <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" alt="Pareja White">
                         </div>
                         <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button onclick="moveSlider('white', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                             <button onclick="moveSlider('white', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
+                        <!-- Puntos reducidos a 3 -->
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-white">
-                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
                     <div class="mt-8 space-y-4">
@@ -264,7 +258,7 @@
         </div>
     </section>
 
-    <!-- 5. ORIGINALS COLLECTION (CORREGIDO) -->
+    <!-- 5. ORIGINALS COLLECTION -->
     <section id="originals" class="py-32 px-6 bg-south-dark border-t border-white/5 text-white">
         <div class="max-w-[1400px] mx-auto">
             <div class="mb-24 reveal text-white">
@@ -360,7 +354,7 @@
 
     <!-- 7. ADN -->
     <section id="adn" class="py-40 bg-white text-black overflow-hidden relative">
-        <div class="absolute top-0 right-0 text-[20rem] font-black text-neutral-100 leading-none select-none -mr-20 -mt-20 opacity-50 tracking-tighter text-black/10">SA25</div>
+        <div class="absolute top-0 right-0 text-[20rem] font-black text-south-green leading-none select-none -mr-20 -mt-20 opacity-10 tracking-tighter">SA25</div>
         
         <div class="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             <div class="reveal">
@@ -379,9 +373,11 @@
 
     <!-- 8. FOOTER -->
     <footer class="bg-black pt-32 pb-12 border-t border-white/5 text-center text-white">
-        <div class="text-[12rem] md:text-[20rem] font-black tracking-tighter opacity-5 select-none mb-12 italic text-white">SA25</div>
+        <!-- SA25 con colores de la marca -->
+        <div class="text-[12rem] md:text-[20rem] font-black tracking-tighter text-south-green opacity-20 select-none mb-12 italic">SA25</div>
         <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center gap-12 text-white">
-            <h4 class="font-bebas text-5xl text-south-green italic text-white">Southaura Co.</h4>
+            <!-- LOGO MODIFICADO FOOTER -->
+            <h4 class="font-shrikhand text-5xl text-white">SOUTHAURA</h4>
             <div class="flex gap-8 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500 text-white">
                 <a href="https://instagram.com/southaura.co" target="_blank" class="hover:text-white transition-colors italic text-white/50">Instagram</a>
                 <a href="#" class="hover:text-white transition-colors italic text-white/50">TikTok</a>
@@ -395,8 +391,8 @@
 
         // Configuración de Sliders Dinámica
         const sliderStates = {
-            blue: { current: 0, total: 4 },
-            white: { current: 0, total: 4 },
+            blue: { current: 0, total: 3 }, // Ajustado a 3
+            white: { current: 0, total: 3 }, // Ajustado a 3
             'orig-black': { current: 0, total: 2 },
             'orig-white': { current: 0, total: 2 }
         };
