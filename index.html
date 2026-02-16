@@ -55,7 +55,7 @@
             background-color: #00954C;
             overflow: hidden;
             white-space: nowrap;
-            padding: 6px 0;
+            padding: 8px 0;
         }
         .ticker-track {
             display: inline-block;
@@ -64,9 +64,9 @@
         .ticker-track span {
             color: #ffffff;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             letter-spacing: 0.3em;
-            padding: 0 2rem;
+            padding: 0 3rem;
         }
         @keyframes scroll {
             0% { transform: translateX(0); }
@@ -79,19 +79,16 @@
             width: 100%;
             aspect-ratio: 4/5;
             overflow: hidden;
-            background: #f4f4f4;
+            background: #ffffff;
             border: 1px solid rgba(255,255,255,0.05);
         }
         .slider-track {
             display: flex;
             height: 100%;
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            will-change: transform;
         }
         .slider-track img {
             min-width: 100%;
-            width: 100%;
-            height: 100%;
             object-fit: cover;
             pointer-events: none;
         }
@@ -109,15 +106,15 @@
 
         /* Puntos del Carrusel */
         .dot {
-            width: 5px;
-            height: 5px;
+            width: 4px;
+            height: 4px;
             border-radius: 50%;
             background: rgba(0,0,0,0.2);
             transition: all 0.3s ease;
         }
         .dot.active {
             background: #00954C;
-            width: 15px;
+            width: 16px;
             border-radius: 4px;
         }
 
@@ -126,31 +123,24 @@
             filter: grayscale(100%);
         }
 
-        /* Controles táctiles optimizados */
         .slider-control {
-            background: rgba(0, 0, 0, 0.15);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
             transition: all 0.3s ease;
             color: #000;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-        @media (hover: hover) {
-            .slider-control:hover {
-                background: #00954C;
-                color: #fff;
-            }
+        .slider-control:hover {
+            background: #00954C;
+            color: #fff;
         }
-
-        /* Menú Móvil Overlay */
-        #mobile-menu-overlay {
-            transition: opacity 0.3s ease, visibility 0.3s;
+        
+        /* Ajuste para slider negro */
+        .slider-control-light {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
         }
-        #mobile-menu-content {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        .slider-control-light:hover {
+            background: #00954C;
         }
     </style>
 </head>
@@ -159,82 +149,56 @@
     <!-- 1. TICKER -->
     <div class="ticker-container sticky top-0 z-[100]">
         <div class="ticker-track">
-            <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT •&nbsp;</span>
-            <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT •&nbsp;</span>
+            <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
+            <span>SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
         </div>
     </div>
 
     <!-- 2. NAVEGACIÓN -->
     <nav class="w-full z-50 border-b border-white/5 nav-blur">
-        <div class="max-w-[1440px] mx-auto px-5 md:px-10 py-5 flex justify-between items-center text-white">
-            <div class="text-2xl md:text-3xl font-black tracking-tighter cursor-pointer flex items-center gap-2" onclick="window.scrollTo(0,0)">
-                SOUTH<span class="text-south-green italic text-white">AURA</span>
+        <div class="max-w-[1440px] mx-auto px-6 py-5 flex justify-between items-center text-white">
+            <div class="text-3xl font-black tracking-tighter cursor-pointer flex items-center gap-2" onclick="window.scrollTo(0,0)">
+                SOUTH<span class="text-south-green italic">AURA</span>
             </div>
-            
-            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-12 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400">
                 <a href="#new-drop" class="hover:text-white transition-colors">Nuevo Drop</a>
                 <a href="#originals" class="hover:text-white transition-colors">Originals</a>
                 <a href="#andalusia" class="hover:text-white transition-colors">Andalucía Vibes</a>
                 <a href="#adn" class="hover:text-white transition-colors">ADN</a>
-            </div>
-
-            <!-- Botones Derecha -->
-            <div class="flex items-center gap-4">
-                <a href="https://instagram.com/southaura.co" target="_blank" class="hidden sm:flex items-center gap-2 text-white bg-south-green px-4 py-2 rounded-sm hover:bg-white hover:text-black transition-all text-[10px] font-bold uppercase tracking-widest">
+                <a href="https://instagram.com/southaura.co" target="_blank" class="text-white bg-south-green px-4 py-2 rounded-sm hover:bg-white hover:text-black transition-all">
                     <span>Instagram</span>
                 </a>
-                <button onclick="toggleMobileMenu(true)" class="md:hidden text-white p-2">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
             </div>
+            <button class="md:hidden text-white"><i data-lucide="menu"></i></button>
         </div>
     </nav>
 
-    <!-- MENÚ MÓVIL OVERLAY -->
-    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/95 z-[200] invisible opacity-0 flex justify-end">
-        <div id="mobile-menu-content" class="w-full h-full p-10 flex flex-col translate-x-full">
-            <div class="flex justify-between items-center mb-20">
-                <div class="text-2xl font-black tracking-tighter">SOUTH<span class="text-south-green italic">AURA</span></div>
-                <button onclick="toggleMobileMenu(false)" class="p-2"><i data-lucide="x" class="w-8 h-8"></i></button>
-            </div>
-            <div class="flex flex-col space-y-8 text-4xl font-bebas tracking-widest uppercase">
-                <a href="#new-drop" onclick="toggleMobileMenu(false)">Nuevo Drop</a>
-                <a href="#originals" onclick="toggleMobileMenu(false)">Originals</a>
-                <a href="#andalusia" onclick="toggleMobileMenu(false)">Andalucía Vibes</a>
-                <a href="#adn" onclick="toggleMobileMenu(false)">ADN</a>
-                <a href="https://instagram.com/southaura.co" target="_blank" class="text-south-green">Instagram</a>
-            </div>
-            <div class="mt-auto text-[10px] text-gray-500 uppercase tracking-widest">Est. 2025 • Made in the Sur</div>
-        </div>
-    </div>
-
     <!-- 3. HERO SECTION -->
-    <header class="relative h-[75vh] md:h-[85vh] flex items-center justify-center overflow-hidden bg-black">
+    <header class="relative h-[85vh] flex items-center justify-center overflow-hidden bg-black text-white">
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-south-dark z-10 text-white"></div>
             <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" class="w-full h-full object-cover opacity-50 grayscale" alt="Southaura Campaign">
         </div>
         <div class="relative z-20 text-center px-6">
-            <span class="inline-block text-south-green font-bebas tracking-[0.6em] text-xs md:text-sm mb-4 md:mb-6 reveal uppercase">Est. 2025 • Made in the Sur</span>
-            <h1 class="text-5xl md:text-[12rem] font-bebas leading-[0.9] md:leading-[0.8] uppercase reveal tracking-tighter mb-8 italic">
+            <span class="inline-block text-south-green font-bebas tracking-[0.6em] text-sm mb-6 reveal uppercase">Est. 2025 • Made in the Sur</span>
+            <h1 class="text-7xl md:text-[13rem] font-bebas leading-[0.8] uppercase reveal tracking-tighter mb-10 italic">
                 IBERIAN<br><span class="text-outline">AESTHETICS</span>
             </h1>
-            <p class="text-[9px] md:text-[10px] tracking-[0.4em] uppercase font-bold italic reveal text-gray-300">Collection II / 230 GSM Premium Oversize</p>
+            <p class="text-[10px] tracking-[0.5em] uppercase font-bold italic reveal">230 GSM Premium Oversize Collection</p>
         </div>
     </header>
 
-    <!-- 4. NUEVO DROP -->
-    <section id="new-drop" class="py-20 md:py-32 px-5 md:px-10 bg-south-dark">
+    <!-- 4. NUEVO DROP: BREAK GLASS -->
+    <section id="new-drop" class="py-32 px-6 bg-south-dark">
         <div class="max-w-[1400px] mx-auto text-white">
-            <div class="mb-16 md:mb-24 reveal">
-                <h2 class="font-bebas text-5xl md:text-9xl uppercase italic leading-none text-south-green">Break <span class="text-white italic">Glass</span></h2>
-                <p class="text-gray-500 uppercase tracking-[0.4em] text-[9px] md:text-[10px] mt-4 font-bold italic">Valentine's Season • Drop 002 • 230 GSM</p>
+            <div class="mb-24 reveal text-white">
+                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-south-green">Break <span class="text-white italic">Glass</span></h2>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic">Season II • Drop 002 • High Density Print</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
                 
-                <!-- PRODUCTO: AZUL -->
+                <!-- PRODUCTO: AZUL (4 IMÁGENES) -->
                 <div class="product-card reveal" data-id="blue">
                     <div class="product-slider group" style="background: #e5e5e5;">
                         <div class="slider-track" id="track-blue">
@@ -243,7 +207,7 @@
                             <img src="WhatsApp Image 2026-02-16 at 12.44.31 (2).jpeg" alt="Modelo Azul Espalda">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.31.jpeg" alt="Modelo Azul Frontal">
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-between px-2 md:px-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button onclick="moveSlider('blue', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                             <button onclick="moveSlider('blue', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
@@ -251,21 +215,21 @@
                             <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
-                    <div class="mt-6 md:mt-8 space-y-4 text-white">
+                    <div class="mt-8 space-y-4 text-white">
                         <div class="flex justify-between items-baseline border-b border-white/10 pb-4 text-white">
-                            <h3 class="font-black text-2xl md:text-4xl uppercase tracking-tighter italic">Broken Heart Tee</h3>
-                            <span class="text-south-green font-bebas text-xl md:text-2xl italic">II-B</span>
+                            <h3 class="font-black text-4xl uppercase tracking-tighter italic text-white">Broken Heart Tee</h3>
+                            <span class="text-south-green font-bebas text-2xl italic text-white">II-B</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-4 text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold leading-relaxed">
+                        <div class="grid grid-cols-2 gap-4 text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Royal Blue</p>
                             <p><span class="text-white">Fit:</span> Oversize</p>
-                            <p><span class="text-white">GSM:</span> 230 Premium</p>
+                            <p><span class="text-white">GSM:</span> 230</p>
                             <p><span class="text-white">Front:</span> F*** Cupid Embroidery</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- PRODUCTO: BLANCO -->
+                <!-- PRODUCTO: BLANCO (4 IMÁGENES) -->
                 <div class="product-card reveal" data-id="white" style="transition-delay: 150ms;">
                     <div class="product-slider group" style="background: #f9f9f9;">
                         <div class="slider-track" id="track-white">
@@ -274,7 +238,7 @@
                             <img src="WhatsApp Image 2026-02-16 at 12.44.32.jpeg" alt="Modelo Blanco">
                             <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" alt="Pareja White">
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-between px-2 md:px-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button onclick="moveSlider('white', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
                             <button onclick="moveSlider('white', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                         </div>
@@ -282,15 +246,15 @@
                             <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
                         </div>
                     </div>
-                    <div class="mt-6 md:mt-8 space-y-4">
+                    <div class="mt-8 space-y-4">
                         <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
-                            <h3 class="font-black text-2xl md:text-4xl uppercase tracking-tighter italic text-white">Case of Yes Tee</h3>
-                            <span class="text-south-green font-bebas text-xl md:text-2xl italic">II-W</span>
+                            <h3 class="font-black text-4xl uppercase tracking-tighter italic text-white">Case of Yes Tee</h3>
+                            <span class="text-south-green font-bebas text-2xl italic text-white">II-W</span>
                         </div>
-                        <div class="grid grid-cols-2 gap-4 text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold leading-relaxed">
+                        <div class="grid grid-cols-2 gap-4 text-[10px] uppercase tracking-widest text-gray-500 font-bold">
                             <p><span class="text-white">Color:</span> Bone White</p>
                             <p><span class="text-white">Fit:</span> Oversize</p>
-                            <p><span class="text-white">GSM:</span> 230 Premium</p>
+                            <p><span class="text-white">GSM:</span> 230</p>
                             <p><span class="text-white">Front:</span> F*** Cupid Embroidery</p>
                         </div>
                     </div>
@@ -300,36 +264,36 @@
         </div>
     </section>
 
-    <!-- 5. ORIGINALS COLLECTION -->
-    <section id="originals" class="py-20 md:py-32 px-5 md:px-10 bg-south-dark border-t border-white/5 text-white">
+    <!-- 5. ORIGINALS COLLECTION (CORREGIDO) -->
+    <section id="originals" class="py-32 px-6 bg-south-dark border-t border-white/5 text-white">
         <div class="max-w-[1400px] mx-auto">
-            <div class="mb-16 md:mb-24 reveal text-white">
-                <h2 class="font-bebas text-5xl md:text-9xl uppercase italic leading-none text-white">Originals <span class="text-gray-600 italic">Collection</span></h2>
-                <p class="text-gray-500 uppercase tracking-[0.4em] text-[9px] md:text-[10px] mt-4 font-bold italic">The Core Series • Oversize Fit • 230 GSM</p>
+            <div class="mb-24 reveal text-white">
+                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white text-white">Originals <span class="text-gray-500 italic text-white">Collection</span></h2>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold italic text-white">The Founding Series • Full Color • 230 GSM</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
                 
                 <!-- Original Black -->
                 <div class="product-card reveal" data-id="orig-black">
                     <div class="product-slider group" style="background: #f4f4f4;">
                         <div class="slider-track" id="track-orig-black">
-                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg (1).jpg" alt="Black Original Front">
-                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm (2).jpg" alt="Black Original Back">
+                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a.png" alt="Black Original Front">
+                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2.png" alt="Black Original Back">
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-between px-2 md:px-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="moveSlider('orig-black', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                            <button onclick="moveSlider('orig-black', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="moveSlider('orig-black', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button onclick="moveSlider('orig-black', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
                         </div>
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-orig-black">
                             <div class="dot active"></div><div class="dot"></div>
                         </div>
                     </div>
-                    <div class="mt-6 md:mt-8 space-y-4">
-                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
-                            <h3 class="font-black text-2xl md:text-4xl uppercase tracking-tighter italic text-white">Original Tee Black</h3>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4 text-white">
+                            <h3 class="font-black text-4xl uppercase tracking-tighter italic text-white">Original Tee Black</h3>
                         </div>
-                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest text-south-green font-bold italic">Oversize Selection / 230 GSM / Iberian Essence</p>
+                        <p class="text-[10px] uppercase tracking-widest text-south-green font-bold italic text-south-green">Oversize Fit / 230 GSM / Iberian Essence</p>
                     </div>
                 </div>
 
@@ -337,22 +301,22 @@
                 <div class="product-card reveal" data-id="orig-white" style="transition-delay: 150ms;">
                     <div class="product-slider group" style="background: #f4f4f4;">
                         <div class="slider-track" id="track-orig-white">
-                            <img src="Gemini_Generated_Image_eh2apoeh2apoeh2a (1).jpg" alt="White Original Front">
-                            <img src="Gemini_Generated_Image_vdc2q8vdc2q8vdc2 (2).jpg" alt="White Original Back">
+                            <img src="Gemini_Generated_Image_1ukg0a1ukg0a1ukg.png" alt="White Original Front">
+                            <img src="Gemini_Generated_Image_crhmb3crhmb3crhm.png" alt="White Original Back">
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-between px-2 md:px-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
-                            <button onclick="moveSlider('orig-white', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                            <button onclick="moveSlider('orig-white', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                        <div class="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button onclick="moveSlider('orig-white', -1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button onclick="moveSlider('orig-white', 1)" class="slider-control p-2 rounded-full"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
                         </div>
                         <div class="absolute bottom-6 left-0 w-full flex justify-center gap-2" id="dots-orig-white">
                             <div class="dot active"></div><div class="dot"></div>
                         </div>
                     </div>
-                    <div class="mt-6 md:mt-8 space-y-4">
-                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4">
-                            <h3 class="font-black text-2xl md:text-4xl uppercase tracking-tighter italic text-white">Original Tee White</h3>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4 text-white">
+                            <h3 class="font-black text-4xl uppercase tracking-tighter italic text-white">Original Tee White</h3>
                         </div>
-                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest text-south-green font-bold italic">Oversize Selection / 230 GSM / Iberian Essence</p>
+                        <p class="text-[10px] uppercase tracking-widest text-south-green font-bold italic text-south-green">Oversize Fit / 230 GSM / Iberian Essence</p>
                     </div>
                 </div>
 
@@ -361,33 +325,33 @@
     </section>
 
     <!-- 6. ANDALUCÍA VIBES -->
-    <section id="andalusia" class="py-20 md:py-32 px-5 md:px-10 bg-south-dark border-t border-white/5">
+    <section id="andalusia" class="py-32 px-6 bg-south-dark border-t border-white/5 text-white">
         <div class="max-w-[1400px] mx-auto text-white">
-            <div class="mb-16 md:mb-24 reveal">
-                <h2 class="font-bebas text-5xl md:text-9xl uppercase italic leading-none text-white">Andalucía <span class="text-south-green italic text-south-green">Vibes</span></h2>
-                <p class="text-gray-500 uppercase tracking-[0.4em] text-[9px] md:text-[10px] mt-4 font-bold text-white italic">Upcoming Collection • Southern Culture • 230 GSM</p>
+            <div class="mb-24 reveal text-white text-white">
+                <h2 class="font-bebas text-6xl md:text-9xl uppercase italic leading-none text-white text-white">Andalucía <span class="text-south-green italic text-south-green">Vibes</span></h2>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[10px] mt-4 font-bold text-white italic text-white">Upcoming Collection • Southern Culture • 230 GSM</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-                <div class="product-card reveal group opacity-50">
-                    <div class="aspect-[4/5] bg-neutral-900 border border-white/10 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-south-green/5 group-hover:bg-south-green/10 transition-all"></div>
-                        <span class="font-bebas text-3xl md:text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all italic">Coming Soon</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-white">
+                <div class="product-card reveal group opacity-50 text-white">
+                    <div class="aspect-[4/5] bg-neutral-900 border border-white/10 flex items-center justify-center relative overflow-hidden text-white">
+                        <div class="absolute inset-0 bg-south-green/5 group-hover:bg-south-green/10 transition-all text-white"></div>
+                        <span class="font-bebas text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all italic text-white">Coming Soon</span>
                     </div>
-                    <div class="mt-6 md:mt-8 space-y-2">
-                        <h3 class="font-black text-2xl md:text-3xl uppercase tracking-tighter italic text-white">Andalucía Piece I</h3>
-                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold italic text-white">Stay tuned for the reveal</p>
+                    <div class="mt-8 space-y-2 text-white">
+                        <h3 class="font-black text-3xl uppercase tracking-tighter italic text-white text-white">Andalucía Piece I</h3>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold italic text-white">Stay tuned for the reveal</p>
                     </div>
                 </div>
 
-                <div class="product-card reveal group opacity-50" style="transition-delay: 150ms;">
-                    <div class="aspect-[4/5] bg-neutral-900 border border-white/10 flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 bg-south-green/5 group-hover:bg-south-green/10 transition-all"></div>
-                        <span class="font-bebas text-3xl md:text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all italic">Coming Soon</span>
+                <div class="product-card reveal group opacity-50 text-white" style="transition-delay: 150ms;">
+                    <div class="aspect-[4/5] bg-neutral-900 border border-white/10 flex items-center justify-center relative overflow-hidden text-white">
+                        <div class="absolute inset-0 bg-south-green/5 group-hover:bg-south-green/10 transition-all text-white"></div>
+                        <span class="font-bebas text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all italic text-white">Coming Soon</span>
                     </div>
-                    <div class="mt-6 md:mt-8 space-y-2">
-                        <h3 class="font-black text-2xl md:text-3xl uppercase tracking-tighter italic text-white">Andalucía Piece II</h3>
-                        <p class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold italic text-white">Stay tuned for the reveal</p>
+                    <div class="mt-8 space-y-2 text-white">
+                        <h3 class="font-black text-3xl uppercase tracking-tighter italic text-white text-white">Andalucía Piece II</h3>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold italic text-white text-white">Stay tuned for the reveal</p>
                     </div>
                 </div>
             </div>
@@ -395,42 +359,41 @@
     </section>
 
     <!-- 7. ADN -->
-    <section id="adn" class="py-32 md:py-40 bg-white text-black overflow-hidden relative">
-        <div class="absolute top-0 right-0 text-[12rem] md:text-[20rem] font-black text-neutral-100 leading-none select-none -mr-10 md:-mr-20 -mt-10 md:-mt-20 opacity-50 tracking-tighter text-black/10">SA25</div>
+    <section id="adn" class="py-40 bg-white text-black overflow-hidden relative">
+        <div class="absolute top-0 right-0 text-[20rem] font-black text-neutral-100 leading-none select-none -mr-20 -mt-20 opacity-50 tracking-tighter text-black/10">SA25</div>
         
-        <div class="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-16 md:gap-20">
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-20">
             <div class="reveal">
-                <h2 class="font-black text-5xl md:text-[8rem] mb-8 md:mb-12 leading-[1] md:leading-[0.9] uppercase tracking-tighter text-black">MADE IN THE <span class="text-south-green italic text-black">SUR</span></h2>
-                <p class="text-lg md:text-2xl font-bold uppercase tracking-tighter italic mb-8 italic text-black underline decoration-south-green decoration-4 underline-offset-8">"Redefiniendo el streetwear ibérico."</p>
-                <p class="text-xs md:text-sm text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md italic text-black font-semibold">Southaura es un archivo visual de nuestras raíces. Piezas de 230 GSM diseñadas con calma desde el 2025.</p>
+                <h2 class="font-black text-7xl md:text-[8rem] mb-12 leading-[0.9] uppercase tracking-tighter text-black text-black">MADE IN THE <span class="text-south-green italic text-black">SUR</span></h2>
+                <p class="text-xl md:text-2xl font-bold uppercase tracking-tighter italic mb-8 italic text-black underline decoration-south-green decoration-4 underline-offset-8">"Redefiniendo el streetwear ibérico."</p>
+                <p class="text-xs text-gray-500 uppercase tracking-[0.3em] leading-loose max-w-md italic text-black font-semibold">Southaura es un archivo visual de nuestras raíces. Piezas de 230 GSM diseñadas con calma desde el 2025.</p>
             </div>
             <div class="reveal group relative">
-                <div class="absolute inset-0 bg-south-green translate-x-3 translate-y-3 md:translate-x-4 md:translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
-                <!-- Foto Pareja forzada en Blanco y Negro estático -->
+                <div class="absolute inset-0 bg-south-green translate-x-4 translate-y-4 -z-10 transition-transform group-hover:translate-x-6 group-hover:translate-y-6"></div>
+                <!-- Foto Pareja forzada en Blanco y Negro -->
                 <img src="WhatsApp Image 2026-02-16 at 12.44.31 (1).jpeg" class="w-full bw-static shadow-2xl transition-all duration-1000" alt="Iberian Couple Manifesto">
-                <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 bg-black text-white px-3 md:px-4 py-1 md:py-2 font-bebas text-xl md:text-2xl italic text-white">EST. 2025</div>
+                <div class="absolute bottom-6 left-6 bg-black text-white px-4 py-2 font-bebas text-2xl italic text-white">EST. 2025</div>
             </div>
         </div>
     </section>
 
     <!-- 8. FOOTER -->
-    <footer class="bg-black pt-20 md:pt-32 pb-12 border-t border-white/5 text-center text-white">
-        <div class="text-[8rem] md:text-[20rem] font-black tracking-tighter opacity-5 select-none mb-8 md:mb-12 italic text-white">SA25</div>
-        <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center gap-8 md:gap-12 text-white">
-            <h4 class="font-bebas text-4xl md:text-5xl text-south-green italic text-white">Southaura Co.</h4>
-            <div class="flex gap-8 text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500 text-white">
+    <footer class="bg-black pt-32 pb-12 border-t border-white/5 text-center text-white">
+        <div class="text-[12rem] md:text-[20rem] font-black tracking-tighter opacity-5 select-none mb-12 italic text-white">SA25</div>
+        <div class="max-w-[1400px] mx-auto px-6 flex flex-col items-center gap-12 text-white">
+            <h4 class="font-bebas text-5xl text-south-green italic text-white">Southaura Co.</h4>
+            <div class="flex gap-8 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-500 text-white">
                 <a href="https://instagram.com/southaura.co" target="_blank" class="hover:text-white transition-colors italic text-white/50">Instagram</a>
                 <a href="#" class="hover:text-white transition-colors italic text-white/50">TikTok</a>
-                <a href="#" class="hover:text-white transition-colors italic text-white/50">Privacy</a>
             </div>
-            <p class="text-[8px] md:text-[9px] text-gray-800 uppercase tracking-[0.6em] mt-8 md:mt-12 text-gray-700">© 2025-2026 Southaura. Designed and Produced in Spain.</p>
+            <p class="text-[9px] text-gray-800 uppercase tracking-[0.6em] mt-12 text-gray-700">© 2025-2026 Southaura. Designed and Produced in Spain.</p>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // Configuración de Sliders
+        // Configuración de Sliders Dinámica
         const sliderStates = {
             blue: { current: 0, total: 4 },
             white: { current: 0, total: 4 },
@@ -456,28 +419,13 @@
             }
         }
 
-        // Menú Móvil
-        function toggleMobileMenu(show) {
-            const overlay = document.getElementById('mobile-menu-overlay');
-            const content = document.getElementById('mobile-menu-content');
-            if (show) {
-                overlay.classList.remove('invisible', 'opacity-0');
-                content.classList.remove('translate-x-full');
-            } else {
-                overlay.classList.add('opacity-0');
-                content.classList.add('translate-x-full');
-                setTimeout(() => overlay.classList.add('invisible'), 300);
-            }
-        }
-
-        // Observer para efectos de aparición
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.05 });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
