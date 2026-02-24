@@ -410,16 +410,37 @@
                     </div>
                 </div>
 
-                <div class="product-card reveal group opacity-50 text-white" style="transition-delay: 150ms;">
-                    <div class="aspect-[4/5] bg-neutral-900 border border-white/10 flex items-center justify-center relative overflow-hidden text-white">
-                        <div class="absolute inset-0 bg-south-green/5 group-hover:bg-south-green/10 transition-all text-white"></div>
-                        <span class="font-bebas text-2xl md:text-4xl uppercase tracking-[0.3em] text-gray-600 group-hover:text-white transition-all italic text-white text-center px-4">Coming Soon</span>
+                <!-- PRODUCTO: NUEVA ANDALUCÍA TEE (REEMPLAZA AL COMING SOON) -->
+                <div class="product-card reveal" data-id="andalucia-tee" style="transition-delay: 150ms;">
+                    <div class="product-slider group" style="background: #f4f4f4;" data-touch="true">
+                        <div class="slider-track" id="track-andalucia-tee">
+                            <!-- Extensiones en PNG para coincidir con tu subida a GitHub -->
+                            <img src="Gemini_Generated_Image_kkb1y8kkb1y8kkb1.png" alt="Andalucía Tee Frontal">
+                            <img src="Gemini_Generated_Image_42scpa42scpa42sc (1).png" alt="Andalucía Tee Trasera">
+                            <img src="Gemini_Generated_Image_7z8fgs7z8fgs7z8f (1).png" alt="Andalucía Tee Etiqueta">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-between px-2 md:px-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                            <button onclick="moveSlider('andalucia-tee', -1)" class="slider-control rounded-full pointer-events-auto"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                            <button onclick="moveSlider('andalucia-tee', 1)" class="slider-control rounded-full pointer-events-auto"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                        </div>
+                        <div class="absolute bottom-4 left-0 w-full flex justify-center gap-2" id="dots-andalucia-tee">
+                            <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+                        </div>
                     </div>
-                    <div class="mt-6 md:mt-8 space-y-2 text-white">
-                        <h3 class="font-black text-2xl md:text-3xl uppercase tracking-tighter italic text-white text-white">Andalucía Piece II</h3>
-                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold italic text-white text-white">Stay tuned for the reveal</p>
+                    <div class="mt-6 md:mt-8 space-y-4">
+                        <div class="flex justify-between items-baseline border-b border-white/10 pb-4 text-white">
+                            <h3 class="font-black text-2xl md:text-4xl uppercase tracking-tighter italic text-white">28F Edition Tee</h3>
+                            <span class="text-south-green font-bebas text-xl md:text-2xl italic text-white">28F</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold">
+                            <p><span class="text-white">Color:</span> White / Green</p>
+                            <p><span class="text-white">Fit:</span> Oversize</p>
+                            <p><span class="text-white">GSM:</span> 230</p>
+                            <p><span class="text-white">Edition:</span> Día de Andalucía</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -505,7 +526,8 @@
             white: { current: 0, total: 3 }, // 3 fotos
             'orig-black': { current: 0, total: 2 }, // 2 fotos (.png)
             'orig-white': { current: 0, total: 2 },  // 2 fotos (.png)
-            'grx-tee': { current: 0, total: 3 } // 3 fotos GRX
+            'grx-tee': { current: 0, total: 3 }, // 3 fotos GRX
+            'andalucia-tee': { current: 0, total: 3 } // NUEVA: 3 fotos 28F
         };
 
         function moveSlider(id, direction) {
