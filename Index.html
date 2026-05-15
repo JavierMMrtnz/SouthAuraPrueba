@@ -1,0 +1,798 @@
+## 📄 index.html (COMPLETO)
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southaura — Iberian Aesthetics | Ropa Oversize Premium 230 GSM</title>
+    <meta name="description" content="Southaura: moda oversize premium nacida en el sur de España. Camisetas de 230 GSM con estética ibérica. Envío gratis en pedidos +60€. Drop 002 disponible.">
+    <meta name="keywords" content="southaura, ropa oversize, camisetas premium, 230 gsm, moda española, iberian aesthetics, streetwear españa, andalucía">
+    <meta name="author" content="Southaura">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://javiermmrtnz.github.io/SouthAuraPrueba/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Southaura — Iberian Aesthetics">
+    <meta property="og:description" content="Ropa oversize premium 230 GSM. Nacida en el sur de España. Drop 002 disponible.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://javiermmrtnz.github.io/SouthAuraPrueba/">
+    <meta property="og:image" content="./assets/img/southaura-og-image.webp">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Southaura — Iberian Aesthetics">
+    <meta name="twitter:description" content="Ropa oversize premium 230 GSM. Nacida en el sur de España.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sa-black': '#0a0a0a',
+                        'sa-white': '#f5f5f0',
+                        'sa-cream': '#e8e4dc',
+                        'sa-gold': '#c9a96e',
+                        'sa-dark': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="bg-sa-black text-sa-white font-body overflow-x-hidden">
+
+    <!-- ===== COOKIE BANNER ===== -->
+    <div id="cookie-banner" class="cookie-banner hidden">
+        <div class="cookie-banner__content">
+            <p class="cookie-banner__text">
+                Usamos cookies propias y de terceros para analítica y mejorar tu experiencia. Puedes aceptarlas, rechazarlas o
+                gestionar tus preferencias.
+                <a href="#" class="cookie-banner__link" onclick="openModal('cookies-modal'); return false;">Consulta nuestra Política de Privacidad.</a>
+            </p>
+            <div class="cookie-banner__actions">
+                <button onclick="acceptCookies('essential')" class="cookie-btn cookie-btn--secondary">Solo esenciales</button>
+                <button onclick="openModal('cookies-modal')" class="cookie-btn cookie-btn--outline">Configurar</button>
+                <button onclick="acceptCookies('all')" class="cookie-btn cookie-btn--primary">Aceptar todas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CART OVERLAY ===== -->
+    <div id="cart-overlay" class="cart-overlay hidden" onclick="closeCart()"></div>
+
+    <!-- ===== CART SIDEBAR ===== -->
+    <aside id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-sidebar__header">
+            <h2 class="cart-sidebar__title">TU CESTA</h2>
+            <button onclick="closeCart()" class="cart-sidebar__close" aria-label="Cerrar cesta">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+
+        <div id="cart-items" class="cart-sidebar__items">
+            <p class="cart-sidebar__empty">Tu cesta está vacía</p>
+        </div>
+
+        <div class="cart-sidebar__footer">
+            <div class="cart-sidebar__subtotal">
+                <span>Subtotal</span>
+                <span id="cart-total">€0.00</span>
+            </div>
+            <p class="cart-sidebar__shipping">Envío calculado en el checkout</p>
+            <button onclick="checkout()" class="cart-sidebar__checkout-btn">
+                FINALIZAR COMPRA
+            </button>
+            <p class="cart-sidebar__secure">Pago seguro con Stripe · 128-bit SSL</p>
+        </div>
+    </aside>
+
+    <!-- ===== MODAL: AVISO LEGAL ===== -->
+    <div id="legal-modal" class="modal hidden">
+        <div class="modal__overlay" onclick="closeModal('legal-modal')"></div>
+        <div class="modal__container">
+            <button onclick="closeModal('legal-modal')" class="modal__close" aria-label="Cerrar">×</button>
+            <h2 class="modal__title">AVISO LEGAL</h2>
+            <div class="modal__body">
+                <p>En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa:</p>
+                <h3>Datos del titular</h3>
+                <p><strong>Titular:</strong> [NOMBRE Y APELLIDOS / RAZÓN SOCIAL]</p>
+                <p><strong>NIF/CIF:</strong> [TU NIF/CIF]</p>
+                <p><strong>Domicilio:</strong> [TU DIRECCIÓN], Andalucía, España</p>
+                <p><strong>Email:</strong> southaura.co@gmail.com</p>
+                <p><strong>Instagram:</strong> @southaura.co</p>
+                <h3>Objeto y ámbito de aplicación</h3>
+                <p>El presente aviso legal regula el uso del sitio web https://javiermmrtnz.github.io/SouthAuraPrueba/ (en adelante, "el sitio web"). El acceso y uso del sitio web implica la aceptación plena de las condiciones aquí expuestas.</p>
+                <h3>Propiedad intelectual e industrial</h3>
+                <p>Todos los contenidos del sitio web —textos, fotografías, gráficos, imágenes, logotipos, marcas, código fuente y diseño— son propiedad de Southaura o de terceros que han autorizado su uso. Queda expresamente prohibida su reproducción, distribución, comunicación pública o transformación sin autorización escrita previa.</p>
+                <h3>Responsabilidad</h3>
+                <p>Southaura no se hace responsable de los daños o perjuicios derivados del uso del sitio web ni de los posibles errores en los contenidos. Nos reservamos el derecho de modificar el sitio web sin previo aviso.</p>
+                <h3>Legislación aplicable y jurisdicción</h3>
+                <p>Las presentes condiciones se rigen por la legislación española. Para la resolución de cualquier controversia, las partes se someten a los Juzgados y Tribunales de [TU CIUDAD].</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: POLÍTICA DE PRIVACIDAD ===== -->
+    <div id="privacy-modal" class="modal hidden">
+        <div class="modal__overlay" onclick="closeModal('privacy-modal')"></div>
+        <div class="modal__container">
+            <button onclick="closeModal('privacy-modal')" class="modal__close" aria-label="Cerrar">×</button>
+            <h2 class="modal__title">POLÍTICA DE PRIVACIDAD</h2>
+            <div class="modal__body">
+                <p>En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018 (LOPDGDD), te informamos sobre el tratamiento de tus datos personales.</p>
+                <h3>Responsable del tratamiento</h3>
+                <p>[NOMBRE Y APELLIDOS] · NIF: [NIF] · Email: southaura.co@gmail.com</p>
+                <h3>Finalidades y base jurídica</h3>
+                <p><strong>Procesamiento de pedidos:</strong> Gestionar la compra, envío y facturación de productos. Base: ejecución de contrato (Art. 6.1.b RGPD).</p>
+                <p><strong>Atención al cliente:</strong> Responder consultas. Base: interés legítimo (Art. 6.1.f RGPD).</p>
+                <p><strong>Analítica web:</strong> Mejorar el sitio mediante datos estadísticos anónimos. Base: consentimiento (Art. 6.1.a RGPD).</p>
+                <h3>Datos que recabamos</h3>
+                <p>Nombre, dirección de envío, correo electrónico y datos de pago (procesados íntegramente por Stripe, Inc. — no almacenamos datos de tarjeta).</p>
+                <h3>Destinatarios</h3>
+                <p>Tus datos pueden ser cedidos a: proveedores de transporte y logística (para el envío de pedidos), Stripe Inc. (pasarela de pago), y administraciones públicas cuando sea obligatorio por ley. No vendemos ni cedemos tus datos a terceros con fines comerciales.</p>
+                <h3>Conservación</h3>
+                <p>Los datos de pedidos se conservan durante 5 años (obligaciones fiscales). Los datos de analítica se conservan de forma anonimizada.</p>
+                <h3>Tus derechos</h3>
+                <p>Puedes ejercer los derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición enviando un email a southaura.co@gmail.com con copia de tu DNI. Tienes derecho a reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
+                <h3>Seguridad</h3>
+                <p>Aplicamos medidas técnicas y organizativas para proteger tus datos. Los pagos se procesan a través de Stripe con cifrado SSL 256-bit y cumplimiento PCI DSS.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: POLÍTICA DE COOKIES ===== -->
+    <div id="cookies-modal" class="modal hidden">
+        <div class="modal__overlay" onclick="closeModal('cookies-modal')"></div>
+        <div class="modal__container">
+            <button onclick="closeModal('cookies-modal')" class="modal__close" aria-label="Cerrar">×</button>
+            <h2 class="modal__title">POLÍTICA DE COOKIES</h2>
+            <div class="modal__body">
+                <p>En cumplimiento del artículo 22.2 de la LSSI-CE y el RGPD, te informamos sobre el uso de cookies en este sitio web.</p>
+                <h3>¿Qué son las cookies?</h3>
+                <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo al visitar un sitio web. Nos permiten reconocerte en visitas posteriores y ofrecerte una experiencia mejorada.</p>
+                <h3>Tipos de cookies que utilizamos</h3>
+                <p><strong>Cookies técnicas (esenciales):</strong> Necesarias para el funcionamiento básico del sitio (gestión de sesión de compra, preferencias de cookies). No requieren consentimiento.</p>
+                <p><strong>Cookies analíticas:</strong> Usamos datos estadísticos para entender cómo navegas por el sitio y mejorar nuestros contenidos. Requieren tu consentimiento.</p>
+                <p><strong>Cookies de terceros:</strong> Stripe puede utilizar cookies para el procesamiento seguro de pagos.</p>
+                <h3>Gestión de cookies</h3>
+                <p>Puedes configurar tu navegador para rechazar cookies o eliminar las existentes. Ten en cuenta que algunas funcionalidades del sitio pueden verse afectadas. Para más información, consulta la ayuda de tu navegador.</p>
+                <h3>Tu elección</h3>
+                <div class="modal__cookie-actions">
+                    <button onclick="acceptCookies('essential'); closeModal('cookies-modal');" class="cookie-btn cookie-btn--secondary">Solo esenciales</button>
+                    <button onclick="acceptCookies('all'); closeModal('cookies-modal');" class="cookie-btn cookie-btn--primary">Aceptar todas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: TÉRMINOS Y CONDICIONES ===== -->
+    <div id="terms-modal" class="modal hidden">
+        <div class="modal__overlay" onclick="closeModal('terms-modal')"></div>
+        <div class="modal__container">
+            <button onclick="closeModal('terms-modal')" class="modal__close" aria-label="Cerrar">×</button>
+            <h2 class="modal__title">TÉRMINOS Y CONDICIONES DE COMPRA</h2>
+            <div class="modal__body">
+                <p>Las presentes condiciones regulan la relación comercial entre Southaura y el cliente, en conformidad con el Real Decreto Legislativo 1/2007 (TRLGDCU) y la Ley 7/1996 de Ordenación del Comercio Minorista.</p>
+                <h3>Proceso de compra</h3>
+                <ol>
+                    <li>Selecciona el producto y talla deseados.</li>
+                    <li>Haz clic en "Comprar ahora" o "Añadir a la cesta".</li>
+                    <li>Serás redirigido a Stripe, plataforma de pago segura, para completar el pedido.</li>
+                    <li>Recibirás confirmación por email una vez procesado el pago.</li>
+                </ol>
+                <h3>Precios y formas de pago</h3>
+                <p>Todos los precios incluyen IVA. Aceptamos pago con tarjeta (Visa, Mastercard, Amex), Apple Pay y Google Pay, gestionados íntegramente por Stripe Inc.</p>
+                <h3>Envíos</h3>
+                <p>Realizamos envíos a toda España peninsular, Baleares y Canarias. El plazo estimado de entrega es de 3-7 días laborables. Los gastos de envío se muestran en el proceso de pago.</p>
+                <h3>Derecho de desistimiento</h3>
+                <p>Dispones de 14 días naturales desde la recepción del pedido para ejercer el derecho de desistimiento sin necesidad de justificación, de acuerdo con el Art. 102 del TRLGDCU. El producto debe estar sin usar, sin lavar y con todas sus etiquetas originales. Para iniciar una devolución, escríbenos a southaura.co@gmail.com.</p>
+                <h3>Garantía de los productos</h3>
+                <p>Todos nuestros productos disponen de garantía legal de conformidad de 2 años conforme al TRLGDCU. Si recibes un producto defectuoso, contáctanos en un plazo máximo de 2 meses desde que detectes el defecto.</p>
+                <h3>Resolución de conflictos</h3>
+                <p>En caso de disputa, puedes acceder a la plataforma europea de resolución de litigios en línea: ec.europa.eu/consumers/odr.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: PRODUCTO DETALLE ===== -->
+    <div id="product-modal" class="modal hidden">
+        <div class="modal__overlay" onclick="closeModal('product-modal')"></div>
+        <div class="modal__container modal__container--product">
+            <button onclick="closeModal('product-modal')" class="modal__close" aria-label="Cerrar">×</button>
+            <div class="product-detail">
+                <!-- Gallery -->
+                <div class="product-detail__gallery">
+                    <div id="product-modal-slider" class="product-detail__slider">
+                        <!-- Images injected by JS -->
+                    </div>
+                    <div id="product-modal-dots" class="product-detail__dots">
+                        <!-- Dots injected by JS -->
+                    </div>
+                </div>
+                <!-- Info -->
+                <div class="product-detail__info">
+                    <h2 id="product-modal-title" class="product-detail__title"></h2>
+                    <p id="product-modal-price" class="product-detail__price"></p>
+
+                    <div class="product-detail__sizes">
+                        <div class="product-detail__sizes-header">
+                            <span>Selecciona tu talla</span>
+                            <button onclick="openModal('sizes-modal')" class="product-detail__size-guide">Guía de tallas</button>
+                        </div>
+                        <div id="product-modal-sizes" class="product-detail__size-options">
+                            <!-- Size buttons injected by JS -->
+                        </div>
+                    </div>
+
+                    <p id="size-error" class="product-detail__size-error hidden">Por favor, selecciona una talla</p>
+
+                    <div class="product-detail__actions">
+                        <button id="product-modal-add-cart" class="product-detail__btn product-detail__btn--cart">
+                            <i data-lucide="shopping-bag"></i>
+                            AÑADIR A LA CESTA
+                        </button>
+                        <button id="product-modal-buy-now" class="product-detail__btn product-detail__btn--buy">
+                            <i data-lucide="zap"></i>
+                            COMPRAR AHORA
+                        </button>
+                    </div>
+
+                    <div class="product-detail__badges">
+                        <div class="product-detail__badge">
+                            <i data-lucide="shield-check"></i>
+                            <span>Pago seguro</span>
+                        </div>
+                        <div class="product-detail__badge">
+                            <i data-lucide="refresh-cw"></i>
+                            <span>14 días devolución</span>
+                        </div>
+                        <div class="product-detail__badge">
+                            <i data-lucide="truck"></i>
+                            <span>Envío a España</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: GUÍA DE TALLAS ===== -->
+    <div id="sizes-modal" class="modal hidden">
+        <div class="modal__overlay" onclick="closeModal('sizes-modal')"></div>
+        <div class="modal__container">
+            <button onclick="closeModal('sizes-modal')" class="modal__close" aria-label="Cerrar">×</button>
+            <h2 class="modal__title">GUÍA DE TALLAS — OVERSIZE FIT</h2>
+            <div class="modal__body">
+                <p>Medidas en cm · Producto oversize, se recomienda talla habitual</p>
+                <table class="size-table">
+                    <thead>
+                        <tr>
+                            <th>Talla</th>
+                            <th>Pecho</th>
+                            <th>Largo</th>
+                            <th>Hombro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>S</td><td>108</td><td>72</td><td>52</td></tr>
+                        <tr><td>M</td><td>116</td><td>74</td><td>55</td></tr>
+                        <tr><td>L</td><td>124</td><td>76</td><td>58</td></tr>
+                        <tr><td>XL</td><td>132</td><td>78</td><td>61</td></tr>
+                        <tr><td>XXL</td><td>140</td><td>80</td><td>64</td></tr>
+                    </tbody>
+                </table>
+                <p class="size-table__note">* Fit sobredimensionado. Para un look más ajustado, baja una talla.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ANNOUNCEMENT BAR ===== -->
+    <div class="announcement-bar">
+        ENVÍO GRATIS EN PEDIDOS +60€ · ENVÍOS A TODA ESPAÑA · DROP 002 DISPONIBLE AHORA
+    </div>
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="marquee">
+        <div class="marquee__track">
+            <span class="marquee__content">SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
+            <span class="marquee__content">SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE • HIGH DENSITY PRINT • SOUTHAURA • MADE IN THE SUR • IBERIAN AESTHETICS • 230 GSM • DROP 002 AVAILABLE •&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- ===== HEADER / NAVIGATION ===== -->
+    <header id="main-header" class="header">
+        <nav class="header__nav">
+            <!-- Logo -->
+            <div class="header__logo">
+                <a href="#" aria-label="Southaura Home">SOUTHAURA</a>
+            </div>
+
+            <!-- Desktop Menu -->
+            <ul class="header__menu">
+                <li><a href="#drop002" class="header__menu-link">Nuevo Drop</a></li>
+                <li><a href="#originals" class="header__menu-link">Originals</a></li>
+                <li><a href="#andalucia" class="header__menu-link">Andalucía Vibes</a></li>
+                <li><a href="#adn" class="header__menu-link">ADN</a></li>
+            </ul>
+
+            <!-- Desktop Actions -->
+            <div class="header__actions">
+                <a href="https://www.instagram.com/southaura.co/" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Instagram">
+                    <i data-lucide="instagram"></i>
+                </a>
+                <button onclick="openCart()" class="header__icon-link header__cart-btn" aria-label="Abrir cesta">
+                    <i data-lucide="shopping-bag"></i>
+                    <span id="cart-count" class="header__cart-count">0</span>
+                </button>
+            </div>
+
+            <!-- Mobile Actions -->
+            <div class="header__mobile-actions">
+                <button onclick="openCart()" class="header__icon-link header__cart-btn" aria-label="Abrir cesta">
+                    <i data-lucide="shopping-bag"></i>
+                    <span id="cart-count-mobile" class="header__cart-count">0</span>
+                </button>
+                <button id="mobile-menu-toggle" class="header__hamburger" aria-label="Abrir menú">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <div id="mobile-menu" class="mobile-menu hidden">
+        <nav class="mobile-menu__nav">
+            <a href="#drop002" class="mobile-menu__link" onclick="closeMobileMenu()">Nuevo Drop</a>
+            <a href="#originals" class="mobile-menu__link" onclick="closeMobileMenu()">Originals</a>
+            <a href="#andalucia" class="mobile-menu__link" onclick="closeMobileMenu()">Andalucía Vibes</a>
+            <a href="#adn" class="mobile-menu__link" onclick="closeMobileMenu()">ADN</a>
+        </nav>
+        <div class="mobile-menu__footer">
+            <a href="https://www.instagram.com/southaura.co/" target="_blank" rel="noopener noreferrer" class="mobile-menu__social">
+                <i data-lucide="instagram"></i> Seguir en Instagram
+            </a>
+            <p class="mobile-menu__tagline">Est. 2025 • Made in the Sur</p>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero" aria-label="Hero principal">
+            <div class="hero__background">
+                <img src="./assets/img/southaura-hero-background.webp" alt="Southaura colección oversize premium iberian aesthetics" class="hero__bg-image" loading="eager">
+                <div class="hero__overlay"></div>
+            </div>
+            <div class="hero__content">
+                <p class="hero__tagline">Est. 2025 • Made in the Sur</p>
+                <h1 class="hero__title">
+                    IBERIAN<br>AESTHETICS
+                </h1>
+                <p class="hero__subtitle">230 GSM Premium Oversize Collection</p>
+                <a href="#drop002" class="hero__cta">
+                    VER DROP 002 →
+                </a>
+            </div>
+        </section>
+
+        <!-- ===== DROP 002 SECTION ===== -->
+        <section id="drop002" class="section section--drop002">
+            <div class="section__header">
+                <span class="section__badge">NEW DROP 002</span>
+                <h2 class="section__title">Break Glass</h2>
+                <p class="section__subtitle">Season II • Drop 002 • High Density Print</p>
+            </div>
+
+            <div class="products-grid">
+
+                <!-- Product: Broken Heart Tee -->
+                <article class="product-card" data-product-id="broken-heart-blue">
+                    <div class="product-card__gallery" onclick="openProductModal('broken-heart-blue')">
+                        <div class="product-card__slider" data-product="broken-heart-blue">
+                            <img src="./assets/img/camiseta-broken-heart-azul-frontal.webp" alt="Camiseta Broken Heart azul royal vista frontal" class="product-card__image active" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-broken-heart-azul-espalda.webp" alt="Camiseta Broken Heart azul royal vista espalda" class="product-card__image" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-broken-heart-azul-detalle.webp" alt="Camiseta Broken Heart azul royal detalle bordado" class="product-card__image" loading="lazy" width="600" height="750">
+                        </div>
+                        <div class="product-card__dots">
+                            <span class="product-card__dot active"></span>
+                            <span class="product-card__dot"></span>
+                            <span class="product-card__dot"></span>
+                        </div>
+                        <div class="product-card__nav">
+                            <button class="product-card__nav-btn product-card__nav-btn--prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="product-card__nav-btn product-card__nav-btn--next" aria-label="Imagen siguiente">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__header">
+                            <h3 class="product-card__title">Broken Heart Tee</h3>
+                            <span class="product-card__ref">II-B</span>
+                        </div>
+                        <div class="product-card__details">
+                            <span>Color: Royal Blue</span>
+                            <span>Fit: Oversize</span>
+                            <span>GSM: 230</span>
+                            <span>Front: F*** Cupid Embroidery</span>
+                        </div>
+                        <div class="product-card__price">
+                            <span class="product-card__amount">45,00 €</span>
+                            <span class="product-card__tax">IVA incluido</span>
+                        </div>
+                        <button class="product-card__add-btn" onclick="openProductModal('broken-heart-blue')">
+                            <i data-lucide="shopping-bag"></i>
+                            AÑADIR A LA CESTA
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product: Case of Yes Tee -->
+                <article class="product-card" data-product-id="case-of-yes-white">
+                    <div class="product-card__gallery" onclick="openProductModal('case-of-yes-white')">
+                        <div class="product-card__slider" data-product="case-of-yes-white">
+                            <img src="./assets/img/camiseta-case-of-yes-blanca-frontal.webp" alt="Camiseta Case of Yes blanca bone white vista frontal" class="product-card__image active" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-case-of-yes-blanca-espalda.webp" alt="Camiseta Case of Yes blanca bone white vista espalda" class="product-card__image" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-case-of-yes-blanca-detalle.webp" alt="Camiseta Case of Yes blanca bone white detalle bordado" class="product-card__image" loading="lazy" width="600" height="750">
+                        </div>
+                        <div class="product-card__dots">
+                            <span class="product-card__dot active"></span>
+                            <span class="product-card__dot"></span>
+                            <span class="product-card__dot"></span>
+                        </div>
+                        <div class="product-card__nav">
+                            <button class="product-card__nav-btn product-card__nav-btn--prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="product-card__nav-btn product-card__nav-btn--next" aria-label="Imagen siguiente">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__header">
+                            <h3 class="product-card__title">Case of Yes Tee</h3>
+                            <span class="product-card__ref">II-W</span>
+                        </div>
+                        <div class="product-card__details">
+                            <span>Color: Bone White</span>
+                            <span>Fit: Oversize</span>
+                            <span>GSM: 230</span>
+                            <span>Front: F*** Cupid Embroidery</span>
+                        </div>
+                        <div class="product-card__price">
+                            <span class="product-card__amount">45,00 €</span>
+                            <span class="product-card__tax">IVA incluido</span>
+                        </div>
+                        <button class="product-card__add-btn" onclick="openProductModal('case-of-yes-white')">
+                            <i data-lucide="shopping-bag"></i>
+                            AÑADIR A LA CESTA
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ===== ORIGINALS SECTION ===== -->
+        <section id="originals" class="section section--originals">
+            <div class="section__header">
+                <h2 class="section__title">Originals Collection</h2>
+                <p class="section__subtitle">The Founding Series • Full Color • 230 GSM</p>
+            </div>
+
+            <div class="products-grid">
+
+                <!-- Product: Original Tee Black -->
+                <article class="product-card" data-product-id="original-black">
+                    <div class="product-card__gallery" onclick="openProductModal('original-black')">
+                        <div class="product-card__slider" data-product="original-black">
+                            <img src="./assets/img/camiseta-original-negra-frontal.webp" alt="Camiseta Original Southaura negra vista frontal" class="product-card__image active" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-original-negra-espalda.webp" alt="Camiseta Original Southaura negra vista espalda" class="product-card__image" loading="lazy" width="600" height="750">
+                        </div>
+                        <div class="product-card__dots">
+                            <span class="product-card__dot active"></span>
+                            <span class="product-card__dot"></span>
+                        </div>
+                        <div class="product-card__nav">
+                            <button class="product-card__nav-btn product-card__nav-btn--prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="product-card__nav-btn product-card__nav-btn--next" aria-label="Imagen siguiente">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__header">
+                            <h3 class="product-card__title">Original Tee Black</h3>
+                        </div>
+                        <p class="product-card__description">Oversize Fit / 230 GSM / Iberian Essence</p>
+                        <div class="product-card__price">
+                            <span class="product-card__amount">40,00 €</span>
+                            <span class="product-card__tax">IVA incluido</span>
+                        </div>
+                        <button class="product-card__add-btn" onclick="openProductModal('original-black')">
+                            <i data-lucide="shopping-bag"></i>
+                            AÑADIR A LA CESTA
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product: Original Tee White -->
+                <article class="product-card" data-product-id="original-white">
+                    <div class="product-card__gallery" onclick="openProductModal('original-white')">
+                        <div class="product-card__slider" data-product="original-white">
+                            <img src="./assets/img/camiseta-original-blanca-frontal.webp" alt="Camiseta Original Southaura blanca vista frontal" class="product-card__image active" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-original-blanca-espalda.webp" alt="Camiseta Original Southaura blanca vista espalda" class="product-card__image" loading="lazy" width="600" height="750">
+                        </div>
+                        <div class="product-card__dots">
+                            <span class="product-card__dot active"></span>
+                            <span class="product-card__dot"></span>
+                        </div>
+                        <div class="product-card__nav">
+                            <button class="product-card__nav-btn product-card__nav-btn--prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="product-card__nav-btn product-card__nav-btn--next" aria-label="Imagen siguiente">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__header">
+                            <h3 class="product-card__title">Original Tee White</h3>
+                        </div>
+                        <p class="product-card__description">Oversize Fit / 230 GSM / Iberian Essence</p>
+                        <div class="product-card__price">
+                            <span class="product-card__amount">40,00 €</span>
+                            <span class="product-card__tax">IVA incluido</span>
+                        </div>
+                        <button class="product-card__add-btn" onclick="openProductModal('original-white')">
+                            <i data-lucide="shopping-bag"></i>
+                            AÑADIR A LA CESTA
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ===== ANDALUCÍA VIBES SECTION ===== -->
+        <section id="andalucia" class="section section--andalucia">
+            <div class="section__header">
+                <h2 class="section__title">Andalucía Vibes</h2>
+                <p class="section__subtitle">Upcoming Collection • Southern Culture • 230 GSM</p>
+            </div>
+
+            <div class="products-grid">
+
+                <!-- Product: GRX Tee -->
+                <article class="product-card" data-product-id="grx-navy">
+                    <div class="product-card__gallery" onclick="openProductModal('grx-navy')">
+                        <div class="product-card__slider" data-product="grx-navy">
+                            <img src="./assets/img/camiseta-grx-granada-azul-marino-frontal.webp" alt="Camiseta GRX Granada azul marino vista frontal" class="product-card__image active" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-grx-granada-azul-marino-espalda.webp" alt="Camiseta GRX Granada azul marino vista espalda" class="product-card__image" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-grx-granada-azul-marino-detalle.webp" alt="Camiseta GRX Granada azul marino detalle estampado" class="product-card__image" loading="lazy" width="600" height="750">
+                        </div>
+                        <div class="product-card__dots">
+                            <span class="product-card__dot active"></span>
+                            <span class="product-card__dot"></span>
+                            <span class="product-card__dot"></span>
+                        </div>
+                        <div class="product-card__nav">
+                            <button class="product-card__nav-btn product-card__nav-btn--prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="product-card__nav-btn product-card__nav-btn--next" aria-label="Imagen siguiente">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__header">
+                            <h3 class="product-card__title">GRX Tee</h3>
+                            <span class="product-card__ref">GRX</span>
+                        </div>
+                        <div class="product-card__details">
+                            <span>Color: Navy Blue</span>
+                            <span>Fit: Oversize</span>
+                            <span>GSM: 230</span>
+                            <span>Edition: Granada</span>
+                        </div>
+                        <div class="product-card__price">
+                            <span class="product-card__amount">45,00 €</span>
+                            <span class="product-card__tax">IVA incluido</span>
+                        </div>
+                        <button class="product-card__add-btn" onclick="openProductModal('grx-navy')">
+                            <i data-lucide="shopping-bag"></i>
+                            AÑADIR A LA CESTA
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Product: 28F Edition Tee -->
+                <article class="product-card" data-product-id="28f-andalucia">
+                    <div class="product-card__gallery" onclick="openProductModal('28f-andalucia')">
+                        <div class="product-card__slider" data-product="28f-andalucia">
+                            <img src="./assets/img/camiseta-28f-dia-andalucia-blanca-verde-frontal.webp" alt="Camiseta 28F Día de Andalucía blanca y verde vista frontal" class="product-card__image active" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-28f-dia-andalucia-blanca-verde-espalda.webp" alt="Camiseta 28F Día de Andalucía blanca y verde vista espalda" class="product-card__image" loading="lazy" width="600" height="750">
+                            <img src="./assets/img/camiseta-28f-dia-andalucia-blanca-verde-detalle.webp" alt="Camiseta 28F Día de Andalucía blanca y verde detalle" class="product-card__image" loading="lazy" width="600" height="750">
+                        </div>
+                        <div class="product-card__dots">
+                            <span class="product-card__dot active"></span>
+                            <span class="product-card__dot"></span>
+                            <span class="product-card__dot"></span>
+                        </div>
+                        <div class="product-card__nav">
+                            <button class="product-card__nav-btn product-card__nav-btn--prev" aria-label="Imagen anterior">&#8249;</button>
+                            <button class="product-card__nav-btn product-card__nav-btn--next" aria-label="Imagen siguiente">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__header">
+                            <h3 class="product-card__title">28F Edition Tee</h3>
+                            <span class="product-card__ref">28F</span>
+                        </div>
+                        <div class="product-card__details">
+                            <span>Color: White / Green</span>
+                            <span>Fit: Oversize</span>
+                            <span>GSM: 230</span>
+                            <span>Edition: Día de Andalucía</span>
+                        </div>
+                        <div class="product-card__price">
+                            <span class="product-card__amount">45,00 €</span>
+                            <span class="product-card__tax">IVA incluido</span>
+                        </div>
+                        <button class="product-card__add-btn" onclick="openProductModal('28f-andalucia')">
+                            <i data-lucide="shopping-bag"></i>
+                            AÑADIR A LA CESTA
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ===== ADN SECTION ===== -->
+        <section id="adn" class="section section--adn">
+            <span class="section__watermark">SA25</span>
+            <div class="adn-grid">
+                <div class="adn-grid__text">
+                    <h2 class="adn-grid__title">
+                        BORN IN<br>THE SUR.
+                    </h2>
+                    <blockquote class="adn-grid__quote">
+                        "Not just a brand. A movement."
+                    </blockquote>
+                    <div class="adn-grid__body">
+                        <p>Nacidos en 2025 entre el asfalto y el salitre. Southaura no es solo ropa, es el nuevo código visual de la Península. Una visión cruda de nuestras raíces diseñada para los que no piden permiso.</p>
+                        <p>No seguimos la ola, creamos la corriente. Construimos prendas que funcionan como armaduras diarias: algodones ultra pesados de 230 GSM, fits sobredimensionados y una obsesión enfermiza por el detalle.</p>
+                        <p>Made in the Sur with Gracia.</p>
+                    </div>
+                </div>
+                <div class="adn-grid__visual">
+                    <img src="./assets/img/southaura-adn-marca-lifestyle.webp" alt="Southaura marca lifestyle nacida en el sur de España" class="adn-grid__image" loading="lazy" width="600" height="800">
+                    <span class="adn-grid__label">EST. 2025</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEWSLETTER SECTION ===== -->
+        <section class="section section--newsletter">
+            <div class="newsletter">
+                <h2 class="newsletter__title">Únete al movimiento</h2>
+                <p class="newsletter__subtitle">Acceso anticipado a drops · Contenido exclusivo</p>
+                <form class="newsletter__form" id="newsletter-form">
+                    <input type="email" placeholder="tu@email.com" class="newsletter__input" required aria-label="Email para newsletter">
+                    <button type="submit" class="newsletter__btn">
+                        ENTRAR
+                    </button>
+                </form>
+                <p class="newsletter__disclaimer">Sin spam. Cancelar cuando quieras. Ver <a href="#" onclick="openModal('privacy-modal'); return false;">Política de Privacidad</a>.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <span class="footer__watermark">SA25</span>
+        <div class="footer__content">
+            <div class="footer__brand">
+                <h2 class="footer__logo">SOUTHAURA</h2>
+            </div>
+
+            <div class="footer__social">
+                <a href="https://www.instagram.com/southaura.co/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+                <a href="https://www.tiktok.com/@southaura.co" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TikTok</a>
+            </div>
+
+            <div class="footer__features">
+                <div class="footer__feature">
+                    <i data-lucide="shield-check"></i>
+                    <span>Pago seguro Stripe</span>
+                </div>
+                <div class="footer__feature">
+                    <i data-lucide="refresh-cw"></i>
+                    <span>Devoluciones 14 días</span>
+                </div>
+                <div class="footer__feature">
+                    <i data-lucide="truck"></i>
+                    <span>Envío a España</span>
+                </div>
+                <div class="footer__feature">
+                    <i data-lucide="layers"></i>
+                    <span>230 GSM Premium</span>
+                </div>
+            </div>
+
+            <nav class="footer__links" aria-label="Enlaces legales">
+                <a href="#" onclick="openModal('legal-modal'); return false;">Aviso Legal</a>
+                <a href="#" onclick="openModal('privacy-modal'); return false;">Privacidad</a>
+                <a href="#" onclick="openModal('cookies-modal'); return false;">Cookies</a>
+                <a href="#" onclick="openModal('terms-modal'); return false;">T&amp;C Compra</a>
+                <a href="mailto:southaura.co@gmail.com">Contacto</a>
+            </nav>
+
+            <div class="footer__payments">
+                <span>Pagos seguros con</span>
+                <img src="./assets/img/stripe-logo-blanco.webp" alt="Stripe pagos seguros" class="footer__stripe-logo" width="60" height="25" loading="lazy">
+                <span>·</span>
+                <span>VISA · MC · AMEX · Apple Pay · Google Pay</span>
+            </div>
+
+            <p class="footer__copyright">© 2025–2026 Southaura. Todos los derechos reservados. Diseñado y producido en España.</p>
+        </div>
+    </footer>
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Southaura",
+        "url": "https://javiermmrtnz.github.io/SouthAuraPrueba/",
+        "logo": "./assets/img/southaura-logo.webp",
+        "description": "Moda oversize premium 230 GSM nacida en el sur de España. Iberian Aesthetics.",
+        "email": "southaura.co@gmail.com",
+        "sameAs": [
+            "https://www.instagram.com/southaura.co/",
+            "https://www.tiktok.com/@southaura.co"
+        ],
+        "foundingDate": "2025",
+        "areaServed": "ES"
+    }
+    </script>
+
+    <!-- ===== MAIN JS ===== -->
+    <script src="./js/main.js" defer></script>
+</body>
+</html>
+```
+
+---
+
+Este archivo incluye **todos** los elementos que estaban en el original:
+
+- ✅ Cookie Banner
+- ✅ Cart Sidebar + Overlay
+- ✅ 5 Modales (Legal, Privacidad, Cookies, Términos, Producto, Guía de Tallas)
+- ✅ Announcement Bar
+- ✅ Marquee
+- ✅ Header con navegación desktop y mobile
+- ✅ Mobile Menu
+- ✅ Hero Section
+- ✅ Drop 002 (2 productos con slider)
+- ✅ Originals (2 productos con slider)
+- ✅ Andalucía Vibes (2 productos con slider)
+- ✅ ADN Section
+- ✅ Newsletter
+- ✅ Footer completo
+- ✅ JSON-LD Structured Data
+- ✅ Referencia al `main.js` con `defer`
