@@ -14,16 +14,16 @@ const products = {
         id: 'broken-heart-blue',
         name: 'Broken Heart Tee',
         ref: 'II-B',
-        price: 45.00,
+        price: 28.00,
         color: 'Royal Blue',
         fit: 'Oversize',
         gsm: 230,
         detail: 'Front: F*** Cupid Embroidery',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
         images: [
-            './assets/img/camiseta-broken-heart-azul-frontal.webp',
-            './assets/img/camiseta-broken-heart-azul-espalda.webp',
-            './assets/img/camiseta-broken-heart-azul-detalle.webp'
+            'camiseta-broken-heart-azul-frontal.webp',
+            'camiseta-broken-heart-azul-espalda.webp',
+            'camiseta-broken-heart-azul-detalle.webp'
         ],
         stripeLinks: {
             'S': 'https://buy.stripe.com/BROKEN_HEART_BLUE_S',
@@ -37,16 +37,16 @@ const products = {
         id: 'case-of-yes-white',
         name: 'Case of Yes Tee',
         ref: 'II-W',
-        price: 45.00,
+        price: 28.00,
         color: 'Bone White',
         fit: 'Oversize',
         gsm: 230,
         detail: 'Front: F*** Cupid Embroidery',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
         images: [
-            './assets/img/camiseta-case-of-yes-blanca-frontal.webp',
-            './assets/img/camiseta-case-of-yes-blanca-espalda.webp',
-            './assets/img/camiseta-case-of-yes-blanca-detalle.webp'
+            'camiseta-case-of-yes-blanca-frontal.webp',
+            'camiseta-case-of-yes-blanca-espalda.webp',
+            'camiseta-case-of-yes-blanca-detalle.webp'
         ],
         stripeLinks: {
             'S': 'https://buy.stripe.com/CASE_YES_WHITE_S',
@@ -60,15 +60,15 @@ const products = {
         id: 'original-black',
         name: 'Original Tee Black',
         ref: 'OG-B',
-        price: 40.00,
+        price: 28.00,
         color: 'Black',
         fit: 'Oversize',
         gsm: 230,
         detail: 'Iberian Essence',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
         images: [
-            './assets/img/camiseta-original-negra-frontal.webp',
-            './assets/img/camiseta-original-negra-espalda.webp'
+            'camiseta-original-negra-frontal.webp',
+            'camiseta-original-negra-espalda.webp'
         ],
         stripeLinks: {
             'S': 'https://buy.stripe.com/ORIGINAL_BLACK_S',
@@ -82,15 +82,15 @@ const products = {
         id: 'original-white',
         name: 'Original Tee White',
         ref: 'OG-W',
-        price: 40.00,
+        price: 28.00,
         color: 'White',
         fit: 'Oversize',
         gsm: 230,
         detail: 'Iberian Essence',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
         images: [
-            './assets/img/camiseta-original-blanca-frontal.webp',
-            './assets/img/camiseta-original-blanca-espalda.webp'
+            'camiseta-original-blanca-frontal.webp',
+            'camiseta-original-blanca-espalda.webp'
         ],
         stripeLinks: {
             'S': 'https://buy.stripe.com/ORIGINAL_WHITE_S',
@@ -104,16 +104,16 @@ const products = {
         id: 'grx-navy',
         name: 'GRX Tee',
         ref: 'GRX',
-        price: 45.00,
+        price: 28.00,
         color: 'Navy Blue',
         fit: 'Oversize',
         gsm: 230,
         detail: 'Edition: Granada',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
         images: [
-            './assets/img/camiseta-grx-granada-azul-marino-frontal.webp',
-            './assets/img/camiseta-grx-granada-azul-marino-espalda.webp',
-            './assets/img/camiseta-grx-granada-azul-marino-detalle.webp'
+            'camiseta-grx-granada-azul-marino-frontal.webp',
+            'camiseta-grx-granada-azul-marino-espalda.webp',
+            'camiseta-grx-granada-azul-marino-detalle.webp'
         ],
         stripeLinks: {
             'S': 'https://buy.stripe.com/GRX_NAVY_S',
@@ -127,16 +127,16 @@ const products = {
         id: '28f-andalucia',
         name: '28F Edition Tee',
         ref: '28F',
-        price: 45.00,
+        price: 28.00,
         color: 'White / Green',
         fit: 'Oversize',
         gsm: 230,
         detail: 'Edition: Día de Andalucía',
         sizes: ['S', 'M', 'L', 'XL', 'XXL'],
         images: [
-            './assets/img/camiseta-28f-dia-andalucia-blanca-verde-frontal.webp',
-            './assets/img/camiseta-28f-dia-andalucia-blanca-verde-espalda.webp',
-            './assets/img/camiseta-28f-dia-andalucia-blanca-verde-detalle.webp'
+            'camiseta-28f-dia-andalucia-blanca-verde-frontal.webp',
+            'camiseta-28f-dia-andalucia-blanca-verde-espalda.webp',
+            'camiseta-28f-dia-andalucia-blanca-verde-detalle.webp'
         ],
         stripeLinks: {
             'S': 'https://buy.stripe.com/28F_ANDALUCIA_S',
