@@ -290,11 +290,12 @@ function updateCartCount() {
     }
 }
 
+// ESTA FUNCIÓN ESTÁ CORREGIDA CON ETIQUETAS HTML REALES
 function renderCart() {
     if (!DOM.cartItems) return;
 
     if (cart.length === 0) {
-        DOM.cartItems.innerHTML = 'Tu cesta está vacía';
+        DOM.cartItems.innerHTML = '<p class="cart-sidebar__empty">Tu cesta está vacía</p>';
         if (DOM.cartTotal) DOM.cartTotal.textContent = '€0.00';
         return;
     }
@@ -304,23 +305,31 @@ function renderCart() {
 
     cart.forEach(function(item, index) {
         total += item.price * item.quantity;
-        html += '' +
-            '' +
-            '' +
-            '' + item.name + '' +
-            'Talla: ' + item.size + ' · Qty: ' + item.quantity + '' +
-            '€' + (item.price * item.quantity).toFixed(2) + '' +
-            '<button>Eliminar</button>' +
-            '' +
-            '';
+        html += `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item__image">
+                <div class="cart-item__info">
+                    <h4 class="cart-item__name">${item.name}</h4>
+                    <p class="cart-item__size">Talla: ${item.size} · Qty: ${item.quantity}</p>
+                    <p class="cart-item__price">${(item.price * item.quantity).toFixed(2)} €</p>
+                    <button class="cart-item__remove" onclick="removeFromCart(${index})">Eliminar</button>
+                </div>
+            </div>
+        `;
     });
 
     DOM.cartItems.innerHTML = html;
-    if (DOM.cartTotal) DOM.cartTotal.textContent = '€' + total.toFixed(2);
+    if (DOM.cartTotal) DOM.cartTotal.textContent = total.toFixed(2) + ' €';
 }
 
 function checkout() {
     if (cart.length === 0) return;
+
+    // ADVERTENCIA AÑADIDA PARA CUANDO EL CARRITO TIENE VARIAS COSAS DISTINTAS
+    if (cart.length > 1) {
+        alert('Por el momento, el pago rápido solo procesa un artículo a la vez. Por favor, realiza compras separadas para cada producto.');
+        return;
+    }
 
     var firstItem = cart[0];
     var product = products[firstItem.id];
@@ -346,22 +355,23 @@ function openProductModal(productId) {
     if (DOM.productModalTitle) DOM.productModalTitle.textContent = product.name;
     if (DOM.productModalPrice) DOM.productModalPrice.textContent = product.price.toFixed(2) + ' €';
 
-    // Render images
+    // ESTO ESTÁ CORREGIDO CON ETIQUETAS HTML REALES
     var sliderHtml = '';
     var dotsHtml = '';
 
     product.images.forEach(function(img, index) {
-        sliderHtml += '';
-        dotsHtml += '';
+        var activeClass = index === 0 ? 'active' : '';
+        sliderHtml += `<img src="${img}" class="${activeClass}" alt="Imagen ${index + 1} de ${product.name}">`;
+        dotsHtml += `<span class="${activeClass}" onclick="goToProductSlide(${index})"></span>`;
     });
 
     if (DOM.productModalSlider) DOM.productModalSlider.innerHTML = sliderHtml;
     if (DOM.productModalDots) DOM.productModalDots.innerHTML = dotsHtml;
 
-    // Render sizes
+    // Render sizes CON HTML REAL Y EVENTO DE CLIC
     var sizesHtml = '';
     product.sizes.forEach(function(size) {
-        sizesHtml += '<button>' + size + '';
+        sizesHtml += `<button class="product-detail__size-btn" onclick="selectSize('${size}')">${size}</button>`;
     });
     if (DOM.productModalSizes) DOM.productModalSizes.innerHTML = sizesHtml;
 
