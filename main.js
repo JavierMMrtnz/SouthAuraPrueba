@@ -347,7 +347,7 @@ function openProductModal(productId) {
     // Render sizes
     var sizesHtml = '';
     for (var j = 0; j < product.sizes.length; j++) {
-        sizesHtml += '<button>' + product.sizes[j] + '';
+        sizesHtml += '<button class="product-detail__size-btn" onclick="selectSize(\'' + product.sizes[j] + '\')">' + product.sizes[j] + '</button>';
     }
     if (DOM.productModalSizes) DOM.productModalSizes.innerHTML = sizesHtml;
 
