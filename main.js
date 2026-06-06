@@ -289,7 +289,7 @@ function renderCart() {
     for (var i = 0; i < cart.length; i++) {
         var item = cart[i];
         var product = products[item.id];
-        var imageUrl = product && product.images ? product.images[0] : 'placeholder.webp';
+        var imageUrl = product && product.images ? 'assets/images/' + product.images[0] : 'assets/images/placeholder.webp';
         total += item.price * item.quantity;
         html += '<div class="cart-item">' +
             '<img src="' + imageUrl + '" alt="' + item.name + '" class="cart-item__image" loading="lazy">' +
