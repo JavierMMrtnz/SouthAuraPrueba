@@ -338,7 +338,8 @@ function openProductModal(productId) {
     var dotsHtml = '';
     for (var i = 0; i < product.images.length; i++) {
         var activeClass = (i === 0) ? 'active' : '';
-        sliderHtml += '<img src="' + product.images[i] + '" class="product-detail__image ' + activeClass + '" loading="lazy" alt="' + product.name + ' - Image ' + (i + 1) + '">';
+        var loadingAttr = (i === 0) ? '' : 'loading="lazy"'; // Solo lazy load en imágenes no visibles
+        sliderHtml += '<img src="assets/images/' + product.images[i] + '" class="product-detail__image ' + activeClass + '" ' + loadingAttr + ' alt="' + product.name + ' - Image ' + (i + 1) + '">';
         dotsHtml += '<span class="product-detail__dot ' + activeClass + '" onclick="goToProductSlide(' + i + ')"></span>';
     }
     if (DOM.productModalSlider) DOM.productModalSlider.innerHTML = sliderHtml;
