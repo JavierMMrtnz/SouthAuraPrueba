@@ -289,7 +289,7 @@ function renderCart() {
     for (var i = 0; i < cart.length; i++) {
         var item = cart[i];
         var product = products[item.id];
-        var imageUrl = product && product.images ? product.images[0] : 'assets/img/placeholder.webp';
+        var imageUrl = product && product.images ? product.images[0] : 'placeholder.webp';
         total += item.price * item.quantity;
         html += '<div class="cart-item">' +
             '<img src="' + imageUrl + '" alt="' + item.name + '" class="cart-item__image" loading="lazy">' +
@@ -338,8 +338,8 @@ function openProductModal(productId) {
     var dotsHtml = '';
     for (var i = 0; i < product.images.length; i++) {
         var activeClass = (i === 0) ? 'active' : '';
-        sliderHtml += '';
-        dotsHtml += '';
+        sliderHtml += '<img src="' + product.images[i] + '" class="product-detail__image ' + activeClass + '" loading="lazy" alt="' + product.name + ' - Image ' + (i + 1) + '">';
+        dotsHtml += '<span class="product-detail__dot ' + activeClass + '" onclick="goToProductSlide(' + i + ')"></span>';
     }
     if (DOM.productModalSlider) DOM.productModalSlider.innerHTML = sliderHtml;
     if (DOM.productModalDots) DOM.productModalDots.innerHTML = dotsHtml;
