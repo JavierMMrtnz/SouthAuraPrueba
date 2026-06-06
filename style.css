@@ -1814,6 +1814,16 @@ p {
         padding: var(--spacing-md);
     }
 
+    .product-detail__gallery {
+        aspect-ratio: auto;
+        max-height: 50vh;
+    }
+
+    .product-detail__slider img {
+        object-fit: contain;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
     .announcement-bar {
         font-size: 0.6rem;
         padding: 0.5rem var(--spacing-sm);
